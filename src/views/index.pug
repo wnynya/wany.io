@@ -12,21 +12,7 @@ html(lang='ko')
 
     main
 
-      case path[0] 
-
-        when "root": include /views/pages/root
-
-        when "error": include /views/pages/error/routes
-
-        when "amuject": include /views/pages/amuject/routes
-
-        when "blog": include /views/pages/blog/routes
-
-        when "manage": include /views/pages/manage/routes
-
-        when "network-crystal": include /views/pages/network-crystal/routes
-
-        when "you": include /views/pages/you/routes
+      include /views/pages/routes
 
     if (elements.includes('footer'))
       include /views/elements/footer
