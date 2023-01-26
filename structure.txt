@@ -1,0 +1,25 @@
+
+사이트 구조
+
+wany.io
+
+/ => 루트
+
+/b/index => 블로그 게시글 목록
+/b/editor => 블로그 에디터
+/b/:id => 블로그 게시글
+
+/m => 관리자 페이지 루트
+/m/accounts = > 관리자 페이지 / 계정
+
+/u => 사용자 계정 관리 페이지 루트
+/u/about => 기본
+/u/sessions => 세션
+/u/keys => 인증 키
+
+/u/login
+/u/register
+/u/reset-password
+
+/network-crystal => 네트워크 크리스탈
+/network-crystal/:query => 네트워크 크리스탈 쿼리

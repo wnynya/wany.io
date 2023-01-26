@@ -1,0 +1,32 @@
+doctype html
+html(lang='ko')
+
+  include /views/elements/head
+
+  body
+
+    include /views/elements/scripts
+    
+    if (elements.includes('header')) 
+      include /views/elements/header
+
+    main
+
+      case path[0] 
+
+        when "root": include /views/pages/root
+
+        when "error": include /views/pages/error/routes
+
+        when "amuject": include /views/pages/amuject/routes
+
+        when "blog": include /views/pages/blog/routes
+
+        when "manage": include /views/pages/manage/routes
+
+        when "network-crystal": include /views/pages/network-crystal/routes
+
+        when "you": include /views/pages/you/routes
+
+    if (elements.includes('footer'))
+      include /views/elements/footer
