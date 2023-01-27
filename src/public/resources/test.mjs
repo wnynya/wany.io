@@ -5,3 +5,5 @@ new (class extends LapisScript {
 
   unload() {}
 })();
+
+console.log('aaaaa');

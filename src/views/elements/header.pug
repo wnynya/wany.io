@@ -1,0 +1,93 @@
+lapis-script(type="module" src="/resources/elements/header.mjs" defer="defer")
+
+header#header(noselect)
+
+  section#header-dummy
+
+  section#header-cover(status="hide")
+
+  setcion#header-nav(status="top" dropdown="close" noselect)
+
+    setcion#header-always
+
+      .left
+          button#button-header-always-index(small ellipse outline) Index
+          a#button-header-always-blog(href="/b/index" button lapis) 
+            button(small ellipse outline) Blog
+          a#button-header-always-amuject(href="/a" button lapis)
+            button(small ellipse outline) Amuject
+
+      .center
+        a.logo(href="/" lapis)
+          .icon 
+            include /views/elements/svg/wanyne-icon
+          .title
+            include /views/elements/svg/wanyne-kr-2
+
+      .right
+        if (req.login)
+          button#button-header-always-account(small ellipse outline)!= req.account.label
+        else
+          button#button-header-always-login(small ellipse outline) Login
+
+    section#header-dropdown 
+
+      .wrapper
+
+        h2 
+          a(href="/b/index" lapis) Blog
+        h2 
+          a(href="/a" lapis) Amuject
+        h2 Works
+        h3 
+          a(href="/greenbee" lapis) Greenbee
+        h2 
+          a(href="/a/co" lapis) Co-Amuject
+
+  section#header-when 
+
+    if (req.login)
+      section.when.layer#header-account(type="narrow" status="hide")
+        .layer.bg
+        .layer.cl
+          .wrapper
+            button#button-header-account-close(tooltip="닫기" ellipse magnify).close
+              include /views/elements/svg/header-button-close
+        .layer.fg
+          .wrapper.front
+            h2!= "안녕👋, " + req.account.label
+            a(href="/u/about" button lapis)
+              button#button-header-account-manage 계정 관리
+            button#button-header-account-logout 로그아웃
+          .wrapper.back
+            h2 로그아웃 중⏳...
+
+    else
+      section.when.layer#header-login(type="narrow" status="hide")
+        .layer.bg
+        .layer.cl
+          .wrapper
+            button#button-header-login-close(tooltip="닫기" ellipse magnify).close
+              include /views/elements/svg/header-button-close
+        .layer.fg
+          .wrapper.front
+            h2 로그인🔒
+            form(onsubmit="return false;")
+              .input.text(label="inner")
+                input#input-header-login-account.btn(type="text" name="id" placeholder="계정 ID 혹은 이메일" spellcheck="false" required) 
+                label 계정
+                .border
+              .input.text(label="inner")
+                input#input-header-login-password.btn(type="password" name="password" placeholder="비밀번호" spellcheck="false" required) 
+                label 비밀번호
+                .border
+                #button-header-login-reset-password(status="hide")
+                  a(href="/u/reset-password" button lapis) 
+                    button(type="button" color="red" small magnify) 🤯비밀번호를 모르겠어!💥
+              .input.checkbox.right
+                input#input-header-login-keep(type="checkbox" name="keeplogin")
+                label 로그인 세션 유지
+                .checkbtn
+              button#button-header-login-submit 로그인
+          .wrapper.back
+            h2 계정 확인 중⏳...

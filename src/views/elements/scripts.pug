@@ -1,11 +1,6 @@
-script window.bundle = new Object(); 
-script window.client = new Object(); 
-script window.global = new Object();
+script window.bundle = new Object(); window.client = new Object(); window.global = new Object();
 if client && client.id
-  script client.login = true; 
-  script client.id = "#{client.id}"; 
-  script client.eid = "#{client.eid}"; 
-  script client.name = "#{client.name}";
+  script client.login = true; client.id = "#{client.id}"; client.eid = "#{client.eid}"; client.name = "#{client.name}";
 script window.Math.rem = (n = 1) => { return n * parseFloat(getComputedStyle(document.documentElement).fontSize); }
 script function vh() { document.documentElement.style.setProperty('--vh', window.innerHeight * 0.01 + 'px'); } window.addEventListener('resize', vh); vh();
 
@@ -52,7 +47,9 @@ script(type="module").
       } else {
         const script = document.createElement('script');
         script.src = this.src;
-        script.type = 'module';
+        if (this.src.match(/\.mjs$/)) {
+          script.type = 'module';
+        }
         script.addEventListener('load', (event) => {
           this.load();
         });

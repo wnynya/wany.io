@@ -1,0 +1,31 @@
+/*
+
+  Wanymetric 
+
+  © 2017 - 2021, Wany (Wany)
+  
+  wany.io
+
+*/
+
+@font-face {
+  font-family: 'Wanymetric';
+  src: url('https://wany.io/resources/fonts/Wanymetric/Wanymetric-Regular.woff2')
+    format('woff2');
+  font-style: normal;
+  font-weight: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Wanymetric';
+  src: url('https://wany.io/resources/fonts/Wanymetric/Wanymetric-Bold.eot?#iefix')
+      format('embedded-opentype'),
+    url('https://wany.io/resources/fonts/Wanymetric/Wanymetric-Bold.woff2')
+      format('woff2'),
+    url('https://wany.io/resource/font/wanymetric/Wanymetric-Bold.woff')
+      format('woff');
+  font-style: normal;
+  font-weight: bold;
+  font-display: swap;
+}

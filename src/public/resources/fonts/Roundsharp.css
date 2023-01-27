@@ -1,0 +1,36 @@
+/*
+
+  Roundsharp Original
+
+  © 2020, Wany(Wany)
+  
+  wany.io
+
+*/
+
+@font-face {
+  font-family: 'Roundsharp Original';
+  src: url('/resources/fonts/Roundsharp/Roundsharp-Original.woff2')
+    format('woff2');
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Roundsharp Original';
+  src: url('/resources/fonts/Roundsharp/Roundsharp-Original.woff2')
+    format('woff2');
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Roundsharp Original Timer';
+  src: url('/resources/fonts/Roundsharp/Roundsharp-Original-timer.woff2')
+    format('woff2');
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}

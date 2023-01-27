@@ -13,6 +13,7 @@ const Lapis = new (class {
       intervals: [],
     };
     this.styles = [];
+    this.prefetched = [];
     const _this = this;
     window.onpopstate = (event) => {
       _this.goto(window.location.href, false);
@@ -89,8 +90,23 @@ const Lapis = new (class {
       }
     };
 
+    this.observer = new IntersectionObserver((entries, observer) => {
+      for (const entry of entries) {
+        if (entry.isIntersecting) {
+          const target = entry.target;
+          const href = target.href;
+          const id = btoa(href);
+          if (this.prefetched.includes(id)) {
+            continue;
+          }
+          this.prefetched.push(id);
+          this.prefetch(href);
+        }
+      }
+    }, {});
+
     for (const e of document.querySelectorAll('a[href][lapis]')) {
-      this.preload(e.href);
+      this.observer.observe(e);
     }
   }
 
@@ -205,12 +221,13 @@ const Lapis = new (class {
       }
     }
 
+    this.observer.disconnect();
     for (const e of document.querySelectorAll('a[href][lapis]')) {
-      this.preload(e.href);
+      this.observer.observe(e);
     }
   }
 
-  preload(href) {
+  prefetch(href) {
     GetRequest(href)
       .then((res) => {
         const temp = document.createElement('template');
