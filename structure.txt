@@ -24,4 +24,4 @@ wany.io
 /network-crystal => 네트워크 크리스탈
 /network-crystal/:query => 네트워크 크리스탈 쿼리
 
-a
+aa
