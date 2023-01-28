@@ -5,7 +5,6 @@
   "main": "src/app.mjs",
   "scripts": {
     "start": "node src/app.mjs -p 29080",
-    "lab": "node src/app.mjs -p 39080",
     "dev": "nodemon src/app.mjs -p 39080"
   },
   "dependencies": {
