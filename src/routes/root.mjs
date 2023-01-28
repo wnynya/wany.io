@@ -7,41 +7,19 @@ router.get('/', (req, res) => {
   res.ren('root', {});
 });
 
-router.get('/page1', (req, res) => {
-  res.ren('page1', {});
-});
+import amujectRouter from './amuject.mjs';
+router.use('/a', amujectRouter);
 
-router.get('/page2', (req, res) => {
-  res.ren('page2', {});
-});
+import blogRouter from './blog.mjs';
+router.use('/b', blogRouter);
 
-router.get('/test.css', (req, res) => {
-  setTimeout(() => {
-    res.set('Content-Type', 'text/css');
-    res.send(`
-    #test-block {
-      width: 300px;
-      height: 500px;
-      background-color: yellow;
-    }
-    
-    `);
-  }, 1000);
-});
+import networkCrystalRouter from './network-crystal.mjs';
+router.use('/network-crystal', networkCrystalRouter);
 
-router.get('/test.mjs', (req, res) => {
-  setTimeout(() => {
-    res.set('Content-Type', 'text/javascript');
-    res.send(`
-    new (class extends LapisScript {
-      load() {
-        console.log('로딩 2초 걸리는');
-      }
-    
-      unload() {}
-    })();    
-    `);
-  }, 2000);
-});
+import manageRouter from './manage.mjs';
+router.use('/m', manageRouter);
+
+import youRouter from './you.mjs';
+router.use('/u', youRouter);
 
 export default router;

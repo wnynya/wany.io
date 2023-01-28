@@ -108,6 +108,15 @@ const Lapis = new (class {
     for (const e of document.querySelectorAll('a[href][lapis]')) {
       this.observer.observe(e);
     }
+
+    this.firstLoaded = false;
+    this.firstPageStyles = [];
+    this.firstPageStylesPop = [];
+    for (const e of document.querySelectorAll('main lapis-style')) {
+      this.firstPageStyles.push(btoa(e.getAttribute('src')));
+    }
+    this.firstPageStylesPop = [...this.firstPageStyles];
+    this.firstPageStyleLoaded();
   }
 
   goto(href, push = true, target = '_blank') {
@@ -186,6 +195,7 @@ const Lapis = new (class {
     const temp = document.createElement('template');
     temp.innerHTML = html;
     const doc = temp.content;
+
     copyHTML(doc, document, 'title');
     copyHTML(doc, document, 'main');
     copyContent(doc, document, 'meta[name="description"]');
@@ -197,7 +207,14 @@ const Lapis = new (class {
     copyContent(doc, document, 'meta[name="twitter:title"]');
     copyContent(doc, document, 'meta[name="twitter:description"]');
     copyContent(doc, document, 'meta[name="twitter:image"]');
+
     this.updateAHref();
+
+    this.observer.disconnect();
+    for (const e of document.querySelectorAll('a[href][lapis]')) {
+      this.observer.observe(e);
+    }
+
     function copyHTML(from, to, selector) {
       if (
         to.querySelector(selector)?.innerHTML &&
@@ -209,6 +226,7 @@ const Lapis = new (class {
         to.querySelector(selector).innerHTML = '&nbsp;';
       }
     }
+
     function copyContent(from, to, selector) {
       if (
         to.querySelector(selector)?.content &&
@@ -219,11 +237,6 @@ const Lapis = new (class {
       } else if (to.querySelector(selector)?.content) {
         to.querySelector(selector).content = '';
       }
-    }
-
-    this.observer.disconnect();
-    for (const e of document.querySelectorAll('a[href][lapis]')) {
-      this.observer.observe(e);
     }
   }
 
@@ -270,6 +283,20 @@ const Lapis = new (class {
 
   update() {
     this.updateAHref();
+  }
+
+  firstPageStyleLoaded(id) {
+    this.firstLoaded = false;
+
+    id
+      ? this.firstPageStylesPop.splice(this.firstPageStylesPop.indexOf(id), 1)
+      : null;
+    if (
+      (this.firstPageStyles.includes(id) || !id) &&
+      this.firstPageStylesPop.length == 0
+    ) {
+      console.log('firstPageStyleLoaded');
+    }
   }
 })();
 
