@@ -11,6 +11,7 @@ jobs:
       - uses: actions/checkout@master
         with:
           repository: wnynya/Wanyne-config
+          token: ${{ secrets.CONFIG_TOKEN }}
           path: './Wanyne/config'
 
       - run: npm install
