@@ -2,7 +2,6 @@
 /logs
 /data
 /src/public/temp
-/config/*
-!/config/example
+/config
 /deprecated
 /package-lock.json
