@@ -2,7 +2,7 @@ import { GetRequest } from '/resources/modules/request.mjs';
 
 const Lapis = new (class {
   constructor() {
-    this.host = 'lab-root.wnynya.com';
+    this.host = window.location.host;
     this.color = 'rgb(170,143,179)';
     this.scripts = {
       cache: {},
