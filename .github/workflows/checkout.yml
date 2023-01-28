@@ -4,20 +4,16 @@ jobs:
   checkout:
     runs-on: self-hosted
     steps:
-      - name: Checkout
       - uses: actions/checkout@master
         with:
           path: './Wanyne'
 
-      - name: Checkout wnynya/Wanyne-config
-        uses: actions/checkout@master
+      - uses: actions/checkout@master
         with:
           repository: wnynya/Wanyne-config
           token: ${{ secrets.CONFIG_TOKEN }}
           path: './Wanyne/config'
 
-      - name: Install npm modules
       - run: npm install
 
-      - name: Start service
       - run: npm run start
