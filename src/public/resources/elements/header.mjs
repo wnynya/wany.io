@@ -198,6 +198,7 @@ class WhenNarrow {
     this.when.querySelector(' .fg').setAttribute('status', 'goaway');
   }
 }
+export { WhenNarrow };
 
 const Login = new (class extends WhenNarrow {
   constructor() {
@@ -253,13 +254,10 @@ const Login = new (class extends WhenNarrow {
     this.flipBack();
 
     setTimeout(() => {
-      JSONPostRequest(
-        'https://api.wany.io/auth/accounts/' + id.value + '/sessions',
-        {
-          password: pw.value,
-          keep: keep.checked,
-        }
-      )
+      JSONPostRequest(`${global.api}/auth/accounts/${id.value}/sessions`, {
+        password: pw.value,
+        keep: keep.checked,
+      })
         .then((res) => {
           document
             .querySelector('#button-header-login-reset-password')
@@ -306,7 +304,7 @@ const Account = new (class extends WhenNarrow {
     }
     this.showing = false;
     document
-      .querySelector('#button-header-account')
+      .querySelector('#button-header-always-account')
       .addEventListener('click', () => {
         this.show();
       });
@@ -329,10 +327,7 @@ const Account = new (class extends WhenNarrow {
 
   logout() {
     this.flipBack();
-    JSONDeleteRequest(
-      'https://api.wany.io/auth/accounts/@me/sessions/@current',
-      {}
-    )
+    JSONDeleteRequest(`${global.api}/auth/accounts/@me/sessions/@current`, {})
       .then((res) => {
         console.log(res);
         setTimeout(() => {

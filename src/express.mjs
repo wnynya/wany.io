@@ -22,6 +22,7 @@ app.use(auth.account()); // Auth account (req.account)
 app.use(middlewares.logger(new Logger(config.logger.req))); // Log request
 
 app.use((req, res, next) => {
+  req.api = config.api;
   res.ren = (...args) => {
     let status = 200;
     let path;

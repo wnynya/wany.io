@@ -394,3 +394,9 @@ class BallField {
     this.onResize();
   }
 }
+
+function test() {
+  JSONGetRequest(`${global.api}/test`).then(console.log);
+}
+
+window.test = test;

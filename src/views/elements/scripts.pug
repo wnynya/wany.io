@@ -1,6 +1,16 @@
-script window.bundle = new Object(); window.client = new Object(); window.global = new Object();
-if client && client.id
-  script client.login = true; client.id = "#{client.id}"; client.eid = "#{client.eid}"; client.name = "#{client.name}";
+script.
+  window.bundle = new Object(); 
+  window.client = new Object(); 
+  window.global = new Object(); 
+script.
+  global.api = '#{req.api}';
+if req.login && req.account
+  script.
+    window.account = new Object(); 
+    account.login = true; 
+    account.uid = '#{req.account.uid}'; 
+    account.eid = '#{req.account.eid}'; 
+    account.label = '#{req.account.label}';
 script window.Math.rem = (n = 1) => { return n * parseFloat(getComputedStyle(document.documentElement).fontSize); }
 script function vh() { document.documentElement.style.setProperty('--vh', window.innerHeight * 0.01 + 'px'); } window.addEventListener('resize', vh); vh();
 
