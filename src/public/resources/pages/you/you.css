@@ -1,0 +1,305 @@
+#you-header {
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: solid 1px var(--t210);
+}
+
+#you-header .profile {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+#you-header .profile .image {
+  width: 4rem;
+  height: 4rem;
+}
+#you-header .profile .image img {
+  width: 100%;
+  height: 100%;
+}
+#you-header .profile .text {
+  width: calc(100% - 5rem);
+}
+#you-header .profile .text > .label {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+#you-header .profile .text > .desc {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--t80);
+}
+
+#you-main {
+  margin-bottom: 12rem;
+}
+#you-main hr {
+  margin: 2rem 0;
+}
+#you-main h1 {
+  font-size: 2.5rem;
+  padding-bottom: 1rem;
+  border-bottom: solid 1px var(--t210);
+}
+#you-main .label {
+  display: block;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--t80);
+  margin: 2rem 0 0.5rem 0;
+}
+#you-main .desc {
+  display: block;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--t128);
+  margin: 0.5rem 0 0rem 0;
+}
+#you-main form > .control {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-top: 2rem;
+}
+
+#you-profile > form > .imagelabel {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+#you-profile > form > .imagelabel > .left {
+  width: calc(100% - 12rem - 1rem);
+  transition: width 0.2s ease-out;
+}
+#you-profile > form > .imagelabel > .right {
+  width: 12rem;
+  transition: width 0.2s ease-out;
+}
+#you-profile > form > .imagelabel > .right > a {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 100%;
+  width: 12rem;
+  height: 12rem;
+  transition: width 0.2s ease-out, height 0.2s ease-out;
+  background: var(--t230);
+  overflow: hidden;
+}
+#you-profile > form > .imagelabel > .right > a > .hover {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  transition: opacity 0.1s ease-out;
+}
+#you-profile > form > .imagelabel > .right > a > .hover * {
+  text-align: center;
+  font-weight: 700;
+  color: var(--bg);
+}
+#you-profile > form > .imagelabel > .right > a:hover > .hover {
+  opacity: 1;
+  transition: opacity 0.2s ease-out;
+}
+#you-profile > form > .imagelabel > .right .image img {
+  width: 100%;
+  height: 100%;
+}
+#you-profile > form > .input:last-child {
+  padding-bottom: 2rem;
+}
+@media (max-width: 600px) {
+  #you-profile > form > .imagelabel > .left {
+    width: calc(100% - 9rem - 1rem);
+  }
+  #you-profile > form > .imagelabel > .right {
+    width: 9rem;
+  }
+  #you-profile > form > .imagelabel > .right > a {
+    width: 9rem;
+    height: 9rem;
+  }
+}
+
+#you-sessions > .sessions {
+  border-radius: 1rem;
+  background: var(--t230);
+  overflow: hidden;
+}
+#you-sessions > .sessions > .session {
+  display: flex;
+  padding: 1rem;
+  border-bottom: solid 1px var(--bg);
+}
+#you-sessions > .sessions > .session:hover {
+  background: var(--t210);
+}
+#you-sessions > .sessions > .session:last-child {
+  border-bottom: none;
+}
+#you-sessions > .sessions > .session > .icon {
+  position: relative;
+  width: 3rem;
+  height: 3rem;
+}
+#you-sessions > .sessions > .session > .icon > .system {
+  position: absolute;
+  width: 2.5rem;
+  height: 2.5rem;
+  top: 0;
+  left: 0;
+  background-size: contain;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+#you-sessions > .sessions > .session > .icon > .browser {
+  position: absolute;
+  width: 1.5rem;
+  height: 1.5rem;
+  bottom: 0;
+  right: 0;
+  background-size: contain;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+#you-sessions > .sessions > .session > .icon > .system[name='windows-11'] {
+  background-image: url('/resources/pages/you/sessions/logo-microsoft-windows-11-icon.svg');
+}
+#you-sessions > .sessions > .session > .icon > .system[name='windows-10'] {
+  background-image: url('/resources/pages/you/sessions/logo-microsoft-windows-10-icon.svg');
+}
+#you-sessions > .sessions > .session > .icon > .system[name='windows-8.1'] {
+  background-image: url('/resources/pages/you/sessions/logo-microsoft-windows-8.1-icon.svg');
+}
+#you-sessions > .sessions > .session > .icon > .system[name='windows-8'] {
+  background-image: url('/resources/pages/you/sessions/logo-microsoft-windows-8-icon.svg');
+}
+#you-sessions > .sessions > .session > .icon > .system[name='windows-7'],
+#you-sessions > .sessions > .session > .icon > .system[name='windows-vista'],
+#you-sessions > .sessions > .session > .icon > .system[name='windows-xp'] {
+  background-image: url('/resources/pages/you/sessions/logo-microsoft-windows-xp-7-icon.svg');
+}
+#you-sessions > .sessions > .session > .icon > .system[name='windows-98'],
+#you-sessions > .sessions > .session > .icon > .system[name='windows-95'] {
+  background-image: url('/resources/pages/you/sessions/logo-microsoft-windows-98-95-icon.svg');
+}
+#you-sessions > .sessions > .session > .icon > .system[name='mac'],
+#you-sessions > .sessions > .session > .icon > .system[name='iphone'],
+#you-sessions > .sessions > .session > .icon > .system[name='ipad'],
+#you-sessions > .sessions > .session > .icon > .system[name='ipod'] {
+  background-image: url('/resources/pages/you/sessions/logo-apple.svg');
+}
+#you-sessions > .sessions > .session > .icon > .system[name='linux'] {
+  background-image: url('/resources/pages/you/sessions/logo-linux.svg');
+}
+#you-sessions > .sessions > .session > .icon > .system[name='unix'] {
+  background-image: url('/resources/pages/you/sessions/logo-linux.svg');
+}
+#you-sessions > .sessions > .session > .icon > .system[name='android'] {
+  background-image: url('/resources/pages/you/sessions/logo-google-android.svg');
+}
+#you-sessions > .sessions > .session > .icon > .system[name='unknown'] {
+  background-image: url('/resources/pages/you/sessions/back-1.jpg');
+}
+
+#you-sessions > .sessions > .session > .icon > .browser[name='chrome'] {
+  background-image: url('/resources/pages/you/sessions/logo-google-chrome.svg');
+}
+#you-sessions > .sessions > .session > .icon > .browser[name='safari'] {
+  background-image: url('/resources/pages/you/sessions/logo-apple-safari.svg');
+}
+#you-sessions > .sessions > .session > .icon > .browser[name='firefox'] {
+  background-image: url('/resources/pages/you/sessions/logo-mozilla-firefox.svg');
+}
+#you-sessions > .sessions > .session > .icon > .browser[name='ie'] {
+  background-image: url('/resources/pages/you/sessions/logo-microsoft-internet-explorer.svg');
+}
+#you-sessions > .sessions > .session > .icon > .browser[name='edge'] {
+  background-image: url('/resources/pages/you/sessions/logo-microsoft-edge.svg');
+}
+#you-sessions > .sessions > .session > .icon > .browser[name='opera'] {
+  background-image: url('/resources/pages/you/sessions/logo-opera.svg');
+}
+#you-sessions > .sessions > .session > .icon > .browser[name='whale'] {
+  background-image: url('/resources/pages/you/sessions/logo-naver-whale.png');
+}
+#you-sessions
+  > .sessions
+  > .session
+  > .icon
+  > .browser[name='samsung-internet'] {
+  background-image: url('/resources/pages/you/sessions/logo-samsung-internet.svg');
+}
+#you-sessions > .sessions > .session > .icon > .browser[name='tor'] {
+  background-image: url('/resources/pages/you/sessions/logo-tor.svg');
+}
+#you-sessions > .sessions > .session > .icon > .browser[name='naver-app'] {
+  background-image: url('/resources/pages/you/sessions/logo-naver-app.png');
+}
+#you-sessions > .sessions > .session > .icon > .browser[name='instagram'] {
+  background-image: url('/resources/pages/you/sessions/logo-instagram.svg');
+}
+#you-sessions > .sessions > .session > .icon > .browser[name='kakaotalk'] {
+  background-image: url('/resources/pages/you/sessions/logo-kakaotalk.svg');
+}
+#you-sessions > .sessions > .session > .icon > .browser[name='steam'] {
+  background-image: url('/resources/pages/you/sessions/logo-steam.svg');
+}
+#you-sessions > .sessions > .session > .icon > .browser[name='unknown'] {
+  background-image: url('/resources/pages/you/sessions/logo-async-foundation.jpg');
+}
+#you-sessions > .sessions > .session > .info {
+  width: calc(100% - 14rem);
+  height: 3rem;
+  padding: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+#you-sessions > .sessions > .session > .info > .geoip,
+#you-sessions > .sessions > .session > .info > .last {
+  font-weight: 700;
+  line-height: 120%;
+}
+#you-sessions > .sessions > .session > .info > .geoip > *,
+#you-sessions > .sessions > .session > .info > .last > * {
+  margin-right: 0.5rem;
+  display: inline;
+}
+#you-sessions > .sessions > .session > .info > .last,
+#you-sessions > .sessions > .session > .info > .last > * {
+  color: var(--t128);
+}
+#you-sessions > .sessions > .session > .control {
+  width: 9rem;
+  height: 3rem;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+#you-keys > .keys {
+  border-radius: 1rem;
+  background: var(--t230);
+  overflow: hidden;
+}
+#you-keys > .keys > .key {
+  display: flex;
+  padding: 1rem;
+  border-bottom: solid 1px var(--bg);
+}
+#you-keys > .keys > .key:hover {
+  background: var(--t210);
+}
+#you-keys > .keys > .key:last-child {
+  border-bottom: none;
+}
+#you-keys > .keys > .key * {
+  font-weight: 700;
+  line-height: 120%;
+}

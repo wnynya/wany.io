@@ -1,17 +1,44 @@
-case path[1] 
+lapis-style(src="/resources/pages/you/you.css")
 
-  when "root": include /views/pages/you/root
+if (['root', 'login', 'reset-password'].includes(path[1]))
 
-  when "login": include /views/pages/you/login
+  case path[1] 
 
-  when "reset-password": include /views/pages/you/reset-password
+    when "root": include /views/pages/you/root
 
-  when "about": include /views/pages/you/about
+    when "login": include /views/pages/you/login
 
-  when "change-password": include /views/pages/you/change-password
-  
-  when "sessions": include /views/pages/you/sessions
+    when "reset-password": include /views/pages/you/reset-password
 
-  when "keys": include /views/pages/you/keys
+else
 
-  when "key": include /views/pages/you/key
+  section#you-header
+    .outwrapper(rightnarrow)
+      .inwrapper
+        .profile 
+          .image 
+            img(src=req.account.gravatar + "?s=120")
+          .text
+            if (req.account.eid == req.account.label)
+              .label!= req.account.label
+            else
+              .label!= req.account.label + " (" + req.account.eid + ")"
+            .desc 와니네 계정 관리 페이지
+        
+  include /views/pages/you/sidebar
+
+  section#you-main
+    .outwrapper(rightnarrow)
+      .inwrapper
+
+        case path[1] 
+
+          when "profile": include /views/pages/you/profile
+
+          when "change-password": include /views/pages/you/change-password
+          
+          when "sessions": include /views/pages/you/sessions
+
+          when "keys": include /views/pages/you/keys
+
+          when "key": include /views/pages/you/key

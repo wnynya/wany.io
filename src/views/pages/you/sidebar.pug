@@ -1,0 +1,34 @@
+lapis-script(src="/resources/pages/you/you-sidebar.mjs")
+
+aside.sidebar.withstars#you-sidebar
+  .stars.top
+    include /views/elements/svg/diamond-hollow-small
+    include /views/elements/svg/diamond-hollow-small
+  .content
+    a(href="/u/profile" lapis)
+      label 
+        .icon
+          include /views/elements/svg/icon-portrait
+        .text 프로필
+    a(href="/u/sessions" lapis)
+      label 
+        .icon
+          include /views/elements/svg/icon-session
+        .text 세션
+    a(href="/u/change-password" lapis)
+      label 
+        .icon
+          include /views/elements/svg/icon-password
+        .text 비밀번호 변경
+    hr
+    h2 API
+    a(href="/u/keys" lapis)
+      label
+        .icon
+          include /views/elements/svg/icon-key
+        .text API 키
+  .stars.bottom
+    include /views/elements/svg/diamond-hollow-small
+    include /views/elements/svg/diamond-hollow-small
+  button
+    include /views/elements/svg/sidebar-button

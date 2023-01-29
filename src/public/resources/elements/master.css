@@ -22,40 +22,39 @@
 @import url('https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700&display=swap');
 
 :root {
-  --t-255: rgb(255, 255, 255);
-  --t-245: rgb(245, 245, 245);
-  --t-230: rgb(230, 230, 230);
-  --t-210: rgb(210, 210, 210);
-  --t-180: rgb(180, 180, 180);
-  --t-150: rgb(150, 150, 150);
-  --t-128: rgb(128, 128, 128);
-  --t-0: rgb(0, 0, 0);
-
-  --red-l: rgb(255, 182, 179);
-  --red: rgb(255, 56, 46);
-  --red-d: rgb(128, 6, 0);
-
-  --yellow-l: rgb(255, 222, 179);
+  --yellow-l: rgb(255, 219, 74);
   --yellow: rgb(255, 204, 0);
-  --yellow-d: rgb(230, 140, 0);
+  --yellow-d: rgb(231, 185, 0);
 
-  --green-l: rgb(194, 239, 195);
-  --green: rgb(51, 199, 88);
-  --green-d: rgb(26, 101, 45);
-
-  --blue-l: rgb(179, 215, 255);
-  --blue: rgb(0, 123, 255);
-  --blue-d: rgb(0, 62, 128);
-
-  --purple-l: rgb(225, 191, 243);
-  --purple: rgb(176, 84, 222);
-  --purple-d: rgb(78, 20, 107);
-
+  --orange-l: rgb(255, 169, 50);
   --orange: rgb(255, 149, 0);
-  --pink: rgb(255, 46, 84);
-  --indigo: rgb(89, 87, 214);
-  --teal: rgb(92, 201, 255);
+  --orange-d: rgb(255, 149, 0);
 
+  --red-l: rgb(253, 93, 84);
+  --red: rgb(255, 59, 48);
+  --red-d: rgb(209, 39, 30);
+
+  --magenta-l: rgb(255, 85, 116);
+  --magenta: rgb(255, 46, 85);
+  --magenta-d: rgb(255, 46, 85);
+
+  --purple-l: rgb(188, 115, 224);
+  --purple: rgb(175, 82, 222);
+  --purple-d: rgb(143, 57, 185);
+
+  --blue-l: rgb(37, 142, 255);
+  --blue: rgb(0, 122, 255);
+  --blue-d: rgb(0, 95, 196);
+
+  --cyan-l: rgb(80, 188, 238);
+  --cyan: rgb(50, 173, 230);
+  --cyan-d: rgb(25, 153, 212);
+
+  --green-l: rgb(92, 219, 124);
+  --green: rgb(52, 199, 89);
+  --green-d: rgb(40, 179, 74);
+
+  --t255: rgb(255, 255, 255);
   --t245: rgb(245, 245, 245);
   --t230: rgb(230, 230, 230);
   --t210: rgb(210, 210, 210);
@@ -63,17 +62,18 @@
   --t128: rgb(128, 128, 128);
   --t80: rgb(80, 80, 80);
   --t45: rgb(45, 45, 45);
+  --t30: rgb(30, 30, 30);
   --t20: rgb(20, 20, 20);
   --t0: rgb(0, 0, 0);
 
-  --yellow: rgb(255, 215, 0);
+  /*--yellow: rgb(255, 215, 0);
   --orange: rgb(255, 95, 0);
   --red: rgb(255, 30, 0);
   --magenta: rgb(255, 0, 160);
   --purple: rgb(105, 0, 255);
   --blue: rgb(0, 110, 255);
   --cyan: rgb(0, 195, 195);
-  --green: rgb(0, 245, 65);
+  --green: rgb(0, 245, 65);*/
 
   --bg: var(--t245);
   --fg: var(--t0);
@@ -84,12 +84,18 @@
   --input-ol: var(--fg);
 
   --button-bg: var(--t230);
+  --button-bg-hover: var(--fg);
+  --button-bg-disabled: var(--t180);
   --button-fg: var(--fg);
-  --button-dg: var(--t180);
-  --button-ph: var(--t80);
+  --button-fg-hover: var(--bg);
+  --button-fg-disabled: var(--t80);
+  --button-ol: var(--fg);
+  --button-ol-disabled: var(--t80);
 
   --scrollbar-bg: transparent;
   --scrollbar-fg: var(--fg);
+  --scrollbar-size: 1rem;
+  --scrollbar-radius: 100%;
 
   --selection-bg: var(--fg);
   --selection-fg: var(--bg);
@@ -161,10 +167,17 @@ h5 {
 h6 {
   font-size: 1.25rem;
 }
+hr {
+  width: 100%;
+  height: 1px;
+  background: var(--t210);
+  border: none;
+}
 /* SVG */
 svg {
   fill: var(--fg);
   stroke: transparent;
+  stroke-width: 0.1rem;
   overflow: visible;
 }
 svg * {
@@ -186,8 +199,8 @@ text {
 /* Scroll */
 ::-webkit-scrollbar {
   position: fixed;
-  width: 1rem;
-  height: 1rem;
+  width: var(--scrollbar-size);
+  height: var(--scrollbar-size);
 }
 ::-webkit-scrollbar-track {
   background: var(--scrollbar-bg);
@@ -195,7 +208,7 @@ text {
 ::-webkit-scrollbar-thumb,
 ::-webkit-scrollbar-thumb:hover {
   background: var(--scrollbar-fg);
-  border-radius: 100%;
+  border-radius: var(--scrollbar-radius);
 }
 
 [layer] {

@@ -8,7 +8,7 @@
     "dev": "nodemon src/app.mjs -p 39080"
   },
   "dependencies": {
-    "@wnynya/auth": "^1.0.1",
+    "@wnynya/auth": "^1.0.2",
     "@wnynya/express-middlewares": "^1.2.5",
     "@wnynya/logger": "^0.1.3",
     "@wnynya/mysql-client": "^0.2.11",

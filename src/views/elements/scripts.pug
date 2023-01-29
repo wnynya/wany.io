@@ -29,19 +29,23 @@ script(type="module" src="/resources/modules/inputs.mjs" defer="defer")
 //- Sidebar
 script(type="module" defer="defer").
   class Sidebar {
-    constructor(element = document.querySelector('main')) {
-      if (!document.querySelector('aside.sidebar')) {
-        return;
-      }
+    constructor(
+      sidebar = document.querySelector('aside.sidebar'),
+      element = document.querySelector('main')
+    ) {
+      this.sidebar = sidebar;
+      this.element = element;
       this.lastWidth = window.innerWidth;
       this.onScroll = () => {
-        const aside = document.querySelector('aside.sidebar');
-        const arect = aside.getBoundingClientRect();
-        const rect = element.getBoundingClientRect();
-        if (arect.height + Math.rem(5) > rect.bottom && window.scrollY - rect.height > rect.bottom) {
-          aside.style.top = rect.bottom - arect.height + 'px';
-        } else {
-          aside.style.top = 'max(5rem, ' + rect.top + 'px)';
+        const srect = sidebar.getBoundingClientRect();
+        const erect = element.getBoundingClientRect();
+        if (srect.height > erect.height) {
+          sidebar.style.top = `${erect.top}px`;
+        }
+        else {
+          sidebar.style.top = `max(${
+            Math.rem(5) + Math.min(0, erect.bottom - (srect.height + Math.rem(5)))
+          }px, ${erect.top}px)`;
         }
       };
       const _this = this;
@@ -51,8 +55,8 @@ script(type="module" defer="defer").
         _this.onScroll();
       };
 
-      document.querySelector('aside.sidebar > button').addEventListener('click', (event) => {
-        document.querySelector('aside.sidebar').classList.contains('open') ? _this.close() : _this.open();
+      this.sidebar.querySelector('button').addEventListener('click', (event) => {
+        this.sidebar.classList.contains('open') ? _this.close() : _this.open();
       });
 
       var i = setInterval(() => {
@@ -67,20 +71,20 @@ script(type="module" defer="defer").
     }
 
     open() {
-      document.querySelector('aside.sidebar') ? document.querySelector('aside.sidebar').classList.add('open') : null;
+      this.sidebar.classList.add('open');
     }
 
     close() {
-      document.querySelector('aside.sidebar') ? document.querySelector('aside.sidebar').classList.remove('open') : null;
+      this.sidebar.classList.remove('open');
     }
 
     hide() {
       this.close();
-      document.querySelector('aside.sidebar') ? document.querySelector('aside.sidebar').classList.add('hide') : null;
+      this.sidebar.classList.add('hide');
     }
 
     show() {
-      document.querySelector('aside.sidebar') ? document.querySelector('aside.sidebar').classList.remove('hide') : null;
+      this.sidebar.classList.remove('hide');
     }
 
     load() {
@@ -93,4 +97,5 @@ script(type="module" defer="defer").
       window.removeEventListener('resize', this.onResize);
     }
   }
+
   window.Sidebar = Sidebar;
