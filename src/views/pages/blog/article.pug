@@ -1,6 +1,6 @@
 lapis-style(src="/resources/pages/blog/article.css")
 lapis-style(src="/resources/pages/blog/github.css")
-lapis-script(eval="window.global.articleid = '" + article.uid + "';")
+lapis-script(eval="window.global.article = { uid: '" + article.uid + "', eid: '" + article.eid + "' };")
 lapis-script(src="/resources/pages/blog/article.mjs")
 
 section#blog-article-title
@@ -19,24 +19,34 @@ section#blog-article-info
         span.date#blog-article-info-datetime(tooltip=article.datetime.full)!= article.datetime.display
         span.dot ·
         span.category#blog-article-info-category
-          a(
-            href="/b/index/category:" + article.tags[0] 
-            tooltip="이 카테고리의 게시글 보기" 
-            
-          )!= article.category
+          if (categories[article.category])
+            a(
+              href="/b/index/category:" + article.tags[0] 
+              tooltip="이 카테고리의 게시글 보기" 
+              lapis
+            )!= categories[article.category]
+          else 
+            a 알수없음
 
 section#blog-article-content
   .outwrapper
     .inwrapper
       .article#blog-article-content-display!= article.content.html
 
-if (req.login && control)
+if (req.account && (article.author.uid == req.account.uid || req.hasPermission('blog.articles.article.patch') || req.hasPermission('blog.articles.article.delete')))
   section#blog-article-control
     .outwrapper(narrow)
       .inwrapper 
-        a(href="/b/editor/" + article.eid lapis)
-          button#blog-article-control-editor(small) 편집
-        button#blog-article-control-delete(small) 삭제
+        if (article.author.uid == req.account.uid) 
+          a(href="/b/editor/" + article.eid lapis)
+            button#blog-article-control-editor(medium) 편집
+          button#blog-article-control-delete(medium) 삭제
+        else
+          if (req.hasPermission('blog.articles.article.patch'))
+            a(href="/b/editor/" + article.eid lapis)
+              button#blog-article-control-editor(medium) 편집
+          if (req.hasPermission('blog.articles.article.delete'))
+            button#blog-article-control-delete(medium) 삭제
 
 section#blog-article-index
   .outwrapper(narrow)

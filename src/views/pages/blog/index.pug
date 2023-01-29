@@ -1,5 +1,5 @@
-lapis-style(src="/resources/blog/index.css")
-lapis-script(src="/resources/blog/index.mjs")
+lapis-style(src="/resources/pages/blog/index.css")
+lapis-script(src="/resources/pages/blog/index.mjs")
 
 section#blog-index-header
   .outwrapper
@@ -12,28 +12,28 @@ section#blog-index-header
         label 블로그에서 찾아보기
         .border
 
-if (req.login && req.account.eid == 'wnynya')
+if (req.hasPermission('blog.articles.post'))
   section#blog-index-control
     .outwrapper
       .inwrapper
         a(href="/b/editor" lapis)
-          button 에디터
+          button(medium color="green") 새 게시글 작성
 
 section#blog-index-list
   .outwrapper
     .inwrapper
       .list
-        each a in articles
+        each article in articles
           article
-            a(href="/b/" + a.eid lapis)
-              if a.title.image
+            a(href="/b/" + article.eid lapis)
+              if article.title.image
                 .image 
-                  img(src=a.title.image)
+                  img(src=article.title.image)
               .desc 
                 .title
-                  h2!=a.title.html
-                .content!=a.content.desc
-                .info!=a.date.display
+                  h2!= article.title.html
+                .content!= article.content.desc
+                .info!= (categories[article.category] ? categories[article.category] : '알수없음') + ' · ' + article.datetime.display
 
 section#blog-index-pages
   .outwrapper

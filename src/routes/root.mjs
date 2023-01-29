@@ -3,8 +3,35 @@ import { console } from '@wnynya/logger';
 import express from 'express';
 const router = express.Router();
 
+import { BlogArticle } from '@wnynya/blog';
+
 router.get('/', (req, res) => {
-  res.ren('root', {});
+  Promise.all([
+    BlogArticle.index({ category: 'amuject' }, 10, 1, false, true),
+    BlogArticle.index({ category: 'audio' }, 10, 1, false, true),
+    BlogArticle.index({ category: 'dev' }, 10, 1, false, true),
+    BlogArticle.index({ category: 'photo' }, 10, 1, false, true),
+  ])
+    .then(([amuject, audio, dev, photo]) => {
+      res.ren('root', {
+        title: '와니네',
+        articles: {
+          amuject: randomArticle(amuject),
+          audio: randomArticle(audio),
+          dev: randomArticle(dev),
+          photo: randomArticle(photo),
+        },
+      });
+    })
+    .catch((error) => {
+      res.error500();
+    });
+
+  function randomArticle(articles) {
+    return articles[
+      Math.floor(Math.min(Math.random() * articles.length), articles.length - 1)
+    ];
+  }
 });
 
 router.get('/ping', (req, res) => {

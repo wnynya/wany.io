@@ -402,14 +402,17 @@ section#image-panel .drop-area:hover h2 {
 /* Bottom Panel */
 
 #blog-editor-control {
-  padding: 4rem 0;
+  padding: 0 0 12rem 0;
 }
-#blog-editor-control .input.text,
-#blog-editor-control .textarea {
-  margin-bottom: 1rem;
+#blog-editor-control .label {
+  display: block;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--t80);
+  margin: 2rem 0 0.5rem 0;
 }
 #blog-editor-control textarea {
-  min-height: 16rem;
+  min-height: 12rem;
 }
 #blog-editor-control .submit {
   margin-top: 2rem;

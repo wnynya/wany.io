@@ -385,6 +385,12 @@ button svg * {
   width: 100%;
   height: 100%;
 }
+.textarea[medium] > textarea,
+.textarea[medium] > textarea:-webkit-autofill,
+.textarea[medium] > textarea:-webkit-autofill:hover,
+.textarea[medium] > textarea:-webkit-autofill:focus {
+  border-radius: 0.75rem;
+}
 .input.text[medium] {
   height: 3rem;
 }

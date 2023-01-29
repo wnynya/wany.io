@@ -3,12 +3,24 @@ import Vector from '/resources/modules/vector.mjs';
 
 new (class extends LapisScript {
   load() {
-    /*var ballfield = new BallField();
-    ballfield.newBall(document.querySelector('#root-ballfield .ball.no1'), 100, 1);
-    ballfield.newBall(document.querySelector('#root-ballfield .ball.no2'), 100, 1);
-    ballfield.newBall(document.querySelector('#root-ballfield .ball.no3'), 100, 1);
+    var ballfield = new BallField();
+    ballfield.newBall(
+      document.querySelector('#root-ballfield .ball.no1'),
+      100,
+      1
+    );
+    ballfield.newBall(
+      document.querySelector('#root-ballfield .ball.no2'),
+      100,
+      1
+    );
+    ballfield.newBall(
+      document.querySelector('#root-ballfield .ball.no3'),
+      100,
+      1
+    );
 
-    JSONGetRequest('https://api.wany.io/network/geoip').then((res) => {
+    JSONGetRequest(`${global.api}/network/geoip`).then((res) => {
       var data = res.body.data;
       var text = data.ip + ' @ ';
       data.city ? (text += data.city + ', ') : null;
@@ -16,9 +28,10 @@ new (class extends LapisScript {
       text += data.country.name + ' ';
       text += 'AS ' + data.as.number + ' ' + data.as.name + ' ';
       text += 'Now ' + data.time + ' at ' + data.timezone;
-      text += '--------------------------------------------------------------------------------';
+      text +=
+        '--------------------------------------------------------------------------------';
       document.querySelector('#nc-text').innerHTML = text;
-    });*/
+    });
   }
 
   unload() {}

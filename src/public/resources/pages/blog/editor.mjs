@@ -1,6 +1,14 @@
+import Date from '/resources/modules/date.mjs';
+import {
+  JSONGetRequest,
+  JSONPostRequest,
+  JSONPatchRequest,
+  FilePostRequest,
+} from '/resources/modules/request.mjs';
+
 new (class extends LapisScript {
   load() {
-    window.editor = new Editor(window.global.articleid);
+    window.editor = new Editor(window.global?.article?.uid);
     document.addEventListener('scroll', onScroll);
     onScroll();
   }
@@ -10,48 +18,29 @@ new (class extends LapisScript {
   }
 })();
 
-import Date from 'https://wany.io/resources/modules/date.mjs';
-import {
-  JSONGetRequest,
-  JSONPostRequest,
-  JSONPatchRequest,
-  FilePostRequest,
-} from 'https://wany.io/resources/modules/request.mjs';
-
-const categories = {
-  log: '로그',
-  works: '작업물',
-  amuject: '아무젝트',
-  dev: '개발',
-  photo: '사진',
-  audio: '오디오',
-  'audio-vinyl': '판',
-  test: '테스트',
-};
-
 class Editor {
-  constructor(id) {
-    this.id = id;
+  constructor(uid) {
+    this.uid = uid;
 
     this.paragraph;
 
-    if (this.id) {
+    if (this.uid) {
       this.isNewArticle = false;
-      this.loadArticle(id);
+      this.loadArticle(uid);
     } else {
       this.isNewArticle = true;
-      this.id = new Date().format('YYDDDsssssCC');
-      document.querySelector('#blog-editor-control-eid').value = this.id;
+      this.uid = new Date().format('YYDDDsssssCC');
+      document.querySelector('#blog-editor-control-eid').value = this.uid;
       document.querySelector('#blog-article-info-datetime').innerHTML = '지금';
       document.querySelector('#blog-article-info-category').innerHTML =
         '카테고리 선택';
       this.content2html();
     }
 
-    for (const cid in categories) {
+    for (const cid in global.categories) {
       const option = document.createElement('option');
       option.value = cid;
-      option.setAttribute('label', categories[cid]);
+      option.setAttribute('label', global.categories[cid]);
       document
         .querySelector('#blog-article-info-category-select')
         .appendChild(option);
@@ -67,8 +56,8 @@ class Editor {
     this.addEventListener();
   }
 
-  loadArticle(id) {
-    JSONGetRequest('https://api.wany.io/blog/articles/' + id, {})
+  loadArticle(uid) {
+    JSONGetRequest(`${global.api}/blog/articles/${this.uid}`, {})
       .then((res) => {
         const article = res.body.data;
 
@@ -83,13 +72,13 @@ class Editor {
 
         // article info
         document.querySelector('#blog-article-info-datetime-input').value =
-          new Date(article.creationdate)
+          new Date(article.creation)
             .format('YYYY-MM-DD_hh:mm')
             .replace('_', 'T');
         document.querySelector('#blog-article-info-datetime').innerHTML =
-          new Date(article.creationdate).format('YY년 M월 KH');
+          new Date(article.creation).format('YY년 M월 KH');
         document.querySelector('#blog-article-info-category-select').value =
-          article.tags[0];
+          article.category;
         const categorySelect = document.querySelector(
           '#blog-article-info-category-select'
         ).childNodes[
@@ -98,12 +87,12 @@ class Editor {
         ];
         document.querySelector('#blog-article-info-category').innerHTML =
           categorySelect.getAttribute('label');
-        document.querySelector('#blog-editor-control-title-image').value =
+        document.querySelector('#blog-editor-control-thumbnail').value =
           article.title.image;
 
         // article content
         document.querySelector('#blog-article-content-display').innerHTML =
-          res.body.data.content.html;
+          article.content.html;
         this.content2html();
       })
       .catch((error) => {
@@ -767,7 +756,7 @@ class Editor {
   }
 
   insertPhoto(file) {
-    FilePostRequest('https://api.wany.io/photos', {
+    FilePostRequest(`${global.api}/photos`, {
       photo: file,
     })
       .then((res) => {
@@ -839,8 +828,8 @@ class Editor {
         this.paragraph = p;
         this.content2html();
 
-        if (!document.querySelector('#blog-editor-control-title-image').value) {
-          document.querySelector('#blog-editor-control-title-image').value =
+        if (!document.querySelector('#blog-editor-control-thumbnail').value) {
+          document.querySelector('#blog-editor-control-thumbnail').value =
             'https://api.wany.io/photos/' +
             photo.id +
             '/' +
@@ -1011,27 +1000,36 @@ class Editor {
     const article = getArticle();
 
     if (this.isNewArticle) {
-      JSONPostRequest('https://api.wany.io/blog/articles', article)
+      JSONPostRequest(`${global.api}/blog/articles`, article)
         .then((res) => {
-          Lapis.goto('https://wany.io/b/' + res.body.data);
+          Lapis.goto('/b/' + res.body.data);
         })
-        .catch((res) => {
-          console.warn(res);
-          noty(res.message);
+        .catch((error) => {
+          error?.body?.message
+            ? noty(
+                '게시글을 발행할 수 없습니다.<br>' + error.body.message,
+                'error'
+              )
+            : null;
         });
     } else {
-      JSONPatchRequest('https://api.wany.io/blog/articles/' + this.id, article)
+      JSONPatchRequest(`${global.api}/blog/articles/${this.uid}`, article)
         .then((res) => {
-          Lapis.goto('https://wany.io/b/' + res.body.data);
+          Lapis.goto('/b/' + res.body.data);
         })
-        .catch((res) => {
-          console.warn(res);
-          noty(res.message);
+        .catch((error) => {
+          error?.body?.message
+            ? noty(
+                '게시글 변경사항을 저장할 수 없습니다.<br>' +
+                  error.body.message,
+                'error'
+              )
+            : null;
         });
     }
 
     function getArticle() {
-      let id = document.querySelector('#blog-editor-control-eid');
+      let eid = document.querySelector('#blog-editor-control-eid');
       let title = document.querySelector('#blog-article-title-display');
       let datetime = document.querySelector(
         '#blog-article-info-datetime-input'
@@ -1040,17 +1038,15 @@ class Editor {
         '#blog-article-info-category-select'
       );
       let content = document.querySelector('#blog-editor-control-content-html');
-      let titleimage = document.querySelector(
-        '#blog-editor-control-title-image'
-      );
+      let thumbnail = document.querySelector('#blog-editor-control-thumbnail');
 
       let article = {
-        eid: id.value,
+        eid: eid.value,
         title: title.innerHTML,
-        datetime: datetime.value,
+        creation: datetime.value,
         category: category.value,
         content: content.value,
-        titleimage: titleimage.value,
+        thumbnail: thumbnail.value,
       };
 
       return article;

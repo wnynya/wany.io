@@ -1,4 +1,122 @@
-h1 사이트 루트 페이지임 (특: 안만듬) test aaaa
-
 lapis-style(src="/resources/pages/root.css")
 lapis-script(src="/resources/pages/root.mjs")
+
+section#root-ballfield
+      .layer.background
+      .layer.field
+        .ball.btn.no1(tooltip="드래그!🟡")
+          .layer.circle
+          .layer.shadow
+        .ball.btn.no2(tooltip="드래그!🔵")
+          .layer.circle
+          .layer.shadow
+        .ball.btn.no3(tooltip="드래그!🔴")
+          .layer.circle
+          .layer.shadow
+
+section#root-title 
+  .outwrapper 
+    .inwrapper 
+      include /views/elements/svg/wanyne-kr-2
+
+section#root-content
+  .outwrapper 
+    .inwrapper
+      
+      .section#blog-amuject(circle="white;rgb(50, 0, 200);✨;~ 아무젝트 ~ 눌러서 블로그 게시글 읽기")
+        .ratio
+          a.layer.background(href="/b/" + articles.amuject.eid lapis)
+            .layer.content
+              if (articles.amuject.title.image)
+                img(src=articles.amuject.title.image)
+            .layer.cover
+          .layer.foreground
+            h2.title!= articles.amuject.title.html
+            h3.meta 
+              a.category(href="/b/index/category:amuject" circle="white;rgba(50, 0, 200);✨;~ 아무젝트 ~ 눌러서 카테고리의 게시글 보기" lapis) 아무젝트
+              span.dot ·
+              span.datetime!= articles.amuject.datetime.display
+
+      a.section#network-crystal(href="/a/network-crystal/" + req.client.ip circle="rgb(0, 255, 0);black;🔮;눌러서 Network Crystal 바로 써 보기" lapis)
+        .ratio
+          .layer.foreground
+            h2 
+              span 🛰️Network 
+              br 
+              span Crystal🌏🔮
+            .crystal
+              .ratio
+                svg.layer(xmlns="http://www.w3.org/2000/svg" viewbox="-45 0 330 330")
+                  defs
+                    style.
+                      .cls-1{fill:none;stroke:none;stroke-miterlimit:10;}
+                  path#nc-spiral.cls-1(d="M121.5.5a160,160,0,0,1,160,160c0,77.32-62.9,140-140.5,140S.5,237.82.5,160.5v1a120,120,0,0,1,240,0,100,100,0,0,1-200,0,80,80,0,0,1,160,0,60,60,0,0,1-120,0,40,40,0,0,1,80,0")
+                  text
+                    textPath(href="#nc-spiral")#nc-text
+            .bottom
+              button(circle="rgb(0, 255, 0);black;🔮;눌러서 Network Crystal 바로 써 보기" ellipse magnify) 바로 써 보기
+
+      .section#blog-audio(circle="white;rgb(235, 75, 0);🎵;~ 오디오 ~ 눌러서 블로그 게시글 읽기")
+        .ratio
+          a.layer.background(href="/b/" + articles.audio.eid lapis)
+            .layer.content
+              if (articles.audio.title.image)
+                img(src=articles.audio.title.image)
+            .layer.cover
+          .layer.foreground
+            h2.title!= articles.audio.title.html
+            h2.meta 
+              a.category(href="/b/index/category:audio" circle="white;rgb(235, 75, 0);🎵;~ 오디오 ~ 눌러서 카테고리의 게시글 보기" lapis) 오디오
+              span.dot ·
+              span.datetime!= articles.audio.datetime.display
+
+      .section#blog-dev(circle="black;rgb(0,255,0);💻;~ 개발 ~ 눌러서 블로그 게시글 읽기")
+        .ratio
+          a.layer.background(href="/b/" + articles.dev.eid lapis)
+            .layer.content
+              if (articles.dev.title.image)
+                img(src=articles.dev.title.image)
+            .layer.cover
+          .layer.foreground
+            h2.title!= articles.dev.title.html
+            h2.meta 
+              a.category(href="/b/index/category:dev" circle="black;rgb(0,255,0);💻;~ 개발 ~ 눌러서 카테고리의 게시글 보기" lapis) 개발
+              span.dot ·
+              span.datetime!= articles.dev.datetime.display
+
+      a.section#amethy(href="https://amethy.wany.io" target="_blank" circle="#e2bfff;black;💜;눌러서 아메시 플러그인 둘러보기")
+        .ratio
+          .layer.background
+            h2.en Amethy
+            h2.ko 아메시
+
+      .section#blog-photo(circle="white;rgb(20,20,20);📷;~ 사진 ~ 눌러서 블로그 게시글 읽기")
+        .ratio
+          a.layer.background(href="/b/" + articles.photo.eid lapis)
+            .layer.content
+              if (articles.photo.title.image)
+                img(src=articles.photo.title.image)
+            .layer.cover
+          .layer.foreground
+            h2.title!= articles.photo.title.html
+            h2.meta 
+              a.category(href="/b/index/category:audio" circle="white;rgb(20,20,20);📷;~ 사진 ~ 눌러서 카테고리의 게시글 보기" lapis) 사진
+              span.dot ·
+              span.datetime!= articles.photo.datetime.display
+
+      a.section#joinsphoto(href="https://wanyne.net" target="_blank" circle="black;rgb(255, 245, 0);📷;눌러서 조인스포토 둘러보기")
+        img(src="https://wanyne.net/image/static/L5103795-1.jpg")
+        .layer.foreground 
+          h2.title 조인스포토📷
+          button(circle="black;rgb(255, 245, 0);📷;눌러서 조인스포토 둘러보기" ellipse magnify) 둘러보기
+
+      a.section#pingo-archive(href="https://blog.naver.com/pingo99" target="_blank")
+        .ratio
+          .layer.background 
+          .layer.foreground 
+            h2.title 고산 아카이브
+
+section#root-ballfield-playground
+  h2 Ballfield 
+  a(href="https://wany.io/a/ballfield" button)
+    button(ellipse magnify) 공 가지고 놀기

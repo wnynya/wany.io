@@ -1,5 +1,5 @@
 #blog-index-header {
-  padding: 8rem 0 3rem 0;
+  padding: 8rem 0 2rem 0;
 }
 #blog-index-header .title {
   padding-bottom: 1rem;
@@ -17,7 +17,6 @@
 #blog-index-header .input {
   width: 100%;
 }
-
 #blog-index-header .count {
   font-size: 15pt;
   font-weight: 700;
@@ -25,11 +24,17 @@
   display: block;
   text-align: right;
 }
-
-#blog-index-list {
-  padding-top: 3rem;
+#blog-index-control {
+  padding-bottom: 2rem;
+}
+#blog-index-control .inwrapper {
+  display: flex;
+  justify-content: flex-end;
 }
 
+#blog-index-list {
+  padding-top: 6rem;
+}
 #blog-index-list article {
   width: 100%;
   max-width: calc(46rem + 40rem);
@@ -172,7 +177,7 @@
 }
 
 #blog-index-pages {
-  padding: 6rem 0 6rem 0;
+  padding: 6rem 0 12rem 0;
 }
 
 #blog-index-pages .inwrapper {

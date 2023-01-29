@@ -255,7 +255,7 @@ const Lapis = new (class {
         const doc = temp.content;
         const main = doc.querySelector('main');
         for (const element of main.querySelectorAll(
-          'lapis-script, lapis-style'
+          'lapis-script[src], lapis-style[src]'
         )) {
           document.body.appendChild(element);
           document.body.removeChild(element);

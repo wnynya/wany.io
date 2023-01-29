@@ -25,7 +25,7 @@
 }
 #blog-article-info .ellipse {
   display: inline-flex;
-  height: 3rem;
+  height: 4rem;
   background: var(--fg);
   border-radius: 100%;
   padding: 0 2rem;
@@ -59,6 +59,10 @@
   }
   #blog-article-info {
     padding: 0 0 3rem 0;
+  }
+  #blog-article-info .ellipse {
+    height: 3rem;
+    padding: 0 1.5rem;
   }
 }
 
@@ -404,7 +408,7 @@
 }
 
 #blog-article-control {
-  padding: 1rem 0;
+  padding: 2rem 0;
   border-bottom: solid 0.1rem var(--t210);
 }
 #blog-article-control .inwrapper {
@@ -412,7 +416,7 @@
   justify-content: flex-end;
 }
 #blog-article-control .inwrapper > * {
-  margin-left: 0.5rem;
+  margin-left: 1rem;
 }
 
 #blog-article-index {

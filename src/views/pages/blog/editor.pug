@@ -1,11 +1,12 @@
 lapis-style(src="/resources/pages/blog/article.css")
 lapis-style(src="/resources/pages/blog/editor.css")
 lapis-style(src="/resources/pages/blog/github.css")
-if article && article.id
-  lapis-script(eval="window.global.articleid = '" + article.id + "';")
+if article && article.uid
+  lapis-script(eval="window.global.article = { uid: '" + article.uid + "', eid: '" + article.eid + "' };")
 else
-  lapis-script(eval="delete window.global.articleid")
-lapis-script(src="/resources/blog/editor.mjs")
+  lapis-script(eval="delete window.global.article")
+lapis-script(eval="window.global.categories = JSON.parse('" + JSON.stringify(categories) + "');")
+lapis-script(src="/resources/pages/blog/editor.mjs")
 script(src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js")
 
 section#blog-article-title
@@ -175,25 +176,28 @@ section#blog-article-content
       .dummy#blog-article-content-dummy
 
 section#blog-editor-control
-  .outwrapper
+  .outwrapper(narrow)
     .inwrapper
 
-      .textarea(label="inner")
+      .label HTML
+      .textarea(medium)
         textarea#blog-editor-control-content-html(placeholder="HTML" spellcheck="false")
-        label HTML
         .border
           
       input#blog-editor-control-original-id(type="hidden")
 
-      .input.text(label="inner")
-        input#blog-editor-control-eid(pattern="[^a-z0-9_-]" type="text" placeholder="글 ID" autocomplete="off" spellcheck="false"  required)
-        label 글 ID
+      .label 게시글 ID
+      .input.text(medium)
+        input#blog-editor-control-eid(pattern="[^a-z0-9_-]" type="text" placeholder="글 ID" autocomplete="off" spellcheck="false" required)
         .border
 
-      .input.text(label="inner")
-        input#blog-editor-control-title-image(type="text" placeholder="대표 이미지 주소" autocomplete="off" spellcheck="false")
-        label 대표 이미지 주소
+      .label 대표 이미지 주소
+      .input.text(medium)
+        input#blog-editor-control-thumbnail(type="text" placeholder="대표 이미지 주소" autocomplete="off" spellcheck="false")
         .border
           
       .submit
-        button#blog-editor-control-submit 저장
+        if article && article.uid
+          button#blog-editor-control-submit(color="green" medium) 게시글 변경사항 저장
+        else 
+          button#blog-editor-control-submit(color="green" medium) 게시글 발행

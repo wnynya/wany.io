@@ -16,26 +16,34 @@ new (class extends LapisScript {
       });
     }
 
-    const input = document.querySelector('#blog-article-index-query');
-    input.addEventListener('keydown', (event) => {
-      var key = event.key;
-      if (key == 'Enter') {
-        Lapis.goto('/b/index/' + input.value);
-      }
-    });
+    document
+      .querySelector('#blog-article-index-query')
+      .addEventListener('keydown', (event) => {
+        if (event.key == 'Enter') {
+          Lapis.goto(
+            `/b/index/${
+              document.querySelector('#blog-article-index-query').value
+            }`
+          );
+        }
+      });
 
     if (document.querySelector('#blog-article-control-delete')) {
       document
         .querySelector('#blog-article-control-delete')
         .addEventListener('click', (event) => {
-          if (!confirm('정말로 이 게시글을 삭제하시겠습니까?')) {
+          if (!event.shiftKey) {
+            return;
+          }
+          if (
+            prompt(
+              `정말로 이 게시글을 삭제하시겠습니까?\n게시글을 삭제하시려면 아래에 ${window.global.article.eid}를 입력하십시오.`
+            ) != window.global.article.eid
+          ) {
             return;
           }
           JSONDeleteRequest(
-            'https://api.wany.io/blog/articles/' + window.global.articleid,
-            {
-              hard: event.shiftKey,
-            }
+            `${global.api}/blog/articles/${window.global.article.uid}`
           )
             .then(() => {
               noty('게시글이 삭제되었습니다.');
