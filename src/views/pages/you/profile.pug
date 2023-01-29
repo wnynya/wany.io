@@ -1,9 +1,10 @@
+lapis-script(src="/resources/pages/you/profile.mjs")
 
 h1 프로필
 
 #you-profile
 
-  form(onSubmit="return false;")
+  form#form-you-profile-profile(onSubmit="return false;")
 
     .imagelabel 
       .left 
@@ -17,22 +18,30 @@ h1 프로필
         .label 프로필 사진
         a(href="https://www.gravatar.com" rel="nofollow" target="_blank")
           .layer.image 
-            img(src=req.account.gravatar + "?s=360")
+            img(src=req.account.gravatar + "?d=identicon&s=360")
           .layer.hover 
             p
               span Gravatar에서
               br
               span 프로필 사진 변경하기
 
-    .label 와니네 계정 ID
+    .label 계정 ID
     .input.text(medium)
-      input#input-you-profile-eid.btn(type="text" name="id" placeholder="와니네 계정 ID" spellcheck="false" required) 
-      label 와니네 계정 ID
+      input#input-you-profile-eid.btn(
+        type="text" 
+        name="id" 
+        placeholder="계정 ID" 
+        spellcheck="false" 
+        pattern="[a-z0-9]{6,24}"
+        required
+      ) 
+      label 계정 ID
       .border
+    .desc 계정 ID 에는 최소 6자리에서 최대 24자리의 소문자 알파벳 및 숫자만 사용 가능합니다.
 
     .label 이메일
     .input.text(medium)
-      input#input-you-profile-eid.btn(type="email" name="email" placeholder="이메일" spellcheck="false" required) 
+      input#input-you-profile-email.btn(type="email" name="email" placeholder="이메일" spellcheck="false" required) 
       label 이메일
       .border
     .desc 계정에 접근할 수 없는 경우 계정 복구를 위해 수신 가능한 이메일을 사용하십시오.
@@ -44,5 +53,5 @@ h1 프로필
       .border
     
     .control 
-      button(medium color="green") 변경사항 저장
+      button#button-you-profile-update(medium color="green") 변경사항 저장
       

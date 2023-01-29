@@ -84,12 +84,12 @@
   --input-ol: var(--fg);
 
   --button-bg: var(--t230);
-  --button-bg-hover: var(--fg);
-  --button-bg-disabled: var(--t180);
   --button-fg: var(--fg);
-  --button-fg-hover: var(--bg);
-  --button-fg-disabled: var(--t80);
   --button-ol: var(--fg);
+  --button-bg-hover: var(--fg);
+  --button-fg-hover: var(--bg);
+  --button-bg-disabled: var(--t180);
+  --button-fg-disabled: var(--t80);
   --button-ol-disabled: var(--t80);
 
   --scrollbar-bg: transparent;

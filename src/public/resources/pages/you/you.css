@@ -12,6 +12,9 @@
 #you-header .profile .image {
   width: 4rem;
   height: 4rem;
+  border-radius: 100% 100%;
+  overflow: hidden;
+  box-shadow: 0 0 0 0.1rem var(--t210);
 }
 #you-header .profile .image img {
   width: 100%;
@@ -87,6 +90,7 @@
   transition: width 0.2s ease-out, height 0.2s ease-out;
   background: var(--t230);
   overflow: hidden;
+  box-shadow: 0 0 0 0.1rem var(--t210);
 }
 #you-profile > form > .imagelabel > .right > a > .hover {
   display: flex;

@@ -181,12 +181,19 @@ const Lapis = new (class {
           window.Inputs.lapisGoto();
         }
       })
-      .catch((error) => {
+      .catch((res) => {
+        if (res.uri != href) {
+          tempHistory.push(res.uri);
+          window.history.replaceState(tempHistory, this.host, res.uri);
+        }
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        this.display(res.body);
         bar.end();
-        if (error.status >= 500) {
-          noty('서버 오류. (' + error.status + ')');
-        } else {
-          console.error(error);
+        if (window.Cursor) {
+          window.Cursor.lapisGoto();
+        }
+        if (window.Inputs) {
+          window.Inputs.lapisGoto();
         }
       });
   }
@@ -295,7 +302,7 @@ const Lapis = new (class {
       (this.firstPageStyles.includes(id) || !id) &&
       this.firstPageStylesPop.length == 0
     ) {
-      console.log('firstPageStyleLoaded');
+      //document.querySelector('#rootcover').classList.add('clear');
     }
   }
 })();

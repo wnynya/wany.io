@@ -1,0 +1,81 @@
+lapis-style(src="/resources/pages/blog/article.css")
+lapis-style(src="/resources/pages/blog/github.css")
+lapis-script(eval="window.global.articleid = '" + article.uid + "';")
+lapis-script(src="/resources/pages/blog/article.mjs")
+
+section#blog-article-title
+  .outwrapper
+    .inwrapper
+      a(href="/b/" + article.eid lapis)
+        h1#blog-article-title-display!= article.title.html
+
+section#blog-article-info
+  .outwrapper
+    .inwrapper
+      .ellipse
+        span.author#blog-article-info-author
+          a(href="mailto:" + article.author.email)!= article.author.label
+        span.dot ·
+        span.date#blog-article-info-datetime(tooltip=article.datetime.full)!= article.datetime.display
+        span.dot ·
+        span.category#blog-article-info-category
+          a(
+            href="/b/index/category:" + article.tags[0] 
+            tooltip="이 카테고리의 게시글 보기" 
+            
+          )!= article.category
+
+section#blog-article-content
+  .outwrapper
+    .inwrapper
+      .article#blog-article-content-display!= article.content.html
+
+if (req.login && control)
+  section#blog-article-control
+    .outwrapper(narrow)
+      .inwrapper 
+        a(href="/b/editor/" + article.eid lapis)
+          button#blog-article-control-editor(small) 편집
+        button#blog-article-control-delete(small) 삭제
+
+section#blog-article-index
+  .outwrapper(narrow)
+    .inwrapper 
+      .list
+
+        each a in article.after
+          article
+            a(href="/b/" + a.eid lapis)
+              if a.title.image
+                .image 
+                  img(src=a.title.image)
+              .desc 
+                .title
+                  h2!=a.title.html
+                .info!=a.datetime.display
+
+        article.current
+          a(href="/b/" + article.eid lapis)
+            if article.title.image
+              .image 
+                img(src=article.title.image)
+            .desc 
+              .title
+                h2!=article.title.html
+              .info!=article.datetime.display
+
+        each a in article.before
+          article
+            a(href="/b/" + a.eid lapis)
+              if a.title.image
+                .image 
+                  img(src=a.title.image)
+              .desc 
+                .title
+                  h2!=a.title.html
+                .info!=a.datetime.display
+
+      .input.text(label="inner")
+        input#blog-article-index-query(type="text" placeholder="블로그에서 찾아보기" spellcheck="false" autocomplete="on" value=query) 
+        label 블로그에서 찾아보기
+        .border

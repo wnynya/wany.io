@@ -1,0 +1,91 @@
+lapis-style(src="/resources/blog/index.css")
+lapis-script(src="/resources/blog/index.mjs")
+
+section#blog-index-header
+  .outwrapper
+    .inwrapper
+      .title 
+        h1 게시글 목록
+
+      .input.text(label="inner")
+        input#input-blog-index-header-query(type="text" placeholder="블로그에서 찾아보기" spellcheck="false" autocomplete="on" value=query) 
+        label 블로그에서 찾아보기
+        .border
+
+if (req.login && req.account.eid == 'wnynya')
+  section#blog-index-control
+    .outwrapper
+      .inwrapper
+        a(href="/b/editor" lapis)
+          button 에디터
+
+section#blog-index-list
+  .outwrapper
+    .inwrapper
+      .list
+        each a in articles
+          article
+            a(href="/b/" + a.eid lapis)
+              if a.title.image
+                .image 
+                  img(src=a.title.image)
+              .desc 
+                .title
+                  h2!=a.title.html
+                .content!=a.content.desc
+                .info!=a.date.display
+
+section#blog-index-pages
+  .outwrapper
+    .inwrapper
+      .less
+        if (page - 3 < 1)
+          a(disabled) <<
+        else
+          if (size != 20)
+            a(href="/b/index/" + query + "?page=" + (page - 3) + "&size=" + size lapis) <<
+          else 
+            a(href="/b/index/" + query + "?page=" + (page - 3) lapis) <<
+      .pages
+        .btn.gotopage.mm
+          if (page - 2 < 1)
+            a!= " "
+          else
+            if (size != 20)
+              a(href="/b/index/" + query + "?page=" + (page - 2) + "&size=" + size lapis)!= page - 2
+            else 
+              a(href="/b/index/" + query + "?page=" + (page - 2) lapis)!= page - 2
+        .btn.gotopage.m
+          if (page - 1 < 1)
+            a!= " "
+          else
+            if (size != 20)
+              a(href="/b/index/" + query + "?page=" + (page - 1) + "&size=" + size lapis)!= page - 1
+            else 
+              a(href="/b/index/" + query + "?page=" + (page - 1) lapis)!= page - 1
+        .btn.gotopage.c
+          a!= page
+        .btn.gotopage.p
+          if (size * (page + 0) < count)
+            if (size != 20)
+              a(href="/b/index/" + query + "?page=" + (page + 1) + "&size=" + size lapis)!= page + 1
+            else 
+              a(href="/b/index/" + query + "?page=" + (page + 1) lapis)!= page + 1
+          else
+            a!= " "
+        .btn.gotopage.pp
+          if (size * (page + 1) < count)
+            if (size != 20)
+              a(href="/b/index/" + query + "?page=" + (page + 2) + "&size=" + size lapis)!= page + 2
+            else 
+              a(href="/b/index/" + query + "?page=" + (page + 2) lapis)!= page + 2
+          else
+            a!= " "
+      .more
+        if (size * (page + 2) < count)
+          if (size != 20)
+            a(href="/b/index/" + query + "?page=" + (page + 3) + "&size=" + size lapis) >>
+          else 
+            a(href="/b/index/" + query + "?page=" + (page + 3) lapis) >>
+        else
+          a(disabled) >>

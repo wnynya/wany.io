@@ -1,3 +1,12 @@
+lapis-style(src="/resources/pages/error.css")
+lapis-script(src="/resources/pages/error.mjs")
+
 case path[1] 
 
+  when "403": include /views/pages/error/403
+
   when "404": include /views/pages/error/404
+
+  when "418": include /views/pages/error/418
+
+  when "500": include /views/pages/error/500

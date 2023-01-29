@@ -55,6 +55,8 @@ script(type="module" defer="defer").
         _this.onScroll();
       };
 
+      this.load();
+      
       this.sidebar.querySelector('button').addEventListener('click', (event) => {
         this.sidebar.classList.contains('open') ? _this.close() : _this.open();
       });
@@ -66,8 +68,6 @@ script(type="module" defer="defer").
         clearInterval(i);
       }, 1000);
       this.onScroll();
-
-      this.load();
     }
 
     open() {

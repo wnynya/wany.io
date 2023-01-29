@@ -267,6 +267,9 @@ main {
 #header-always > .right > * {
   --button-bg: var(--bg);
   --button-fg: var(--fg);
+  --button-ol: var(--fg);
+  --button-bg-hover: var(--fg);
+  --button-fg-hover: var(--bg);
   margin-right: 0.5rem;
 }
 #header-always > .left > *:last-child,
@@ -537,7 +540,7 @@ main {
 /* Sidebar (use .outwrapper.right) */
 aside.sidebar {
   position: fixed;
-  top: 120vh;
+  top: -120vh;
   left: 2rem;
   width: calc(max(16rem, calc(12.5vw - 2rem)));
   transition: left 0.2s cubic-bezier(0, 0, 0.3, 1.3),
@@ -705,4 +708,19 @@ aside.sidebar > .content h2 {
   aside.sidebar > button {
     right: -1.9rem;
   }
+}
+
+#rootcover {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: red;
+  z-index: 2000000000;
+  transition: top 0.2s ease-out;
+}
+#rootcover.clear {
+  top: 120vh;
+  pointer-events: none;
 }

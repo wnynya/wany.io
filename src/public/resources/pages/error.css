@@ -1,0 +1,41 @@
+#error .inwrapper {
+  height: calc(100vh - 8rem);
+  display: flex;
+  align-items: center;
+}
+#error .inwrapper > .card {
+  width: 100%;
+}
+#error h1 {
+  font-weight: 700;
+  margin: 2rem 0;
+}
+#error p {
+  font-weight: 400;
+  font-size: 1.25rem;
+  margin: 1rem 0;
+}
+#error * {
+  font-family: 'Batang', var(--serif);
+}
+
+#error-500 .inwrapper {
+  height: calc(100vh - 8rem);
+  display: flex;
+  align-items: center;
+}
+#error-500 .inwrapper > .card {
+  width: 100%;
+}
+#error-500 h1 {
+  font-weight: 700;
+  margin: 2rem 0;
+}
+#error-500 p {
+  font-weight: 400;
+  font-size: 1.25rem;
+  margin: 1rem 0;
+}
+#error-500 * {
+  font-family: 'Batang', var(--serif);
+}

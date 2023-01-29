@@ -122,7 +122,10 @@ class Datwo extends Date {
   }
 
   compare(target, options = {}) {
-    if (!target || !target.getTime) {
+    if (!target) {
+      target = new Date();
+    }
+    if (!target.getTime) {
       target = new Date(target);
     }
 

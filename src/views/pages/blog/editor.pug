@@ -1,0 +1,199 @@
+lapis-style(src="/resources/pages/blog/article.css")
+lapis-style(src="/resources/pages/blog/editor.css")
+lapis-style(src="/resources/pages/blog/github.css")
+if article && article.id
+  lapis-script(eval="window.global.articleid = '" + article.id + "';")
+else
+  lapis-script(eval="delete window.global.articleid")
+lapis-script(src="/resources/blog/editor.mjs")
+script(src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js")
+
+section#blog-article-title
+  .outwrapper
+    .inwrapper
+      h1#blog-article-title-display(placeholder="제목" contentEditable="true" spellcheck="false")
+
+section#blog-article-info
+  .outwrapper
+    .inwrapper
+      .ellipse
+        span.author#blog-article-info-author 너
+        span.dot ·
+        span.date#blog-article-info-datetime(tooltip="눌러서 날짜 변경")
+        input.hide#blog-article-info-datetime-input(type="datetime-local")
+        span.dot ·
+        span.category#blog-article-info-category(tooltip="눌러서 카테고리 선택")
+        select.hide#blog-article-info-category-select
+          option(value="temp" label="카테고리 선택" disabled selected) 카테고리 선택
+
+section#blog-editor-panel
+  .topblur
+  .control
+    .font.panel
+      .btn#content-font-sans-serif(tooltip="문단 편집: 산세리프 글꼴")
+        include /views/pages/blog/svg/font-sans-serif
+      .btn#content-font-serif(tooltip="문단 편집: 세리프 글꼴")
+        include /views/pages/blog/svg/font-serif
+      .btn#content-font-monospace(tooltip="문단 편집: 고정폭 글꼴")
+        include /views/pages/blog/svg/font-monospace
+      .btn#content-font-style-paragraph(tooltip="문단 편집: 일반 문단")
+        include /views/pages/blog/svg/font-style-paragraph
+      .btn#content-font-style-header-1(tooltip="문단 편집: 제목 문단 1")
+        include /views/pages/blog/svg/font-style-header-1
+      .btn#content-font-style-header-2(tooltip="문단 편집: 제목 문단 2")
+        include /views/pages/blog/svg/font-style-header-2
+    .selection.panel
+      .btn#content-selection-bold(tooltip="선택 영역 편집: 굵게")
+        include /views/pages/blog/svg/selection-bold
+      .btn#content-selection-italic(tooltip="선택 영역 편집: 기울임")
+        include /views/pages/blog/svg/selection-italic
+      .btn#content-selection-underline(tooltip="선택 영역 편집: 밑줄")
+        include /views/pages/blog/svg/selection-underline
+      .btn#content-selection-strike(tooltip="선택 영역 편집: 취소선")
+        include /views/pages/blog/svg/selection-strike
+      .btn#content-selection-superscript(tooltip="선택 영역 편집: 윗첨자")
+        include /views/pages/blog/svg/selection-superscript
+      .btn#content-selection-subscript(tooltip="선택 영역 편집: 아래첨자")
+        include /views/pages/blog/svg/selection-subscript
+      .btn#content-selection-hyperlink(tooltip="선택 영역 편집: 하이퍼링크")
+        include /views/pages/blog/svg/selection-hyperlink
+    .align.panel
+      .text-align.inpanel
+        .btn#content-text-align-justify(tooltip="문단 편집: 양쪽 정렬")
+          include /views/pages/blog/svg/text-align-justify
+        .btn#content-text-align-left(tooltip="문단 편집: 왼쪽 정렬")
+          include /views/pages/blog/svg/text-align-left
+        .btn#content-text-align-center(tooltip="문단 편집: 가운데 정렬")
+          include /views/pages/blog/svg/text-align-center
+        .btn#content-text-align-right(tooltip="문단 편집: 오른쪽 정렬")
+          include /views/pages/blog/svg/text-align-right
+      .center.inpanel
+        .btn#content-box-align-center-normal(tooltip="문단 편집: 가운데 배치")
+          include /views/pages/blog/svg/box-align-center-normal
+        .btn#content-box-align-center-full(tooltip="문단 편집: 가운데 배치 (넓게)")
+          include /views/pages/blog/svg/box-align-center-full
+      .left.inpanel
+        .btn#content-box-align-left-normal(tooltip="문단 편집: 왼쪽 배치")
+          include /views/pages/blog/svg/box-align-left-normal
+        .btn#content-box-align-left-full(tooltip="문단 편집: 왼쪽 배치 (넓게)")
+          include /views/pages/blog/svg/box-align-left-full
+        .btn#content-box-align-left-side(tooltip="문단 편집: 왼쪽 배치 (좁게)")
+          include /views/pages/blog/svg/box-align-left-side
+      .right.inpanel
+        .btn#content-box-align-right-normal(tooltip="문단 편집: 오른쪽 배치")
+          include /views/pages/blog/svg/box-align-right-normal
+        .btn#content-box-align-right-full(tooltip="문단 편집: 오른쪽 배치 (넓게)")
+          include /views/pages/blog/svg/box-align-right-full
+        .btn#content-box-align-right-side(tooltip="문단 편집: 오른쪽 배치 (좁게)")
+          include /views/pages/blog/svg/box-align-right-side
+    .media.panel
+      .btn#content-insert-photo(tooltip="사진 업로드")
+        include /views/pages/blog/svg/insert-photo
+      .btn#content-insert-youtube(tooltip="유튜브 영상 삽입")
+        include /views/pages/blog/svg/insert-video
+      .btn#content-insert-code(tooltip="코드 블록 삽입")
+        include /views/pages/blog/svg/insert-code
+
+section#blog-editor-panel-modal 
+    
+  .layer.background.hide#modal-selection-hyperlink-bg
+  .layer.modal.hide#modal-selection-hyperlink
+    button.close#modal-selection-hyperlink-close.h30.r 닫기
+    .wrapper
+      .title 선택 영역 편집: 하이퍼링크
+      form.form(onsubmit="return false;")
+        .input.text(label="inner")
+          input#modal-selection-hyperlink-url(type="text" placeholder="하이퍼링크 URL" autocomplete="off" spellcheck="false" required)
+          label 하이퍼링크 URL
+          .border
+        button#modal-selection-hyperlink-submit 적용
+
+  .layer.background.hide#modal-insert-youtube-bg
+  .layer.modal.hide#modal-insert-youtube
+    button.close#modal-insert-youtube-close.h30.r 닫기
+    .wrapper
+      .title 유튜브 영상 삽입
+      form.form(onsubmit="return false;")
+        .input.text(label="inner")
+          input#modal-insert-youtube-url(type="text" placeholder="유튜브 영상 URL" autocomplete="off" spellcheck="false" required)
+          label 유튜브 영상 URL
+          .border
+        button#modal-insert-youtube-submit 적용
+
+  .layer.background.hide#modal-insert-code-bg
+  .layer.modal.hide#modal-insert-code
+    button.close#modal-insert-code-close.h30.r 닫기
+    .wrapper
+      .title 코드 블록 삽입
+      form.form(onsubmit="return false;")
+        .input.text(label="inner")
+          input#modal-insert-code-lang(type="text" placeholder="언어" autocomplete="off" spellcheck="false" required)
+          label 언어
+          .autocomplete.bottom(emptyshow="true")
+            label bash
+            label batch
+            label c
+            label cc
+            label cs
+            label c#
+            label css
+            label c++
+            label html
+            label ks
+            label kotlin
+            label markdown
+            label md
+            label java
+            label javascript
+            label js
+            label json
+            label jsp
+            label php
+            label properties
+            label python
+            label scss
+            label sh
+            label sql
+            label svg
+            label text
+            label txt
+            label yaml
+            label yml
+            label xml
+          .border
+        .textarea(label="inner")
+          textarea#modal-insert-code-content(placeholder="코드" spellcheck="false" required)
+          label 코드
+          .border
+        button#modal-insert-code-submit 적용
+
+section#blog-article-content
+  .outwrapper
+    .inwrapper
+      .article#blog-article-content-display(contentEditable="true" spellcheck="false")
+      .border 
+      .dummy#blog-article-content-dummy
+
+section#blog-editor-control
+  .outwrapper
+    .inwrapper
+
+      .textarea(label="inner")
+        textarea#blog-editor-control-content-html(placeholder="HTML" spellcheck="false")
+        label HTML
+        .border
+          
+      input#blog-editor-control-original-id(type="hidden")
+
+      .input.text(label="inner")
+        input#blog-editor-control-eid(pattern="[^a-z0-9_-]" type="text" placeholder="글 ID" autocomplete="off" spellcheck="false"  required)
+        label 글 ID
+        .border
+
+      .input.text(label="inner")
+        input#blog-editor-control-title-image(type="text" placeholder="대표 이미지 주소" autocomplete="off" spellcheck="false")
+        label 대표 이미지 주소
+        .border
+          
+      .submit
+        button#blog-editor-control-submit 저장

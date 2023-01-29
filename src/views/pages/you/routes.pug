@@ -17,7 +17,7 @@ else
       .inwrapper
         .profile 
           .image 
-            img(src=req.account.gravatar + "?s=120")
+            img(src=req.account.gravatar + "?d=identicon&s=120")
           .text
             if (req.account.eid == req.account.label)
               .label!= req.account.label

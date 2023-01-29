@@ -7,6 +7,22 @@ router.get('/', (req, res) => {
   res.ren('root', {});
 });
 
+router.get('/ping', (req, res) => {
+  res.send('pong!');
+});
+
+router.get('/ip', (req, res) => {
+  res.send(req.client.ip);
+});
+
+router.get('/teapot', (req, res) => {
+  res.error418();
+});
+
+router.get('/give-me-an-internal-server-error', (req, res) => {
+  res.error500();
+});
+
 import amujectRouter from './amuject.mjs';
 router.use('/a', amujectRouter);
 

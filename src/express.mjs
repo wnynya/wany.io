@@ -1,4 +1,5 @@
 import config from './config.mjs';
+const dev = process.argv.includes('-dev');
 
 import express from 'express';
 
@@ -22,7 +23,7 @@ app.use(auth.account()); // Auth account (req.account)
 app.use(middlewares.logger(new Logger(config.logger.req))); // Log request
 
 app.use((req, res, next) => {
-  req.api = config.api;
+  req.api = dev ? config.api.dev : config.api.pub;
   res.ren = (...args) => {
     let status = 200;
     let path;
@@ -57,45 +58,23 @@ app.use((req, res, next) => {
     res.status(status).render('index.pug', data);
   };
   res.error403 = () => {
-    res.status(403).rend('index', {
-      path: 'error/403',
+    res.ren(403, 'error/403', {
       title: '403 — 와니네',
-      meta: {
-        og: {
-          desc: 'Forbidden',
-          image: '/api/images/netpan/og-image.png',
-        },
-      },
     });
   };
   res.error404 = () => {
-    res.status(404).render('index', {
-      client: req.client,
-      path: ['error', '404'],
-      elements: ['header'],
+    res.ren(404, 'error/404', {
       title: '404 — 와니네',
-      meta: {
-        og: {
-          title: '404 — 와니네',
-          desc: 'Not Found',
-          image: '/api/images/netpan/og-image.png',
-        },
-      },
+    });
+  };
+  res.error418 = () => {
+    res.ren(418, 'error/418', {
+      title: '418 — 와니네',
     });
   };
   res.error500 = () => {
-    res.status(500).render('index', {
-      client: req.client,
-      path: ['error', '500'],
-      elements: ['header'],
+    res.ren(500, 'error/500', {
       title: '500 — 와니네',
-      meta: {
-        og: {
-          title: '500 — 와니네',
-          desc: 'Internal Server Error',
-          image: '/api/images/netpan/og-image.png',
-        },
-      },
     });
   };
   next();
@@ -122,7 +101,7 @@ app.use(express.static(path.resolve(__dirname, './public')));
 
 /* Set 404 */
 app.all('*', (req, res) => {
-  res.ren(404, 'error/404');
+  res.error404();
 });
 
 export default app;
