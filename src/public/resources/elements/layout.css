@@ -495,7 +495,7 @@ main {
   --button-fg: var(--fg);
   background: var(--bg);
   width: calc(100% - 4rem);
-  padding: 2.5rem 2rem 2.5rem 2rem;
+  padding: 2.5rem 2rem 2rem 2rem;
   border-top-left-radius: 3rem;
   border-top-right-radius: 3rem;
   font-size: 1.25rem;
@@ -503,7 +503,7 @@ main {
   position: relative;
 }
 #footer-set {
-  padding-bottom: 8rem;
+  padding-bottom: 2rem;
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -514,13 +514,16 @@ main {
 #footer-set > .right {
   text-align: right;
 }
+#footer-banners {
+  width: 100%;
+}
 #footer * {
   line-height: 180%;
 }
 @media (max-width: 600px) {
   #footer {
     width: calc(100% - 2rem);
-    padding: 2.5rem 1rem 10rem 1rem;
+    padding: 2.5rem 1rem 2rem 1rem;
     border-top-left-radius: 2.5rem;
     border-top-right-radius: 2.5rem;
   }

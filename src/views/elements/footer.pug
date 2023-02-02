@@ -12,15 +12,14 @@ footer#footer(noselect)
       p
         a.btn(tooltip="✉️" href="mailto:sung@wany.io") email
       p
-        a.btn(tooltip="🐦" href="https://twitter.com/wnynya" target="_blank") twitter
+        a.btn(tooltip="🐦" href="https://twitter.com/wnynya" target="_blank" rel="nofollow") twitter
       p
-        a.btn(tooltip="💻" href="https://github.com/wnynya" target="_blank") github
+        a.btn(tooltip="💻" href="https://github.com/wnynya" target="_blank" rel="nofollow") github
 
-  if (bottombanner)
-    section(style="width:100%;height:30px;")
-      a.banner(href="/" lapis)
-        img(src="/bn93.gif")
-      span &nbsp;
-      a.banner(href="http://u-miniple.com/" target="_blank")
-        img(src="https://blog.kakaocdn.net/dn/b1LOm7/btrye3jOyAL/zNknwkJmDIgMDhVRFKqmoK/img.gif")
+  section#footer-banners
+    a.banner(href="/" lapis)
+      img(src="/bn93.gif")
+    span &nbsp;
+    a.banner(href="http://u-miniple.com/" target="_blank" rel="nofollow")
+      img(src="https://blog.kakaocdn.net/dn/b1LOm7/btrye3jOyAL/zNknwkJmDIgMDhVRFKqmoK/img.gif")
 
