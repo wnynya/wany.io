@@ -7,7 +7,7 @@ router.get('/map', (req, res, next) => {
 
   res.ren('network-crystal/map', {
     elements: [],
-    title: 'Network Crystal Map - 와니네',
+    title: 'Network Crystal Map — 와니네',
     coordinate: {
       lat: lat,
       lng: lng,
@@ -22,7 +22,7 @@ router.get('/*', (req, res, next) => {
 
   parse(req, query).then((data) => {
     res.ren('network-crystal/root', {
-      title: 'Network Crystal - 와니네',
+      title: 'Network Crystal — 와니네',
       crystal: {
         query: query,
         desc: data.description,

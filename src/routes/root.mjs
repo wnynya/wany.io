@@ -15,6 +15,9 @@ router.get('/', (req, res) => {
     .then(([amuject, audio, dev, photo]) => {
       res.ren('root', {
         title: '와니네',
+        meta: {
+          desc: '와니네 — 아무젝트, 블로그 — 와니네',
+        },
         articles: {
           amuject: randomArticle(amuject),
           audio: randomArticle(audio),
@@ -24,6 +27,7 @@ router.get('/', (req, res) => {
       });
     })
     .catch((error) => {
+      console.log(error);
       res.error500();
     });
 

@@ -44,17 +44,39 @@ app.use((req, res, next) => {
     data.path = path.split('/');
     data.elements = data.elements ? data.elements : ['header', 'footer'];
     data.meta = data.meta ? data.meta : {};
+
+    data.meta.desc = data.meta.desc ? data.meta.desc : undefined;
+    data.meta.keywords = data.meta.keywords ? data.meta.keywords : undefined;
+    data.meta.author = data.meta.author ? data.meta.author : undefined;
+
+    // OpenGraph
     data.meta.og = data.meta.og ? data.meta.og : {};
+    data.meta.og.sitename = data.meta.og.sitename
+      ? data.meta.og.sitename
+      : '와니네';
     data.meta.og.title = data.meta.og.title
       ? data.meta.og.title
       : data.title
       ? data.title
       : undefined;
+    if (data.meta.og.title) {
+      let titlematch = data.meta.og.title.match(/^(.*) — ([^—]*)$/);
+      if (titlematch) {
+        data.meta.og.sitename = titlematch[2];
+        data.meta.og.title = titlematch[1];
+      }
+    }
     data.meta.og.desc = data.meta.og.desc
       ? data.meta.og.desc
-      : data.desc
-      ? data.desc
+      : data.meta.desc
+      ? data.meta.desc
       : undefined;
+    data.meta.og.image = data.meta.og.image
+      ? data.meta.og.image
+      : data.meta.image
+      ? data.meta.image
+      : undefined;
+
     res.status(status).render('index.pug', data);
   };
   res.error403 = () => {

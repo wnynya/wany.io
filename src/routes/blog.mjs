@@ -59,6 +59,11 @@ router.get(/^\/index(\/.*)?$/, (req, res) => {
 });
 
 router.get('/editor', (req, res) => {
+  if (!req.login) {
+    res.redirect(`/u/login?r=${req.originalUrl}`);
+    return;
+  }
+
   if (!req.hasPermission('blog.articles.post')) {
     res.error403();
     return;
@@ -70,10 +75,16 @@ router.get('/editor', (req, res) => {
   });
 });
 router.get('/editor/:article', (req, res) => {
+  if (!req.login) {
+    res.redirect(`/u/login?r=${req.originalUrl}`);
+    return;
+  }
+
   if (!req.hasPermission('blog.articles.patch')) {
     res.error403();
     return;
   }
+
   const aid = req.params.article;
   BlogArticle.of(aid)
     .then((article) => {
@@ -101,6 +112,13 @@ router.get('/:article', (req, res, next) => {
           data.before = index[1];
           res.ren('blog/article', {
             title: data.title.text + ' — 와니네 블로그',
+            meta: {
+              desc: data.content.text,
+              author:
+                data.author.label == data.author.eid
+                  ? data.author.label
+                  : `${data.author.label} (${data.author.eid})`,
+            },
             article: data,
             categories: categories,
           });

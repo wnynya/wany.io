@@ -4,9 +4,29 @@ head
   meta(name="viewport" content="width=device-width, user-scalable=no, initial-scale=1")
   meta(name="format-detection" content="telephone=no")
   meta(name="theme-color" content="#D2B0DD")
+
+  if meta.desc
+    meta(name="description" content=meta.desc)
+  if meta.keyword
+    meta(name="keywords" content=meta.keywords)
+  if meta.author
+    meta(name="author" content=meta.author)
+
+  //- OpenGraph
   meta(name="og:type" content="website")
-  meta(name="og:site_name" content="와니네")
   meta(name="og:locale" content="ko_KR")
+  meta(name="og:site_name" content=meta.og.sitename)
+  meta(name="og:title" content=meta.og.title)
+  if meta.og.desc
+    meta(name="og:description" content=meta.og.desc)
+  if meta.og.image
+    meta(name="og:image" content=meta.og.image)
+    meta(name='og:image:width' content='1200')
+    meta(name='og:image:height' content='630')
+
+  //- JSON+LD
+  if (meta.jsonld)
+  script(type="application/ld+json")!= meta.jsonld
 
   link(href="/resources/elements/master.css" type="text/css" rel="stylesheet")
   link(href="/resources/elements/layout.css" type="text/css" rel="stylesheet")

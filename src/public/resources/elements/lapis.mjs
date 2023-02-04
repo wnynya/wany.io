@@ -118,6 +118,15 @@ const Lapis = new (class {
     }
     this.firstPageStylesPop = [...this.firstPageStyles];
     this.firstPageStyleLoaded();
+
+    let lcv = cookies('owarimonogatari');
+    setInterval(() => {
+      let cv = cookies('owarimonogatari');
+      if (cv != lcv) {
+        window.location.reload();
+        lcv = cv;
+      }
+    }, 1000);
   }
 
   goto(href, push = true, target = '_blank') {

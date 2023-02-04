@@ -1,4 +1,8 @@
 lapis-script(type="module" src="/resources/elements/header.mjs" defer="defer")
+if redir
+  lapis-script(eval="window.global.redir = '" + redir + "';")
+if loginpage
+  lapis-script(eval="window.global.loginpage = true;")
 
 header#header(noselect)
 

@@ -220,17 +220,30 @@ const Login = new (class extends WhenNarrow {
         this.hide();
         this.clearForm();
       });
-    document
-      .querySelector('#header-login .bg')
-      .addEventListener('click', (event) => {
-        this.hide();
-        this.clearForm();
-      });
+    if (!global.loginpage) {
+      document
+        .querySelector('#header-login .bg')
+        .addEventListener('click', (event) => {
+          this.hide();
+          this.clearForm();
+        });
+    }
     document
       .querySelector('#button-header-login-submit')
       .addEventListener('click', (event) => {
         this.login();
       });
+
+    if (global.loginpage) {
+      document.querySelector('#button-header-login-close').style.display =
+        'none';
+      setInterval(() => {
+        if (!this.showing) {
+          this.show();
+          document.querySelector('#input-header-login-account').focus();
+        }
+      }, 100);
+    }
   }
 
   login() {
@@ -264,8 +277,8 @@ const Login = new (class extends WhenNarrow {
             .setAttribute('status', 'hide');
           this.goaway();
           setTimeout(() => {
-            if (window.global.redirectto) {
-              window.location.href = window.global.redirectto;
+            if (window.global.redir) {
+              window.location.href = window.global.redir;
             } else {
               window.location.reload();
             }
@@ -334,7 +347,7 @@ const Account = new (class extends WhenNarrow {
           this.goaway();
         }, 1000);
         setTimeout(() => {
-          location.reload();
+          window.location.href = '/';
         }, 1500);
       })
       .catch((res) => {
