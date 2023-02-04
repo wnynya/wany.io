@@ -46,6 +46,7 @@ new (class extends LapisScript {
           const a = document.createElement('a');
           a.href = '/network-crystal/' + sub;
           a.innerHTML = sub;
+          a.setAttribute('lapis', '');
           text.appendChild(a);
         }
 
