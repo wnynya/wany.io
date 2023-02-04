@@ -72,7 +72,7 @@
   --svg-fill: none;
   --svg-stroke: var(--fg);
   background: var(--bg);
-  margin-bottom: 4rem;
+  margin-bottom: 5rem;
   border-radius: 6rem;
   padding: 5rem;
 }
@@ -85,21 +85,33 @@
 
 #network-crystal-modules-display > section .title {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   margin-bottom: 2rem;
 }
 #network-crystal-modules-display > section .title .icon {
-  width: 4rem;
-  height: 4rem;
+  width: 3rem;
+  height: 3rem;
+  padding-right: 1.5rem;
 }
-#network-crystal-modules-display > section .title .icon svg {
-  stroke-width: 0.5rem;
+#network-crystal-modules-display > section .title .icon svg,
+#network-crystal-modules-display > section .title .icon svg * {
+  fill: transparent;
+  stroke: var(--t0);
+  stroke-width: 0.075rem;
 }
 #network-crystal-modules-display > section .title .text {
   width: calc(100% - 4rem - 2rem);
   font-weight: 900;
   font-size: 3rem;
+}
+
+#network-crystal-modules-default p {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+#network-crystal-modules-default p a {
+  text-decoration: underline;
 }
 
 #network-crystal-modules-yourip > .content {

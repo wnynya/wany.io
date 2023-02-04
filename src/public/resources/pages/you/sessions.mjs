@@ -32,6 +32,8 @@ function select() {
         .appendChild(sessionElement(session));
     }
 
+    Lapis.update();
+
     function sessionElement(session) {
       let e = document.createElement('div');
       e.classList.add('session');

@@ -28,11 +28,15 @@ script(type="module" src="/resources/modules/inputs.mjs" defer="defer")
 
 //- Sidebar
 script(type="module" defer="defer").
-  class Sidebar {
+  import EventEmitter from '/resources/modules/eventemitter.mjs';
+
+  class Sidebar extends EventEmitter {
     constructor(
       sidebar = document.querySelector('aside.sidebar'),
       element = document.querySelector('main')
     ) {
+      super();
+
       this.sidebar = sidebar;
       this.element = element;
       this.lastWidth = window.innerWidth;
@@ -47,6 +51,7 @@ script(type="module" defer="defer").
             Math.rem(5) + Math.min(0, erect.bottom - (srect.height + Math.rem(5)))
           }px, ${erect.top}px)`;
         }
+        this.emit('scroll');
       };
       const _this = this;
       this.onResize = () => {

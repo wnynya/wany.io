@@ -18,11 +18,13 @@ router.get('/map', (req, res, next) => {
 router.get('/*', (req, res, next) => {
   let query = req.url.replace(/^\//, '');
 
+  query = decodeURI(decodeURI(query));
+
   parse(req, query).then((data) => {
     res.ren('network-crystal/root', {
       title: 'Network Crystal - 와니네',
       crystal: {
-        query: decodeURI(decodeURI(query)),
+        query: query,
         desc: data.description,
         modules: data.modules,
       },

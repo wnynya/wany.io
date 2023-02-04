@@ -7,6 +7,57 @@ new (class extends LapisScript {
       document.querySelector('#network-crystal-modules')
     );
 
+    sidebar.on('scroll', () => {
+      let show;
+      let showtop = Infinity;
+      for (const module of document.querySelectorAll(
+        '#network-crystal-modules section'
+      )) {
+        const rect = module.getBoundingClientRect();
+        if (rect.height + rect.top - Math.rem(5) < 0) {
+          continue;
+        }
+        if (rect.top < showtop) {
+          show = module;
+          showtop = rect.top;
+        }
+      }
+      if (!show) {
+        return;
+      }
+      let name = show.id.replace('network-crystal-modules-', '');
+      for (const label of document.querySelectorAll(
+        '#network-crystal-sidebar label'
+      )) {
+        if (label.getAttribute('module') == name) {
+          label.setAttribute('selected', '');
+        } else {
+          label.removeAttribute('selected');
+        }
+      }
+    });
+
+    for (const label of document.querySelectorAll(
+      '#network-crystal-sidebar label'
+    )) {
+      label.addEventListener('click', (event) => {
+        let target = event.target;
+        while (!target.hasAttribute('module')) {
+          target = target.parentElement;
+        }
+        const name = label.getAttribute('module');
+        const module = document.querySelector(
+          `#network-crystal-modules-${name}`
+        );
+        const y =
+          module.getBoundingClientRect().top + window.scrollY - Math.rem(5);
+        window.scroll({
+          top: y,
+          behavior: 'smooth',
+        });
+      });
+    }
+
     const input = document.querySelector('#network-crystal-query-input');
 
     input.addEventListener('keydown', (event) => {
