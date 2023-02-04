@@ -30,6 +30,7 @@ new (class extends LapisScript {
 function addEventListener() {
   function onLabelChange(event) {
     let v = event.target.value;
+    v = v.replace(/[<>&]+/g, '');
     v = v.replace(/(^\s+)/, '');
     v = v.replace(/\s+/g, ' ');
     v = v.substring(0, 24);

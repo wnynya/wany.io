@@ -76,8 +76,9 @@ router.get('/keys/:kid', (req, res) => {
 
   const kid = req.params.kid;
 
-  res.ren('you/keys', {
+  res.ren('you/key', {
     title: 'API 키 — 와니네 계정',
+    kid: kid,
   });
 });
 

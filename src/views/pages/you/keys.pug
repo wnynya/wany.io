@@ -1,3 +1,4 @@
+lapis-script(src="/resources/pages/you/keys.mjs")
 
 h1 API 키
 
@@ -8,12 +9,11 @@ h1 API 키
   .keys
 
     .key
-      .left
       .info
-        .perm 8개의 권한 노드
-        .last 무기한 · 3분 전 마지막으로 사용됨
+        .name 
+        .meta
 
-    .key
-      .info
-        .perm 27개의 권한 노드
-        .last 2023년 9월 8일 13:00 만료 · 10월 9일 마지막으로 사용됨
+  hr
+
+  .control(right)
+    button#button-you-keys-insert(medium color="green") 새 API 키 만들기

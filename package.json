@@ -8,7 +8,7 @@
     "dev": "nodemon src/app.mjs -p 39080 -dev"
   },
   "dependencies": {
-    "@wnynya/auth": "^1.0.3",
+    "@wnynya/auth": "^1.0.9",
     "@wnynya/blog": "^1.0.7",
     "@wnynya/express-middlewares": "^1.2.5",
     "@wnynya/logger": "^0.1.3",

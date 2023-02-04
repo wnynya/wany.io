@@ -1,0 +1,47 @@
+if kid
+  lapis-script(eval="window.global.kid = '" + kid + "';")
+else
+  lapis-script(eval="delete window.global.kid")
+lapis-script(src="/resources/pages/you/key.mjs")
+
+h1 API 키
+
+#you-key
+
+  .label API 키 값
+  .input.text(medium)
+    input#input-you-key-code.btn(type="password" name="name" placeholder="API 키 값" spellcheck="false" readonly) 
+    button#button-you-key-code-show(small color="green") 키 값 보기
+    .border
+
+  form(onSubmit="return false;")
+
+    .label API 키 이름
+    .input.text(medium)
+      input#input-you-key-label.btn(type="text" name="name" placeholder="API 키 이름" spellcheck="false" required) 
+      button#button-you-key-label-update(small color="green") 변경사항 저장
+      .border
+
+  hr
+
+  .label API 키 권한 노드
+
+  form(onSubmit="return false;")
+
+    .input.text(medium)
+      input#input-you-key-perm.btn(type="text" name="name" placeholder="권한 노드" spellcheck="false" required) 
+      .buttons 
+        button#button-you-key-perm-update-put(small color="green") 추가
+        button#button-you-key-perm-update-delete(small color="red") 제거
+      .border
+    .desc API 키에는 계정이 보유한 권한 노드만 추가할 수 있습니다.
+
+  .perms
+    .perm 
+    .perm
+    .perm
+
+  hr
+
+  .control(right)
+    button#button-you-key-delete(medium color="red") 키 제거
