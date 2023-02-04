@@ -1,5 +1,3 @@
-import config from '../config.mjs';
-import { console } from '@wnynya/logger';
 import express from 'express';
 const router = express.Router();
 
@@ -27,7 +25,6 @@ router.get('/', (req, res) => {
       });
     })
     .catch((error) => {
-      console.log(error);
       res.error500();
     });
 

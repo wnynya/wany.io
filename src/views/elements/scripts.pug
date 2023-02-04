@@ -4,6 +4,8 @@ script.
   window.global = new Object(); 
 script.
   global.api = '#{req.api}';
+  global.amuject = '#{req.amuject}';
+  global.amethy = '#{req.amethy}';
 if req.login && req.account
   script.
     window.account = new Object(); 
@@ -12,7 +14,7 @@ if req.login && req.account
     account.eid = '#{req.account.eid}'; 
     account.label = '#{req.account.label}';
 script window.Math.rem = (n = 1) => { return n * parseFloat(getComputedStyle(document.documentElement).fontSize); }
-script function vh() { document.documentElement.style.setProperty('--vh', window.innerHeight * 0.01 + 'px'); } window.addEventListener('resize', vh); vh();
+script(type="module") function vh() { document.documentElement.style.setProperty('--vh', window.innerHeight * 0.01 + 'px'); } window.addEventListener('resize', vh); vh();
 script.
   window.cookies = (name) => {
     let cookies = document.cookie

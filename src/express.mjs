@@ -24,6 +24,8 @@ app.use(middlewares.logger(new Logger(config.logger.req))); // Log request
 
 app.use((req, res, next) => {
   req.api = dev ? config.api.dev : config.api.pub;
+  req.amuject = dev ? config.amuject.dev : config.amuject.pub;
+  req.amethy = dev ? config.amethy.dev : config.amethy.pub;
   res.ren = (...args) => {
     let status = 200;
     let path;
