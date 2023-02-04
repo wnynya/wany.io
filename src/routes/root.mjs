@@ -63,6 +63,9 @@ router.use('/network-crystal', networkCrystalRouter);
 import manageRouter from './manage.mjs';
 router.use('/m', manageRouter);
 
+import photosRouter from './photos.mjs';
+router.use('/p', photosRouter);
+
 import youRouter from './you.mjs';
 router.use('/u', youRouter);
 
