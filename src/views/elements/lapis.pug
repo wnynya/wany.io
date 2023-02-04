@@ -38,15 +38,18 @@ script(type="module").
       if (Lapis.scripts.cache.hasOwnProperty(this.id)) {
         this.load();
       } else {
-        const script = document.createElement('script');
-        script.src = this.src;
-        if (this.src.match(/\.mjs$/)) {
-          script.type = 'module';
+        if (!Lapis.scripts.elements.includes(this.id)) {
+          Lapis.scripts.elements.push(this.id);
+          const script = document.createElement('script');
+          script.src = this.src;
+          if (this.src.match(/\.mjs$/)) {
+            script.type = 'module';
+          }
+          script.addEventListener('load', (event) => {
+            this.load();
+          });
+          document.body.appendChild(script);
         }
-        script.addEventListener('load', (event) => {
-          this.load();
-        });
-        document.body.appendChild(script);
       }
     }
     load() {

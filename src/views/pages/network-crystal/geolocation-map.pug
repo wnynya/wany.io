@@ -1,0 +1,23 @@
+style.
+  html, body, main, #network-crystal-results-geoip-map {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    background: black;
+  }
+
+  .gmnoprint, .gm-style-cc {
+    display: none !important;
+  }
+
+  .gm-style-mot {
+    font-size: 1.25rem !important;
+  }
+
+section#network-crystal-results-geoip-map
+
+script.
+  window.coordinate = {};
+  window.coordinate.lat = "#{coordinate.lat}";
+  window.coordinate.lng = "#{coordinate.lng}";
+script(type="module" src="/resources/pages/network-crystal/geolocation-map.mjs")

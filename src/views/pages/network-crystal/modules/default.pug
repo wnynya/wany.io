@@ -1,0 +1,17 @@
+lapis-script(src="/resources/pages/network-crystal/modules/default.mjs")
+
+section#network-crystal-modules-default
+  .title 
+    h1 Network Crystal
+
+  .content 
+    p 
+      | 내 아이피 정보가 궁금하면:&nbsp;
+      a(href="/network-crystal/내 아이피" lapis) 내 아이피
+      | &nbsp;입력
+    p 
+      | 아이피 정보를 보려면: 아이피 입력 ->&nbsp;
+      a(href="/network-crystal/" + req.client.ip lapis)!= req.client.ip
+    p 
+      | 도메인 정보를 보려면: 도메인 입력 ->&nbsp;
+      a(href="/network-crystal/example.com" lapis) example.com

@@ -5,6 +5,7 @@ const Lapis = new (class {
     this.host = window.location.host;
     this.color = 'rgb(170,143,179)';
     this.scripts = {
+      elements: [],
       cache: {},
       loads: [],
     };

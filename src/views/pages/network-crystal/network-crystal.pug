@@ -1,0 +1,89 @@
+lapis-style(src="/resources/pages/network-crystal/network-crystal.css")
+lapis-script(eval="window.global.query = '" + crystal.query + "';")
+lapis-script(eval="window.global.modules = JSON.parse('" + JSON.stringify(crystal.modules) + "');")
+lapis-script(src="/resources/pages/network-crystal/network-crystal.mjs")
+
+aside.sidebar.withstars#network-crystal-sidebar
+  .stars.top
+    include /views/elements/svg/diamond-hollow-small
+    include /views/elements/svg/diamond-hollow-small
+  .content
+    each mod in crystal.modules 
+      case mod.name 
+
+        when "default"
+          label(module=mod.name)
+            .icon
+              include /views/elements/svg/icon-portrait
+            .text Network Crystal
+            
+        when "yourip"
+          label(module=mod.name)
+            .icon
+              include /views/elements/svg/icon-portrait
+            .text 당신의 아이피
+
+        when "geoip"
+          label(module=mod.name)
+            .icon
+              include /views/elements/svg/icon-portrait
+            .text 위치 정보
+
+        when "whois"
+          label(module=mod.name)
+            .icon
+              include /views/elements/svg/icon-portrait
+            .text 후이즈
+
+        when "dns"
+          label(module=mod.name)
+            .icon
+              include /views/elements/svg/icon-portrait
+            .text DNS 레코드
+
+        when "ping"
+          label(module=mod.name)
+            .icon
+              include /views/elements/svg/icon-portrait
+            .text 핑
+
+        when "subdomains"
+          label(module=mod.name)
+            .icon
+              include /views/elements/svg/icon-portrait
+            .text 서브도메인
+
+  .stars.bottom
+    include /views/elements/svg/diamond-hollow-small
+    include /views/elements/svg/diamond-hollow-small
+  button
+    include /views/elements/svg/sidebar-button
+
+section#network-crystal-title
+  h1 🛰️Network 
+  h1  Crystal🌏🔮
+
+section#network-crystal-query
+  .crystal 
+    input#network-crystal-query-input(style="font-size: 30px" fs=42 type="text" value=crystal.query spellcheck="false" autocomplete="off")
+  .shadow
+
+section#network-crystal-modules
+  .outwrapper(right80rem)
+    .inwrapper#network-crystal-modules-display
+      each mod in crystal.modules 
+        case mod.name 
+
+          when "default":  include /views/pages/network-crystal/modules/default
+              
+          when "yourip":  include /views/pages/network-crystal/modules/yourip
+
+          when "geoip": include /views/pages/network-crystal/modules/geoip
+
+          when "whois":  include /views/pages/network-crystal/modules/whois
+
+          when "dns": include /views/pages/network-crystal/modules/dns
+
+          when "ping": include /views/pages/network-crystal/modules/ping
+
+          when "subdomains": include /views/pages/network-crystal/modules/subdomains

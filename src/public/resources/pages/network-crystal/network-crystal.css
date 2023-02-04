@@ -1,0 +1,326 @@
+#network-crystal-title {
+  padding: 8rem 0 4rem 0;
+  text-align: center;
+}
+#network-crystal-title h1 {
+  margin: 0 !important;
+  max-width: 100%;
+  font-size: 5rem;
+  font-weight: 900;
+  line-height: 115%;
+}
+#network-crystal-title section#title {
+  margin-bottom: 6rem;
+}
+#network-crystal-query {
+  position: relative;
+  padding: 0 0 4rem 0;
+  text-align: center;
+}
+#network-crystal-query .crystal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100% 100%;
+  padding: 4rem;
+  width: 36rem;
+  height: 36rem;
+  background: rgba(62, 0, 156, 1);
+  background: radial-gradient(
+    circle,
+    rgba(224, 63, 251, 1) 0%,
+    rgba(62, 0, 156, 1) 70%,
+    rgba(0, 98, 92, 1) 100%
+  );
+  color: rgb(0, 255, 0);
+  margin: 0 auto;
+  position: relative;
+  z-index: 10000;
+}
+#network-crystal-query .crystal input {
+  background: transparent;
+  font-family: var(--sans-serif);
+  font-size: 12pt;
+  font-weight: 400;
+  text-align: center;
+  width: 100%;
+  color: rgb(0, 255, 0);
+}
+#network-crystal-query .shadow {
+  width: 12rem;
+  height: 4rem;
+  border-radius: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  margin: 0 auto;
+  position: relative;
+  top: -12rem;
+  box-shadow: 0 0 6rem 12rem rgba(0, 0, 0, 0.5);
+}
+
+#network-crystal-modules {
+  padding-bottom: 12rem;
+}
+
+#network-crystal-modules-display > section {
+  --bg: rgb(0, 255, 0);
+  --fg: rgb(0, 0, 0);
+  --input-bg: rgb(245, 245, 245);
+  --button-bg: rgb(0, 0, 0);
+  --button-fg: rgb(0, 255, 0);
+  --button-bg-hover: rgb(45, 45, 45);
+  --button-fg-hover: rgb(45, 255, 45);
+  --svg-fill: none;
+  --svg-stroke: var(--fg);
+  background: var(--bg);
+  margin-bottom: 4rem;
+  border-radius: 6rem;
+  padding: 5rem;
+}
+#network-crystal-modules-display > section:last-child {
+  margin-bottom: 0;
+}
+#network-crystal-modules-display > section *[onClick] {
+  cursor: pointer;
+}
+
+#network-crystal-modules-display > section .title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+#network-crystal-modules-display > section .title .icon {
+  width: 4rem;
+  height: 4rem;
+}
+#network-crystal-modules-display > section .title .icon svg {
+  stroke-width: 0.5rem;
+}
+#network-crystal-modules-display > section .title .text {
+  width: calc(100% - 4rem - 2rem);
+  font-weight: 900;
+  font-size: 3rem;
+}
+
+#network-crystal-modules-yourip > .content {
+  text-align: center;
+}
+#network-crystal-modules-yourip .text {
+  font-size: 3rem;
+  cursor: pointer;
+}
+
+#network-crystal-modules-geoip > .content .ratiobox {
+  position: relative;
+  padding-top: min(60vh, 75%);
+  width: 100%;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+#network-crystal-modules-geoip > .content .map {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3rem;
+  font-weight: 700;
+  --bg: rgb(0, 0, 0);
+  --fg: rgb(245, 245, 245);
+  background: var(--bg);
+  color: var(--fg);
+}
+#network-crystal-modules-geoip > .content iframe {
+  border: none;
+  outline: none;
+  width: 100%;
+  height: 100%;
+}
+#network-crystal-modules-geoip > .content .data {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1.25rem;
+}
+#network-crystal-modules-geoip > .content .data .desc {
+  width: 100%;
+}
+#network-crystal-modules-geoip > .content .data .set {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14pt;
+  line-height: 1.25rem;
+  margin-top: 0.75rem;
+}
+#network-crystal-modules-geoip > .content .data .set .key {
+  width: 33%;
+  font-weight: 700;
+}
+#network-crystal-modules-geoip > .content .data .set .value {
+  width: 67%;
+  font-weight: 400;
+}
+
+#network-crystal-modules-whois > .content .ratiobox {
+  position: relative;
+  padding-top: min(60vh, 75%);
+  width: 100%;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+#network-crystal-modules-whois > .content .text {
+  --bg: rgb(0, 0, 0);
+  --fg: rgb(0, 255, 0);
+  --scrollbar-fg: var(--fg);
+  background: var(--bg);
+  padding: 1rem;
+  width: calc(100% - 2rem);
+  height: calc(100% - 2rem);
+}
+#network-crystal-modules-whois > .content .text .raw {
+  width: 100%;
+  height: 100%;
+  font-family: var(--monospace);
+  font-size: 1rem;
+  word-break: break-all;
+  color: var(--fg);
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+#network-crystal-modules-ping .ping {
+  padding: 1rem 0;
+  font-size: 1.25rem;
+  font-weight: 500;
+  border-bottom: dashed 0.125rem var(--fg);
+}
+#network-crystal-modules-ping .ping:first-child {
+  padding-top: 0;
+}
+#network-crystal-modules-ping .ping:last-child {
+  padding-bottom: 0;
+  border-bottom: none;
+}
+#network-crystal-modules-ping .ping h3 {
+  margin-bottom: 0.75rem;
+}
+#network-crystal-modules-ping .ping .label {
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+#network-crystal-modules-ping .ping .label {
+  color: var(--fgl);
+}
+#network-crystal-modules-ping .ping .res {
+  font-family: var(--monospace);
+  color: var(--thl);
+}
+#network-crystal-modules-ping .ping .set {
+  display: flex;
+}
+#network-crystal-modules-ping .ping.icmp .set .ip {
+  flex: 1;
+}
+#network-crystal-modules-ping .ping.icmp .set .bytes {
+  text-align: right;
+  width: 8rem;
+}
+#network-crystal-modules-ping .ping.icmp .set .time {
+  text-align: right;
+  width: 8rem;
+}
+#network-crystal-modules-ping .ping.icmp .set .ttl {
+  text-align: right;
+  width: 8rem;
+}
+
+#network-crystal-modules-ping .ping.tcp .set .port,
+#network-crystal-modules-ping .ping.udp .set .port {
+  width: 8rem;
+}
+#network-crystal-modules-ping .ping.tcp .set .status,
+#network-crystal-modules-ping .ping.udp .set .status {
+  width: 8rem;
+}
+#network-crystal-modules-ping .ping.tcp .set .desc,
+#network-crystal-modules-ping .ping.udp .set .desc {
+  text-align: right;
+  flex: 1;
+  word-break: break-all;
+}
+#network-crystal-modules-ping .ping .control {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 0.75rem;
+}
+
+#network-crystal-modules-dns > .content .set {
+  display: flex;
+  font-size: 1.25rem;
+  line-height: 2rem;
+  border-bottom: dashed 0.125rem var(--fg);
+  padding-bottom: 1rem;
+  margin-top: 1rem;
+}
+#network-crystal-modules-dns > .content .set:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+#network-crystal-modules-dns > .content .set:first-child {
+  margin-top: 0;
+}
+#network-crystal-modules-dns > .content .set .key {
+  width: 8rem;
+  font-weight: 700;
+}
+#network-crystal-modules-dns > .content .set .value {
+  width: calc(100% - 8rem);
+  font-family: var(--monospace);
+  text-align: right;
+}
+
+#network-crystal-modules-dns > .content .innerset {
+  display: flex;
+  font-size: 1.25rem;
+}
+#network-crystal-modules-dns > .content .innerset .key {
+  width: 8rem;
+  font-weight: 700;
+  text-align: left;
+}
+#network-crystal-modules-dns > .content .innerset .value {
+  width: calc(100% - 8rem);
+  text-align: right;
+}
+
+#network-crystal-modules-subdomains > .content .ratiobox {
+  position: relative;
+  padding-top: min(60vh, 75%);
+  width: 100%;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+#network-crystal-modules-subdomains > .content .text {
+  --bg: rgb(0, 0, 0);
+  --fg: rgb(0, 255, 0);
+  --scrollbar-fg: var(--fg);
+  background: var(--bg);
+  padding: 1rem;
+  width: calc(100% - 2rem);
+  height: calc(100% - 2rem);
+}
+#network-crystal-modules-subdomains > .content .text .raw {
+  width: 100%;
+  height: 100%;
+  font-family: var(--monospace);
+  font-size: 1rem;
+  word-break: break-all;
+  color: var(--fg);
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+#network-crystal-modules-subdomains > .content .text .raw a {
+  display: block;
+}
+#network-crystal-modules-subdomains > .content .control {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 0.75rem;
+}

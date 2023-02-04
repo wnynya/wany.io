@@ -1,0 +1,54 @@
+lapis-script(src="/resources/pages/network-crystal/modules/ping.mjs")
+
+section#network-crystal-modules-ping
+  .title 
+    h1 핑
+
+  .content 
+    
+    .ping.icmp
+      h3 ICMP 
+      .label 
+        .set 
+          .ip 아이피
+          .bytes 바이트
+          .time 시간
+          .ttl TTL
+      .res
+        .set 
+          .ip 
+          .bytes 
+          .time 
+          .ttl 
+      .control 
+        button(small disabled) ECHO 핑 다시 보내기
+
+    .ping.tcp
+      h3 TCP
+      .label 
+        .set 
+          .port 포트
+          .status 상태
+          .desc 설명
+      .res
+        .set 
+          .port 
+          .status 
+          .desc
+      .control 
+        button(small disabled) TCP 영역 다시 스캔하기
+
+    .ping.udp
+      h3 UDP
+      .label 
+        .set 
+          .port 포트
+          .status 상태
+          .desc 설명
+      .res
+        .set 
+          .port 
+          .status 
+          .desc
+      .control 
+        button(small disabled) UDP 영역 다시 스캔하기
