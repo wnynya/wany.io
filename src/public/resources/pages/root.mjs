@@ -23,6 +23,7 @@ new (class extends LapisScript {
 
     JSONGetRequest(`${global.api}/amuject/banners`).then((res) => {
       marquee(res.body.data, document.querySelector('#root-banners'));
+      Lapis.update();
     });
 
     JSONGetRequest(`${global.api}/network/geoip`).then((res) => {
