@@ -38,15 +38,23 @@ header#header(noselect)
 
       .wrapper
 
-        h2 
-          a(href="/b/index" lapis) Blog
-        h2 
-          a(href="/a" lapis) Amuject
-        h2 Works
-        h3 
-          a(href="/greenbee") Greenbee
-        h2 
-          a(href="/a/co" lapis) Co-Amuject
+        .links
+
+          a(href="/b/index" lapis) 
+            h2 Blog
+              .underline
+          a(href="/a" lapis)
+            h2 Amuject
+              .underline
+          a(href="/w" lapis)
+            h2 Works
+              .underline
+          a(href="/w/greenbee" lapis)
+            h3 Greenbee
+              .underline
+          a(href="/a/co" lapis)
+            h2 Co-Amuject
+              .underline
 
   section#header-when 
 

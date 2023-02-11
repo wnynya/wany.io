@@ -3,7 +3,7 @@ import { GetRequest } from '/resources/modules/request.mjs';
 const Lapis = new (class {
   constructor() {
     this.host = window.location.host;
-    this.color = 'rgb(170,143,179)';
+    this.color = 'rgb(170, 143, 179)';
     this.scripts = {
       elements: [],
       cache: {},
@@ -42,7 +42,8 @@ const Lapis = new (class {
         this.bar.style.position = 'fixed';
         this.bar.style.top = 0;
         this.bar.style.left = 0;
-        this.bar.style.height = '0.15rem';
+        this.bar.style.height = '2px';
+        this.bar.style.boxShadow = '0 0 3px 0 rgba(170, 143, 179, 0.5)';
         this.bar.style.background = color;
         this.bar.style.zIndex = 200000000;
         this.bar.style.transition = 'width ease-out 0.2s';
@@ -233,22 +234,16 @@ const Lapis = new (class {
     }
 
     function copyHTML(from, to, selector) {
-      if (
-        to.querySelector(selector)?.innerHTML &&
-        from.querySelector(selector)?.innerHTML
-      ) {
+      if (to.querySelector(selector) && from.querySelector(selector)) {
         to.querySelector(selector).innerHTML =
           from.querySelector(selector).innerHTML;
       } else if (to.querySelector(selector)?.innerHTML) {
-        to.querySelector(selector).innerHTML = '&nbsp;';
+        to.querySelector(selector).innerHTML = '';
       }
     }
 
     function copyContent(from, to, selector) {
-      if (
-        to.querySelector(selector)?.content &&
-        from.querySelector(selector)?.content
-      ) {
+      if (to.querySelector(selector) && from.querySelector(selector)) {
         to.querySelector(selector).content =
           from.querySelector(selector).content;
       } else if (to.querySelector(selector)?.content) {
@@ -271,9 +266,7 @@ const Lapis = new (class {
           document.body.removeChild(element);
         }
       })
-      .catch((error) => {
-        console.error(error);
-      });
+      .catch((error) => {});
   }
 
   setTimeout(f, t) {
