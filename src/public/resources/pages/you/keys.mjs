@@ -96,7 +96,6 @@ function select() {
         </div>
       </div>
     `;
-
     return e;
   }
 }

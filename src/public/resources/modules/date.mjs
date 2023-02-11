@@ -117,9 +117,7 @@ class Datwo extends Date {
   }
 
   compare(target = this, options = {}) {
-    if (!target || !target.getTime) {
-      target = new Date(target);
-    }
+    target = new Date(target);
 
     const BLOCK = {
       YEAR: 1000 * 60 * 60 * 24 * 365,
