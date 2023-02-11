@@ -1,6 +1,8 @@
 import express from 'express';
 const router = express.Router();
 
+import jsonld from '../modules/seo/json-ld.mjs';
+
 router.get('/map', (req, res, next) => {
   const lat = req.query.lat ? req.query.lat * 1.0 : 0.0;
   const lng = req.query.lng ? req.query.lng * 1.0 : 0.0;
@@ -23,6 +25,14 @@ router.get('/*', (req, res, next) => {
   parse(req, query).then((data) => {
     res.ren('network-crystal/root', {
       title: 'Network Crystal — 와니네',
+      meta: {
+        jsonld: jsonld.gen(
+          jsonld.breadcrumb(
+            { name: '와니네', item: 'https://wany.io' },
+            { name: 'Network Crystal' }
+          )
+        ),
+      },
       crystal: {
         query: query,
         desc: data.description,

@@ -2,6 +2,7 @@ import express from 'express';
 const router = express.Router();
 
 import { BlogArticle } from '@wnynya/blog';
+import jsonld from '../modules/seo/json-ld.mjs';
 
 const categories = {
   log: '로그',
@@ -44,6 +45,14 @@ router.get(/^\/index(\/.*)?$/, (req, res) => {
     .then(([articles, count]) => {
       res.ren('blog/index', {
         title: '게시글 목록 — 와니네 블로그',
+        meta: {
+          jsonld: jsonld.gen(
+            jsonld.breadcrumb(
+              { name: '와니네', item: 'https://wany.io' },
+              { name: '블로그' }
+            )
+          ),
+        },
         articles: articles,
         categories: categories,
         query: query,
@@ -118,6 +127,13 @@ router.get('/:article', (req, res, next) => {
                 data.author.label == data.author.eid
                   ? data.author.label
                   : `${data.author.label} (${data.author.eid})`,
+              jsonld: jsonld.gen(
+                jsonld.breadcrumb(
+                  { name: '와니네', item: 'https://wany.io' },
+                  { name: '블로그', item: 'https://wany.io/b/index' },
+                  { name: data.title.text }
+                )
+              ),
             },
             article: data,
             categories: categories,

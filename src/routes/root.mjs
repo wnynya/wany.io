@@ -2,7 +2,8 @@ import express from 'express';
 const router = express.Router();
 
 import { BlogArticle } from '@wnynya/blog';
-import sitemap from '../modules/sitemap.mjs';
+import sitemap from '../modules/seo/sitemap.mjs';
+import jsonld from '../modules/seo/json-ld.mjs';
 
 router.get('/', (req, res) => {
   Promise.all([
@@ -16,6 +17,19 @@ router.get('/', (req, res) => {
         title: '와니네',
         meta: {
           desc: '와니네 — 아무젝트, 블로그 — 와니네',
+          jsonld: jsonld.gen(jsonld.breadcrumb({ name: '와니네' }), {
+            '@context': 'https://schema.org',
+            '@type': 'WebSite',
+            url: 'https://wany.io/',
+            potentialAction: {
+              '@type': 'SearchAction',
+              target: {
+                '@type': 'EntryPoint',
+                urlTemplate: 'https://wany.io/b/index/{query}',
+              },
+              'query-input': 'required name=find',
+            },
+          }),
         },
         articles: {
           amuject: randomArticle(amuject),
