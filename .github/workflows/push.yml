@@ -2,12 +2,17 @@ name: Checkout and deploy
 on: push
 jobs:
   checkout:
+    name: 'Checkout'
     runs-on: self-hosted
     steps:
       - uses: actions/checkout@master
         with:
           ref: 'main'
 
+  checkout_config:
+    name: 'Checkout config'
+    runs-on: self-hosted
+    steps:
       - uses: actions/checkout@master
         with:
           ref: 'main'
@@ -15,8 +20,17 @@ jobs:
           token: ${{ secrets.CONFIG_TOKEN }}
           path: './config'
 
+  install_dependancy:
+    name: 'Install dependancy'
+    needs: [checkout]
+    runs-on: self-hosted
+    steps:
       - run: npm cache verify
-
       - run: npm install
 
+  deploy:
+    name: 'Deploy'
+    needs: [checkout, install_dependancy, checkout_config]
+    runs-on: self-hosted
+    steps:
       - run: ./start.sh
