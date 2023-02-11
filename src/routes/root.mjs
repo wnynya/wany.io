@@ -2,6 +2,7 @@ import express from 'express';
 const router = express.Router();
 
 import { BlogArticle } from '@wnynya/blog';
+import sitemap from '../modules/sitemap.mjs';
 
 router.get('/', (req, res) => {
   Promise.all([
@@ -33,6 +34,18 @@ router.get('/', (req, res) => {
       Math.floor(Math.min(Math.random() * articles.length), articles.length - 1)
     ];
   }
+});
+
+/* sitemap.xml */
+router.get('/sitemap.xml', (req, res) => {
+  sitemap()
+    .then((data) => {
+      res.set('Content-Type', 'text/xml');
+      res.send(data);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
 });
 
 router.get('/ping', (req, res) => {
