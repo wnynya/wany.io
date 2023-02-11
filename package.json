@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@wnynya/auth": "^1.0.9",
-    "@wnynya/blog": "^1.0.7",
+    "@wnynya/blog": "^1.0.8",
     "@wnynya/express-middlewares": "^1.2.12",
     "@wnynya/logger": "^0.1.3",
     "@wnynya/mysql-client": "^0.2.12",
