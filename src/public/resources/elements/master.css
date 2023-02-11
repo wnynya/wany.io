@@ -133,6 +133,8 @@ body {
   overflow-x: hidden;
   background: var(--bg);
   color: var(--fg);
+  -webkit-print-color-adjust: exact !important;
+  print-color-adjust: exact !important;
 }
 * {
   margin: 0;
@@ -143,6 +145,17 @@ body {
   color: var(--fg);
   line-height: 100%;
 }
+
+@media print {
+  @page {
+    margin: 15mm 15mm 20mm 15mm;
+  }
+  :root {
+    --bg: white;
+    --fg: black;
+  }
+}
+
 a {
   text-decoration: none;
 }

@@ -757,3 +757,10 @@ noscript .logo > .text {
 noscript .logo svg {
   height: 100%;
 }
+
+@media print {
+  #header,
+  #footer {
+    display: none;
+  }
+}
