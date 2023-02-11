@@ -27,7 +27,7 @@ router.get('/', (req, res) => {
                 '@type': 'EntryPoint',
                 urlTemplate: 'https://wany.io/b/index/{query}',
               },
-              'query-input': 'required name=find',
+              'query-input': 'required name=query',
             },
           }),
         },
