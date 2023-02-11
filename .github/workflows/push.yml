@@ -22,7 +22,7 @@ jobs:
 
   install_dependancy:
     name: 'Install dependancy'
-    needs: [checkout, checkout_config]
+    needs: [checkout]
     runs-on: self-hosted
     steps:
       - run: npm cache verify
@@ -30,7 +30,7 @@ jobs:
 
   deploy:
     name: 'Deploy'
-    needs: [checkout, install_dependancy, checkout_config]
+    needs: [checkout, checkout_config, install_dependancy]
     runs-on: self-hosted
     steps:
       - run: ./start.sh
