@@ -978,6 +978,11 @@ class Editor {
       if (child.nodeName == 'P') {
         this.cleanParagraph(child);
       }
+      if (child.nodeName == 'A') {
+        if (child.href) {
+          child.rel = 'nofollow noopener noreferrer';
+        }
+      }
       child.removeAttribute('placeholder');
       child.removeAttribute('contenteditable');
     }
