@@ -30,7 +30,8 @@ window.Cursor = new (class {
     var html = '';
     html += '<div class="layer" style="z-index: 16000">';
     html += '  <style>';
-    html += '    @keyframes rotate{ from{ transform: rotate(360deg); } to{ transform: rotate(-360deg); } }';
+    html +=
+      '    @keyframes rotate{ from{ transform: rotate(360deg); } to{ transform: rotate(-360deg); } }';
     html += '  </style>';
     html += '  <div class="layer" id="cursor-circle-message">';
     html +=
@@ -44,12 +45,14 @@ window.Cursor = new (class {
     html += '    </defs>';
     html +=
       '    <path id="cursor-circle-path" style="fill:none;stroke:none;stroke-miterlimit:10;" d="M 80 150 A 50 50 0 1 1 220 150 A 50 50 0 1 1 80 150 " />';
-    html += '    <text><textPath id="cursor-circle-text" href="#cursor-circle-path"></textPath></text>';
+    html +=
+      '    <text><textPath id="cursor-circle-text" href="#cursor-circle-path"></textPath></text>';
     html += '  </svg>';
     html += '  </div>';
     html += '</div>';
 
-    html += '<div class="layer" style="display: flex; align-items: center; justify-content: center; z-index: 17000">';
+    html +=
+      '<div class="layer" style="display: flex; align-items: center; justify-content: center; z-index: 17000">';
     html += '  <div id="cursor-tooltip-message"><div class="text"></div></div>';
     html += '</div>';
 
@@ -166,7 +169,9 @@ window.Cursor = new (class {
   }
 
   addEventListener() {
-    for (const element of document.querySelectorAll('button, [type="button"], .button, *[tooltip], *[circle]')) {
+    for (const element of document.querySelectorAll(
+      'button, [type="button"], .button, *[tooltip], *[circle]'
+    )) {
       element.removeEventListener('mouseover', this.onMouseOver);
       element.removeEventListener('mouseout', this.onMouseOut);
       element.addEventListener('mouseover', this.onMouseOver);
@@ -235,6 +240,9 @@ window.Cursor = new (class {
   }
 
   lapisGoto() {
+    if (this.mobile || !this.enabled) {
+      return;
+    }
     this.addEventListener();
     this.onMouseOut();
   }
