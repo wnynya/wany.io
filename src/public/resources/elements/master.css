@@ -103,10 +103,13 @@
   --sans-serif: 'Mint Grotesk', 'Pretendard Variable', 'Pretendard JP Variable',
     'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', 'Android Emoji',
     'Malgun Gothic', 'Dotum', sans-serif;
-  --serif: 'Times New Roman', 'Shippori Mincho', 'ChosunSm', 'Batang', serif;
-  --monospace: 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji',
-    'Android Emoji', 'SF Mono', 'Roboto Mono', 'Consolas', 'Pretendard Variable',
-    'Pretendard JP Variable', 'Malgun Gothic', 'Dotum', sans-serif;
+  --serif: 'Times New Roman', 'Shippori Mincho', 'ChosunSm', 'Batang',
+    'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', 'Android Emoji',
+    'Malgun Gothic', serif;
+  --monospace: 'SF Mono', 'Roboto Mono', 'Consolas', 'Pretendard Variable',
+    'Pretendard JP Variable', 'Apple Color Emoji', 'Segoe UI Emoji',
+    'Noto Color Emoji', 'Android Emoji', 'Malgun Gothic', 'Malgun Gothic',
+    'Dotum', sans-serif;
 }
 
 html {
