@@ -101,9 +101,11 @@
   --selection-fg: var(--bg);
 
   --sans-serif: 'Mint Grotesk', 'Pretendard Variable', 'Pretendard JP Variable',
+    'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', 'Android Emoji',
     'Malgun Gothic', 'Dotum', sans-serif;
   --serif: 'Times New Roman', 'Shippori Mincho', 'ChosunSm', 'Batang', serif;
-  --monospace: 'SF Mono', 'Roboto Mono', 'Consolas', 'Pretendard Variable',
+  --monospace: 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji',
+    'Android Emoji', 'SF Mono', 'Roboto Mono', 'Consolas', 'Pretendard Variable',
     'Pretendard JP Variable', 'Malgun Gothic', 'Dotum', sans-serif;
 }
 

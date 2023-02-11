@@ -1,5 +1,6 @@
 import { JSONGetRequest } from '/resources/modules/request.mjs';
 import Vector from '/resources/modules/vector.mjs';
+import marquee from '../modules/marquee.mjs';
 
 new (class extends LapisScript {
   load() {
@@ -19,6 +20,10 @@ new (class extends LapisScript {
       100,
       1
     );
+
+    JSONGetRequest(`${global.api}/amuject/banners`).then((res) => {
+      marquee(res.body.data, document.querySelector('#root-banners'));
+    });
 
     JSONGetRequest(`${global.api}/network/geoip`).then((res) => {
       var data = res.body.data;

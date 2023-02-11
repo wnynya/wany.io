@@ -12,35 +12,36 @@
   position: relative;
   pointer-events: all;
   padding-top: 8rem;
+  padding-bottom: 4rem;
 }
-#root-content-header {
-  width: 100% !important;
-  border-radius: 0% !important;
-}
-#root-content-header .label {
-  padding-top: 6rem;
+#root-banners {
+  width: 100%;
+  height: 8rem;
+  background: rgb(0, 0, 255);
+  overflow: hidden;
+  position: relative;
   display: flex;
-  justify-content: space-between;
+  align-items: center;
+  white-space: nowrap;
+  margin: 4rem 0;
 }
-#root-content-header .left,
-#root-content-header .right {
-  width: 50%;
+#root-banners p {
+  position: absolute;
+  cursor: default;
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 100%;
 }
-#root-content-header .label p {
-  font-size: 1.25rem;
-  font-weight: 500;
-  line-height: 125%;
-}
-#root-content-header .label p.tab {
-  padding-left: 6rem;
+#root-banners * {
+  color: white;
 }
 #root-content {
-  padding-top: 9rem;
+  padding-top: 4rem;
   width: 100%;
   z-index: 500;
   position: relative;
   pointer-events: all;
-  padding-bottom: 6rem;
+  padding-bottom: 8rem;
 }
 #root-content .section {
   display: block;
@@ -49,7 +50,7 @@
   pointer-events: all;
   position: relative;
   overflow: hidden;
-  margin-bottom: 6rem;
+  margin-bottom: 8rem;
 }
 #root-content .section:last-child {
   margin-bottom: 0;
@@ -101,6 +102,7 @@
 #blog-amuject {
   max-width: 66rem;
   background: rgb(50, 0, 200);
+  margin-bottom: 4rem;
 }
 #blog-amuject > .ratio {
   padding-top: 75%;
@@ -198,7 +200,12 @@
   padding-top: 100%;
   border-radius: 100% 100%;
   background: rgba(62, 0, 156, 1);
-  background: radial-gradient(circle, rgba(224, 63, 251, 1) 0%, rgba(62, 0, 156, 1) 70%, rgba(0, 98, 92, 1) 100%);
+  background: radial-gradient(
+    circle,
+    rgba(224, 63, 251, 1) 0%,
+    rgba(62, 0, 156, 1) 70%,
+    rgba(0, 98, 92, 1) 100%
+  );
   color: rgb(0, 255, 0);
 }
 #network-crystal .crystal svg {

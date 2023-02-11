@@ -66,7 +66,15 @@
   align-items: flex-end;
   margin-top: 2rem;
 }
-
+#you-main .control .buttons {
+  display: flex;
+}
+#you-main .control .buttons > * {
+  margin-right: 0.5rem;
+}
+#you-main .control .buttons > *:last-child {
+  margin-right: 0;
+}
 #you-profile > form > .imagelabel {
   display: flex;
   justify-content: space-between;

@@ -2,17 +2,17 @@ lapis-style(src="/resources/pages/root.css")
 lapis-script(src="/resources/pages/root.mjs")
 
 section#root-ballfield
-      .layer.background
-      .layer.field
-        .ball.btn.no1(tooltip="드래그!🟡")
-          .layer.circle
-          .layer.shadow
-        .ball.btn.no2(tooltip="드래그!🔵")
-          .layer.circle
-          .layer.shadow
-        .ball.btn.no3(tooltip="드래그!🔴")
-          .layer.circle
-          .layer.shadow
+  .layer.background
+    .layer.field
+      .ball.btn.no1(tooltip="드래그!🟡")
+        .layer.circle
+        .layer.shadow
+      .ball.btn.no2(tooltip="드래그!🔵")
+        .layer.circle
+        .layer.shadow
+      .ball.btn.no3(tooltip="드래그!🔴")
+        .layer.circle
+        .layer.shadow
 
 section#root-title 
   .outwrapper 
@@ -37,6 +37,11 @@ section#root-content
               span.dot ·
               span.datetime!= articles.amuject.datetime.display
 
+  section#root-banners 
+
+  .outwrapper 
+    .inwrapper
+      
       a.section#network-crystal(href="/network-crystal/" + req.client.ip circle="rgb(0, 255, 0);black;🔮;눌러서 Network Crystal 바로 써 보기" lapis)
         .ratio
           .layer.foreground

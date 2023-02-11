@@ -76,7 +76,7 @@ function select() {
     e.setAttribute('lapis', '');
     let code =
       key.code.substring(0, 4) +
-      '...' +
+      '···' +
       key.code.substring(key.code.length - 4, key.code.length);
     e.innerHTML = `
       <div class="icon">
@@ -90,7 +90,8 @@ function select() {
           <div class="perm">${key.permissions.length}개의 권한 노드</div>
           <div class="dot">&nbsp;·&nbsp;</div>
           <div class="last">${
-            new Date().compare(key.lastused) + ' 마지막으로 사용됨'
+            new Date().compare(key.lastused, { nofuture: true }) +
+            ' 마지막으로 사용됨'
           }</div>
         </div>
       </div>
