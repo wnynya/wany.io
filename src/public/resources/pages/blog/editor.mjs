@@ -31,8 +31,8 @@ class Editor {
       this.isNewArticle = true;
       this.uid = new Date().format('YYDDDsssssCC');
       document.querySelector('#blog-editor-control-eid').value = this.uid;
-      document.querySelector('#blog-article-info-datetime').innerHTML = '지금';
-      document.querySelector('#blog-article-info-category').innerHTML =
+      document.querySelector('#blog-editor-info-datetime').innerHTML = '지금';
+      document.querySelector('#blog-editor-info-category').innerHTML =
         '카테고리 선택';
       this.content2html();
     }
@@ -42,7 +42,7 @@ class Editor {
       option.value = cid;
       option.setAttribute('label', global.categories[cid]);
       document
-        .querySelector('#blog-article-info-category-select')
+        .querySelector('#blog-editor-info-category-select')
         .appendChild(option);
     }
     let option = document.createElement('option');
@@ -50,7 +50,7 @@ class Editor {
     option.disabled = true;
     option.setAttribute('label', '삭제');
     document
-      .querySelector('#blog-article-info-category-select')
+      .querySelector('#blog-editor-info-category-select')
       .appendChild(option);
 
     this.addEventListener();
@@ -65,33 +65,33 @@ class Editor {
         document.querySelector('#blog-editor-control-eid').value = article.eid;
 
         // article title
-        document.querySelector('#blog-article-title-display').innerHTML =
+        document.querySelector('#blog-editor-title-display').innerHTML =
           article.title.html
             .replace(/<span class=("block"|'block')>/g, '[[[')
             .replace(/<\/span>/g, ']]]');
 
         // article info
-        document.querySelector('#blog-article-info-datetime-input').value =
+        document.querySelector('#blog-editor-info-datetime-input').value =
           new Date(article.creation)
             .format('YYYY-MM-DD_hh:mm')
             .replace('_', 'T');
-        document.querySelector('#blog-article-info-datetime').innerHTML =
-          new Date(article.creation).format('YY년 M월 KH');
-        document.querySelector('#blog-article-info-category-select').value =
+        document.querySelector('#blog-editor-info-datetime').innerHTML =
+          new Date(article.creation).format('YY년 M월의 GK');
+        document.querySelector('#blog-editor-info-category-select').value =
           article.category;
         const categorySelect = document.querySelector(
-          '#blog-article-info-category-select'
+          '#blog-editor-info-category-select'
         ).childNodes[
-          document.querySelector('#blog-article-info-category-select')
+          document.querySelector('#blog-editor-info-category-select')
             .selectedIndex
         ];
-        document.querySelector('#blog-article-info-category').innerHTML =
+        document.querySelector('#blog-editor-info-category').innerHTML =
           categorySelect.getAttribute('label');
         document.querySelector('#blog-editor-control-thumbnail').value =
           article.title.image;
 
         // article content
-        document.querySelector('#blog-article-content-display').innerHTML =
+        document.querySelector('#blog-editor-content-display').innerHTML =
           article.content.html;
         this.content2html();
       })
@@ -105,7 +105,7 @@ class Editor {
 
     // title
     document
-      .querySelector('#blog-article-title-display')
+      .querySelector('#blog-editor-title-display')
       .addEventListener('keydown', (event) => {
         const key = event.key;
         if (key == 'Enter' || key == 'Tab') {
@@ -113,7 +113,7 @@ class Editor {
         }
       });
     document
-      .querySelector('#blog-article-title-display')
+      .querySelector('#blog-editor-title-display')
       .addEventListener('keyup', (event) => {
         const key = event.key;
         if (key == 'Enter' || key == 'Tab') {
@@ -121,7 +121,7 @@ class Editor {
         }
       });
     document
-      .querySelector('#blog-article-title-display')
+      .querySelector('#blog-editor-title-display')
       .addEventListener('paste', (event) => {
         event.preventDefault();
         let pasteText = (event.clipboardData || window.clipboardData).getData(
@@ -142,65 +142,65 @@ class Editor {
 
     // datetime
     document
-      .querySelector('#blog-article-info-datetime')
+      .querySelector('#blog-editor-info-datetime')
       .addEventListener('click', (event) => {
         document
-          .querySelector('#blog-article-info-datetime-input')
+          .querySelector('#blog-editor-info-datetime-input')
           .classList.remove('hide');
-        document.querySelector('#blog-article-info-datetime-input').focus();
+        document.querySelector('#blog-editor-info-datetime-input').focus();
       });
     document
-      .querySelector('#blog-article-info-datetime-input')
+      .querySelector('#blog-editor-info-datetime-input')
       .addEventListener('blur', (event) => {
         const datetime = document.querySelector(
-          '#blog-article-info-datetime-input'
+          '#blog-editor-info-datetime-input'
         ).value;
         if (datetime) {
-          document.querySelector('#blog-article-info-datetime').innerHTML =
+          document.querySelector('#blog-editor-info-datetime').innerHTML =
             new Date(datetime).format('YY년 M월 KH');
         }
         document
-          .querySelector('#blog-article-info-datetime-input')
+          .querySelector('#blog-editor-info-datetime-input')
           .classList.add('hide');
       });
 
     // category
     document
-      .querySelector('#blog-article-info-category')
+      .querySelector('#blog-editor-info-category')
       .addEventListener('click', function (event) {
         document
-          .querySelector('#blog-article-info-category-select')
+          .querySelector('#blog-editor-info-category-select')
           .classList.remove('hide');
-        document.querySelector('#blog-article-info-category-select').focus();
+        document.querySelector('#blog-editor-info-category-select').focus();
       });
     document
-      .querySelector('#blog-article-info-category-select')
+      .querySelector('#blog-editor-info-category-select')
       .addEventListener('change', function (event) {
         const option = document.querySelector(
-          '#blog-article-info-category-select'
+          '#blog-editor-info-category-select'
         ).childNodes[
-          document.querySelector('#blog-article-info-category-select')
+          document.querySelector('#blog-editor-info-category-select')
             .selectedIndex
         ];
-        document.querySelector('#blog-article-info-category').innerHTML =
+        document.querySelector('#blog-editor-info-category').innerHTML =
           option.getAttribute('label') || '카테고리';
         document
-          .querySelector('#blog-article-info-category-select')
+          .querySelector('#blog-editor-info-category-select')
           .classList.add('hide');
       });
     document
-      .querySelector('#blog-article-info-category-select')
+      .querySelector('#blog-editor-info-category-select')
       .addEventListener('blur', function (event) {
         const option = document.querySelector(
-          '#blog-article-info-category-select'
+          '#blog-editor-info-category-select'
         ).childNodes[
-          document.querySelector('#blog-article-info-category-select')
+          document.querySelector('#blog-editor-info-category-select')
             .selectedIndex
         ];
-        document.querySelector('#blog-article-info-category').innerHTML =
+        document.querySelector('#blog-editor-info-category').innerHTML =
           option.getAttribute('label') || '카테고리';
         document
-          .querySelector('#blog-article-info-category-select')
+          .querySelector('#blog-editor-info-category-select')
           .classList.add('hide');
       });
 
@@ -230,9 +230,9 @@ class Editor {
     /* content editor */
     document.execCommand('defaultParagraphSeparator', false, 'p');
     document
-      .querySelector('#blog-article-content-display')
+      .querySelector('#blog-editor-content-display')
       .addEventListener('click', (event) => {
-        const content = document.querySelector('#blog-article-content-display');
+        const content = document.querySelector('#blog-editor-content-display');
         let p = event.target;
         if (p == content) {
           this.paragraph = null;
@@ -244,19 +244,19 @@ class Editor {
         this.paragraph = p;
       });
     document
-      .querySelector('#blog-article-content-display')
+      .querySelector('#blog-editor-content-display')
       .addEventListener('focus', (event) => {
         if (
-          document.querySelector('#blog-article-content-display').childNodes
+          document.querySelector('#blog-editor-content-display').childNodes
             .length == 0
         ) {
-          document.querySelector('#blog-article-content-display').innerHTML =
+          document.querySelector('#blog-editor-content-display').innerHTML =
             '<p></p>';
         }
         this.content2html();
       });
     document
-      .querySelector('#blog-article-content-display')
+      .querySelector('#blog-editor-content-display')
       .addEventListener('blur', (event) => {
         this.content2html();
       });
@@ -266,7 +266,7 @@ class Editor {
         this.html2content();
       });
     document
-      .querySelector('#blog-article-content-display')
+      .querySelector('#blog-editor-content-display')
       .addEventListener('paste', (event) => {
         event.preventDefault();
         let pasteText = (event.clipboardData || window.clipboardData).getData(
@@ -281,7 +281,7 @@ class Editor {
         selection.deleteFromDocument();
         if (pasteText && pasteText != '') {
           if (
-            document.querySelector('#blog-article-content-display').childNodes
+            document.querySelector('#blog-editor-content-display').childNodes
               .length == 0
           ) {
             node = document.createElement('p');
@@ -298,15 +298,15 @@ class Editor {
         this.content2html();
       });
     document
-      .querySelector('#blog-article-content-display')
+      .querySelector('#blog-editor-content-display')
       .addEventListener('keyup', (event) => {
         const key = event.key;
         if (key == 'Backspace' || key == 'Delete') {
           if (
-            document.querySelector('#blog-article-content-display').childNodes
+            document.querySelector('#blog-editor-content-display').childNodes
               .length == 0
           ) {
-            document.querySelector('#blog-article-content-display').innerHTML =
+            document.querySelector('#blog-editor-content-display').innerHTML =
               '<p></p>';
           }
         }
@@ -530,12 +530,12 @@ class Editor {
       }
     });
     document
-      .querySelector('#blog-article-content')
+      .querySelector('#blog-editor-content')
       .addEventListener('drop', (event) => {
         event.preventDefault();
         event.stopPropagation();
         document
-          .querySelector('#blog-article-content-display')
+          .querySelector('#blog-editor-content-display')
           .classList.remove('dragdrop');
 
         const files = event.dataTransfer.files;
@@ -555,30 +555,30 @@ class Editor {
         }
       });
     document
-      .querySelector('#blog-article-content')
+      .querySelector('#blog-editor-content')
       .addEventListener('dragenter', (event) => {
         event.preventDefault();
         event.stopPropagation();
         document
-          .querySelector('#blog-article-content-display')
+          .querySelector('#blog-editor-content-display')
           .classList.add('dragdrop');
       });
     document
-      .querySelector('#blog-article-content')
+      .querySelector('#blog-editor-content')
       .addEventListener('dragleave', (event) => {
         event.preventDefault();
         event.stopPropagation();
         document
-          .querySelector('#blog-article-content-display')
+          .querySelector('#blog-editor-content-display')
           .classList.remove('dragdrop');
       });
     document
-      .querySelector('#blog-article-content')
+      .querySelector('#blog-editor-content')
       .addEventListener('dragover', (event) => {
         event.preventDefault();
         event.stopPropagation();
         document
-          .querySelector('#blog-article-content-display')
+          .querySelector('#blog-editor-content-display')
           .classList.add('dragdrop');
       });
 
@@ -638,13 +638,11 @@ class Editor {
         p.appendChild(ratiobox);
         p.appendChild(document.createElement('br'));
         if (!this.paragraph || !this.paragraph.nextSibling) {
-          document
-            .querySelector('#blog-article-content-display')
-            .appendChild(p);
+          document.querySelector('#blog-editor-content-display').appendChild(p);
         } else {
           let next = this.paragraph.nextSibling;
           document
-            .querySelector('#blog-article-content-display')
+            .querySelector('#blog-editor-content-display')
             .insertBefore(p, next);
         }
         this.paragraph = p;
@@ -725,13 +723,11 @@ class Editor {
         p.appendChild(div);
         p.appendChild(document.createElement('br'));
         if (!this.paragraph || !this.paragraph.nextSibling) {
-          document
-            .querySelector('#blog-article-content-display')
-            .appendChild(p);
+          document.querySelector('#blog-editor-content-display').appendChild(p);
         } else {
           let next = this.paragraph.nextSibling;
           document
-            .querySelector('#blog-article-content-display')
+            .querySelector('#blog-editor-content-display')
             .insertBefore(p, next);
         }
         this.paragraph = p;
@@ -816,13 +812,11 @@ class Editor {
         p.appendChild(pic);
         p.appendChild(document.createElement('br'));
         if (!this.paragraph || !this.paragraph.nextSibling) {
-          document
-            .querySelector('#blog-article-content-display')
-            .appendChild(p);
+          document.querySelector('#blog-editor-content-display').appendChild(p);
         } else {
           let next = this.paragraph.nextSibling;
           document
-            .querySelector('#blog-article-content-display')
+            .querySelector('#blog-editor-content-display')
             .insertBefore(p, next);
         }
         this.paragraph = p;
@@ -968,8 +962,8 @@ class Editor {
   }
 
   content2html() {
-    const content = document.querySelector('#blog-article-content-display');
-    const dummy = document.querySelector('#blog-article-content-dummy');
+    const content = document.querySelector('#blog-editor-content-display');
+    const dummy = document.querySelector('#blog-editor-content-dummy');
     const html = document.querySelector('#blog-editor-control-content-html');
     dummy.innerHTML = content.innerHTML;
     for (const child of dummy.childNodes) {
@@ -989,8 +983,8 @@ class Editor {
   }
 
   html2content() {
-    const content = document.querySelector('#blog-article-content-display');
-    const dummy = document.querySelector('#blog-article-content-dummy');
+    const content = document.querySelector('#blog-editor-content-display');
+    const dummy = document.querySelector('#blog-editor-content-dummy');
     const html = document.querySelector('#blog-editor-control-content-html');
     content.innerHTML = html.value;
   }
@@ -1031,12 +1025,10 @@ class Editor {
 
     function getArticle() {
       let eid = document.querySelector('#blog-editor-control-eid');
-      let title = document.querySelector('#blog-article-title-display');
-      let datetime = document.querySelector(
-        '#blog-article-info-datetime-input'
-      );
+      let title = document.querySelector('#blog-editor-title-display');
+      let datetime = document.querySelector('#blog-editor-info-datetime-input');
       let category = document.querySelector(
-        '#blog-article-info-category-select'
+        '#blog-editor-info-category-select'
       );
       let content = document.querySelector('#blog-editor-control-content-html');
       let thumbnail = document.querySelector('#blog-editor-control-thumbnail');
@@ -1061,11 +1053,11 @@ class Editor {
 }
 
 function onScroll() {
-  var header = document.querySelector('#blog-article-title');
+  var header = document.querySelector('#blog-editor-title');
   var hrect = header.getBoundingClientRect();
-  var info = document.querySelector('#blog-article-info');
+  var info = document.querySelector('#blog-editor-info');
   var irect = info.getBoundingClientRect();
-  var content = document.querySelector('#blog-article-content');
+  var content = document.querySelector('#blog-editor-content');
   var crect = content.getBoundingClientRect();
   var controlpanel = document.querySelector('#blog-editor-panel');
   var scroll = window.scrollY;

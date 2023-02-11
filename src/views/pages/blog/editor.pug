@@ -9,22 +9,22 @@ lapis-script(eval="window.global.categories = JSON.parse('" + JSON.stringify(cat
 lapis-script(src="/resources/pages/blog/editor.mjs")
 script(src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js")
 
-section#blog-article-title
+section#blog-editor-title
   .outwrapper
     .inwrapper
-      h1#blog-article-title-display(placeholder="제목" contentEditable="true" spellcheck="false")
+      h1#blog-editor-title-display(placeholder="제목" contentEditable="true" spellcheck="false")
 
-section#blog-article-info
+section#blog-editor-info
   .outwrapper
     .inwrapper
       .ellipse
-        span.author#blog-article-info-author 너
+        span.author#blog-editor-info-author 너
         span.dot ·
-        span.date#blog-article-info-datetime(tooltip="눌러서 날짜 변경")
-        input.hide#blog-article-info-datetime-input(type="datetime-local")
+        span.date#blog-editor-info-datetime(tooltip="눌러서 날짜 변경")
+        input.hide#blog-editor-info-datetime-input(type="datetime-local")
         span.dot ·
-        span.category#blog-article-info-category(tooltip="눌러서 카테고리 선택")
-        select.hide#blog-article-info-category-select
+        span.category#blog-editor-info-category(tooltip="눌러서 카테고리 선택")
+        select.hide#blog-editor-info-category-select
           option(value="temp" label="카테고리 선택" disabled selected) 카테고리 선택
 
 section#blog-editor-panel
@@ -168,12 +168,12 @@ section#blog-editor-panel-modal
           .border
         button#modal-insert-code-submit 적용
 
-section#blog-article-content
+section#blog-editor-content
   .outwrapper
     .inwrapper
-      .article#blog-article-content-display(contentEditable="true" spellcheck="false")
+      .article#blog-editor-content-display(contentEditable="true" spellcheck="false")
       .border 
-      .dummy#blog-article-content-dummy
+      .dummy#blog-editor-content-dummy
 
 section#blog-editor-control
   .outwrapper(narrow)
