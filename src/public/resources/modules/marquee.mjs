@@ -41,7 +41,7 @@ export default function marquee(msgs, element, speed = 200.0, margin = 100) {
     }
   }
 
-  setInterval(() => {
+  Lapis.setInterval(() => {
     frame();
   }, 100);
 
