@@ -47,7 +47,7 @@ new (class extends LapisScript {
           )
             .then(() => {
               noty('게시글이 삭제되었습니다.');
-              setTimeout(() => {
+              Lapis.setTimeout(() => {
                 Lapis.goto('/b/index');
               }, 2000);
             })

@@ -82,10 +82,10 @@ script(type="module" defer="defer").
         this.sidebar.classList.contains('open') ? _this.close() : _this.open();
       });
 
-      var i = setInterval(() => {
+      var i = Lapis.setInterval(() => {
         this.onScroll();
       }, 100);
-      setTimeout(() => {
+      Lapis.setTimeout(() => {
         clearInterval(i);
       }, 1000);
       this.onScroll();

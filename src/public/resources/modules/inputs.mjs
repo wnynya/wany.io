@@ -19,7 +19,8 @@ window.Inputs = new (class {
         });
         if (
           element.querySelector('input').value == '' &&
-          element.querySelector('.autocomplete').getAttribute('emptyshow') != 'true'
+          element.querySelector('.autocomplete').getAttribute('emptyshow') !=
+            'true'
         ) {
           label.classList.add('hide');
         }
@@ -39,7 +40,7 @@ window.Inputs = new (class {
             autocomplete.removeAttribute('index');
             master.querySelector('.border').style.paddingBottom = '0px';
             master.querySelector('.border').style.top = '0px';
-            setTimeout(() => {
+            Lapis.setTimeout(() => {
               autocomplete.classList.remove('event');
             }, 100);
           }
@@ -53,8 +54,11 @@ window.Inputs = new (class {
       });
     }
 
-    for (var element of document.querySelectorAll('.input.file input[type=file]')) {
-      element.parentElement.querySelector('.files').innerHTML = element.placeholder;
+    for (var element of document.querySelectorAll(
+      '.input.file input[type=file]'
+    )) {
+      element.parentElement.querySelector('.files').innerHTML =
+        element.placeholder;
       element.addEventListener('change', (event) => {
         var target = event.target;
         var parent = event.target;
@@ -87,7 +91,8 @@ window.Inputs = new (class {
           }
           parent.querySelector('.files').innerHTML = acceptedFileIndex;
         } else {
-          parent.querySelector('.files').innerHTML = acceptedFiles.length + ' files';
+          parent.querySelector('.files').innerHTML =
+            acceptedFiles.length + ' files';
         }
       });
       element.addEventListener(
@@ -118,13 +123,25 @@ window.Inputs = new (class {
 
           if (target.multiple) {
             for (var file of files) {
-              if (!file.type == '' && (!accept || accept == '*' || accept == '' || accepts.includes(file.type))) {
+              if (
+                !file.type == '' &&
+                (!accept ||
+                  accept == '*' ||
+                  accept == '' ||
+                  accepts.includes(file.type))
+              ) {
                 acceptedFiles.push(file);
               }
             }
           } else {
             var file = files[0];
-            if (!file.type == '' && (!accept || accept == '*' || accept == '' || accepts.includes(file.type))) {
+            if (
+              !file.type == '' &&
+              (!accept ||
+                accept == '*' ||
+                accept == '' ||
+                accepts.includes(file.type))
+            ) {
               acceptedFiles.push(file);
             }
           }
@@ -140,7 +157,8 @@ window.Inputs = new (class {
             parent.querySelector('.files').innerHTML = acceptedFileIndex;
             target.files = files;
           } else {
-            parent.querySelector('.files').innerHTML = acceptedFiles.length + ' files';
+            parent.querySelector('.files').innerHTML =
+              acceptedFiles.length + ' files';
             target.files = files;
           }
         },
@@ -187,33 +205,46 @@ window.Inputs = new (class {
       );
       element.clear = () => {
         element.value = '';
-        element.parentElement.querySelector('.files').innerHTML = element.placeholder;
+        element.parentElement.querySelector('.files').innerHTML =
+          element.placeholder;
       };
     }
 
-    for (var element of document.querySelectorAll('.input.range input[type=range]')) {
-      var slice = element.parentElement.querySelector('.slider').offsetWidth / (element.max - element.min);
-      element.parentElement.querySelector('.slider .button').style.left = slice * (element.value - element.min) + 'px';
+    for (var element of document.querySelectorAll(
+      '.input.range input[type=range]'
+    )) {
+      var slice =
+        element.parentElement.querySelector('.slider').offsetWidth /
+        (element.max - element.min);
+      element.parentElement.querySelector('.slider .button').style.left =
+        slice * (element.value - element.min) + 'px';
       if (element.parentElement.querySelector('div.number')) {
-        element.parentElement.querySelector('div.number').innerHTML = element.value;
+        element.parentElement.querySelector('div.number').innerHTML =
+          element.value;
       }
       if (element.parentElement.querySelector('input.number')) {
-        element.parentElement.querySelector('input.number').value = element.value;
-        element.parentElement.querySelector('input.number').addEventListener('change', (event) => {
-          var target = event.target;
-          var parent = event.target;
-          while (!parent.classList.contains('range')) {
-            parent = parent.parentElement;
-          }
-          var range = parent.querySelector('input[type=range]');
-          var value = target.value;
-          value = Math.min(range.max, value);
-          value = Math.max(range.min, value);
-          target.value = value;
-          range.value = value;
-          var slice = parent.querySelector('.slider').offsetWidth / (range.max - range.min);
-          parent.querySelector('.slider .button').style.left = slice * (range.value - range.min) + 'px';
-        });
+        element.parentElement.querySelector('input.number').value =
+          element.value;
+        element.parentElement
+          .querySelector('input.number')
+          .addEventListener('change', (event) => {
+            var target = event.target;
+            var parent = event.target;
+            while (!parent.classList.contains('range')) {
+              parent = parent.parentElement;
+            }
+            var range = parent.querySelector('input[type=range]');
+            var value = target.value;
+            value = Math.min(range.max, value);
+            value = Math.max(range.min, value);
+            target.value = value;
+            range.value = value;
+            var slice =
+              parent.querySelector('.slider').offsetWidth /
+              (range.max - range.min);
+            parent.querySelector('.slider .button').style.left =
+              slice * (range.value - range.min) + 'px';
+          });
       }
       element.addEventListener('change', (event) => {
         var target = event.target;
@@ -221,8 +252,11 @@ window.Inputs = new (class {
         while (!parent.classList.contains('range')) {
           parent = parent.parentElement;
         }
-        var slice = parent.querySelector('.slider').offsetWidth / (target.max - target.min);
-        parent.querySelector('.slider .button').style.left = slice * (target.value - target.min) + 'px';
+        var slice =
+          parent.querySelector('.slider').offsetWidth /
+          (target.max - target.min);
+        parent.querySelector('.slider .button').style.left =
+          slice * (target.value - target.min) + 'px';
         if (parent.querySelector('div.number')) {
           parent.querySelector('div.number').innerHTML = target.value;
         }
@@ -239,8 +273,11 @@ window.Inputs = new (class {
         while (!parent.classList.contains('range')) {
           parent = parent.parentElement;
         }
-        var slice = parent.querySelector('.slider').offsetWidth / (target.max - target.min);
-        parent.querySelector('.slider .button').style.left = slice * (target.value - target.min) + 'px';
+        var slice =
+          parent.querySelector('.slider').offsetWidth /
+          (target.max - target.min);
+        parent.querySelector('.slider .button').style.left =
+          slice * (target.value - target.min) + 'px';
         if (parent.querySelector('div.number')) {
           parent.querySelector('div.number').innerHTML = target.value;
         }
@@ -256,8 +293,11 @@ window.Inputs = new (class {
         while (!parent.classList.contains('range')) {
           parent = parent.parentElement;
         }
-        var slice = parent.querySelector('.slider').offsetWidth / (target.max - target.min);
-        parent.querySelector('.slider .button').style.left = slice * (target.value - target.min) + 'px';
+        var slice =
+          parent.querySelector('.slider').offsetWidth /
+          (target.max - target.min);
+        parent.querySelector('.slider .button').style.left =
+          slice * (target.value - target.min) + 'px';
         if (parent.querySelector('div.number')) {
           parent.querySelector('div.number').innerHTML = target.value;
         }
@@ -280,12 +320,17 @@ window.Inputs = new (class {
     }
 
     window.addEventListener('resize', (event) => {
-      for (var element of document.querySelectorAll('.input.range input[type=range]')) {
-        var slice = element.parentElement.querySelector('.slider').offsetWidth / (element.max - element.min);
+      for (var element of document.querySelectorAll(
+        '.input.range input[type=range]'
+      )) {
+        var slice =
+          element.parentElement.querySelector('.slider').offsetWidth /
+          (element.max - element.min);
         element.parentElement.querySelector('.slider .button').style.left =
           slice * (element.value - element.min) + 'px';
         if (element.parentElement.querySelector('.slider .number')) {
-          element.parentElement.querySelector('.slider .number').innerHTML = element.value;
+          element.parentElement.querySelector('.slider .number').innerHTML =
+            element.value;
         }
       }
     });
@@ -310,11 +355,17 @@ window.Inputs = new (class {
               } else {
                 label.classList.add('hide');
               }
-            } else if (autocomplete.getAttribute('aterm') && input.value.split(' ').length > 1) {
+            } else if (
+              autocomplete.getAttribute('aterm') &&
+              input.value.split(' ').length > 1
+            ) {
               label.classList.remove('hide');
             } else if (
               autocomplete.getAttribute('aterm') &&
-              label.innerHTML.toLowerCase().replace(/'/g, '').startsWith(input.value.toLowerCase().replace(/'/g, ''))
+              label.innerHTML
+                .toLowerCase()
+                .replace(/'/g, '')
+                .startsWith(input.value.toLowerCase().replace(/'/g, ''))
             ) {
               if (label.innerHTML == input.value) {
                 label.classList.add('hide');
@@ -347,8 +398,11 @@ window.Inputs = new (class {
       }
     }
 
-    for (var element of document.querySelectorAll('.input.file input[type=file]')) {
-      element.parentElement.querySelector('.files').innerHTML = element.placeholder;
+    for (var element of document.querySelectorAll(
+      '.input.file input[type=file]'
+    )) {
+      element.parentElement.querySelector('.files').innerHTML =
+        element.placeholder;
       element.addEventListener('change', (event) => {
         var target = event.target;
         var parent = event.target;
@@ -381,7 +435,8 @@ window.Inputs = new (class {
           }
           parent.querySelector('.files').innerHTML = acceptedFileIndex;
         } else {
-          parent.querySelector('.files').innerHTML = acceptedFiles.length + ' files';
+          parent.querySelector('.files').innerHTML =
+            acceptedFiles.length + ' files';
         }
       });
       element.addEventListener(
@@ -412,13 +467,25 @@ window.Inputs = new (class {
 
           if (target.multiple) {
             for (var file of files) {
-              if (!file.type == '' && (!accept || accept == '*' || accept == '' || accepts.includes(file.type))) {
+              if (
+                !file.type == '' &&
+                (!accept ||
+                  accept == '*' ||
+                  accept == '' ||
+                  accepts.includes(file.type))
+              ) {
                 acceptedFiles.push(file);
               }
             }
           } else {
             var file = files[0];
-            if (!file.type == '' && (!accept || accept == '*' || accept == '' || accepts.includes(file.type))) {
+            if (
+              !file.type == '' &&
+              (!accept ||
+                accept == '*' ||
+                accept == '' ||
+                accepts.includes(file.type))
+            ) {
               acceptedFiles.push(file);
             }
           }
@@ -434,7 +501,8 @@ window.Inputs = new (class {
             parent.querySelector('.files').innerHTML = acceptedFileIndex;
             target.files = files;
           } else {
-            parent.querySelector('.files').innerHTML = acceptedFiles.length + ' files';
+            parent.querySelector('.files').innerHTML =
+              acceptedFiles.length + ' files';
             target.files = files;
           }
         },
@@ -481,33 +549,46 @@ window.Inputs = new (class {
       );
       element.clear = () => {
         element.value = '';
-        element.parentElement.querySelector('.files').innerHTML = element.placeholder;
+        element.parentElement.querySelector('.files').innerHTML =
+          element.placeholder;
       };
     }
 
-    for (var element of document.querySelectorAll('.input.range input[type=range]')) {
-      var slice = element.parentElement.querySelector('.slider').offsetWidth / (element.max - element.min);
-      element.parentElement.querySelector('.slider .button').style.left = slice * (element.value - element.min) + 'px';
+    for (var element of document.querySelectorAll(
+      '.input.range input[type=range]'
+    )) {
+      var slice =
+        element.parentElement.querySelector('.slider').offsetWidth /
+        (element.max - element.min);
+      element.parentElement.querySelector('.slider .button').style.left =
+        slice * (element.value - element.min) + 'px';
       if (element.parentElement.querySelector('div.number')) {
-        element.parentElement.querySelector('div.number').innerHTML = element.value;
+        element.parentElement.querySelector('div.number').innerHTML =
+          element.value;
       }
       if (element.parentElement.querySelector('input.number')) {
-        element.parentElement.querySelector('input.number').value = element.value;
-        element.parentElement.querySelector('input.number').addEventListener('change', (event) => {
-          var target = event.target;
-          var parent = event.target;
-          while (!parent.classList.contains('range')) {
-            parent = parent.parentElement;
-          }
-          var range = parent.querySelector('input[type=range]');
-          var value = target.value;
-          value = Math.min(range.max, value);
-          value = Math.max(range.min, value);
-          target.value = value;
-          range.value = value;
-          var slice = parent.querySelector('.slider').offsetWidth / (range.max - range.min);
-          parent.querySelector('.slider .button').style.left = slice * (range.value - range.min) + 'px';
-        });
+        element.parentElement.querySelector('input.number').value =
+          element.value;
+        element.parentElement
+          .querySelector('input.number')
+          .addEventListener('change', (event) => {
+            var target = event.target;
+            var parent = event.target;
+            while (!parent.classList.contains('range')) {
+              parent = parent.parentElement;
+            }
+            var range = parent.querySelector('input[type=range]');
+            var value = target.value;
+            value = Math.min(range.max, value);
+            value = Math.max(range.min, value);
+            target.value = value;
+            range.value = value;
+            var slice =
+              parent.querySelector('.slider').offsetWidth /
+              (range.max - range.min);
+            parent.querySelector('.slider .button').style.left =
+              slice * (range.value - range.min) + 'px';
+          });
       }
       element.addEventListener('change', (event) => {
         var target = event.target;
@@ -515,8 +596,11 @@ window.Inputs = new (class {
         while (!parent.classList.contains('range')) {
           parent = parent.parentElement;
         }
-        var slice = parent.querySelector('.slider').offsetWidth / (target.max - target.min);
-        parent.querySelector('.slider .button').style.left = slice * (target.value - target.min) + 'px';
+        var slice =
+          parent.querySelector('.slider').offsetWidth /
+          (target.max - target.min);
+        parent.querySelector('.slider .button').style.left =
+          slice * (target.value - target.min) + 'px';
         if (parent.querySelector('div.number')) {
           parent.querySelector('div.number').innerHTML = target.value;
         }
@@ -533,8 +617,11 @@ window.Inputs = new (class {
         while (!parent.classList.contains('range')) {
           parent = parent.parentElement;
         }
-        var slice = parent.querySelector('.slider').offsetWidth / (target.max - target.min);
-        parent.querySelector('.slider .button').style.left = slice * (target.value - target.min) + 'px';
+        var slice =
+          parent.querySelector('.slider').offsetWidth /
+          (target.max - target.min);
+        parent.querySelector('.slider .button').style.left =
+          slice * (target.value - target.min) + 'px';
         if (parent.querySelector('div.number')) {
           parent.querySelector('div.number').innerHTML = target.value;
         }
@@ -550,8 +637,11 @@ window.Inputs = new (class {
         while (!parent.classList.contains('range')) {
           parent = parent.parentElement;
         }
-        var slice = parent.querySelector('.slider').offsetWidth / (target.max - target.min);
-        parent.querySelector('.slider .button').style.left = slice * (target.value - target.min) + 'px';
+        var slice =
+          parent.querySelector('.slider').offsetWidth /
+          (target.max - target.min);
+        parent.querySelector('.slider .button').style.left =
+          slice * (target.value - target.min) + 'px';
         if (parent.querySelector('div.number')) {
           parent.querySelector('div.number').innerHTML = target.value;
         }
@@ -574,12 +664,17 @@ window.Inputs = new (class {
     }
 
     window.addEventListener('resize', (event) => {
-      for (var element of document.querySelectorAll('.input.range input[type=range]')) {
-        var slice = element.parentElement.querySelector('.slider').offsetWidth / (element.max - element.min);
+      for (var element of document.querySelectorAll(
+        '.input.range input[type=range]'
+      )) {
+        var slice =
+          element.parentElement.querySelector('.slider').offsetWidth /
+          (element.max - element.min);
         element.parentElement.querySelector('.slider .button').style.left =
           slice * (element.value - element.min) + 'px';
         if (element.parentElement.querySelector('.slider .number')) {
-          element.parentElement.querySelector('.slider .number').innerHTML = element.value;
+          element.parentElement.querySelector('.slider .number').innerHTML =
+            element.value;
         }
       }
     });

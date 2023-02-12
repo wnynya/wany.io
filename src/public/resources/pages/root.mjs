@@ -214,7 +214,7 @@ class BallField {
       document.querySelector('#ballfield').classList.toggle('real');
     }
 
-    setTimeout(() => {
+    Lapis.setTimeout(() => {
       _this.onResize();
     }, 500);
   }

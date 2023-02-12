@@ -74,7 +74,7 @@ function update() {
   JSONPatchRequest(`${global.api}/auth/accounts/@me/password`, data)
     .then(() => {
       noty('비밀번호가 변경되었습니다.', 'success');
-      setTimeout(() => {
+      Lapis.setTimeout(() => {
         alert(
           '비밀번호가 변경된 후에는 모든 세션에서 로그아웃됩니다. 다시 로그인하기 바랍니다.'
         );

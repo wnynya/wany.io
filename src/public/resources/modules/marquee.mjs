@@ -27,7 +27,7 @@ export default function marquee(msgs, element, speed = 200.0, margin = 100) {
       const go = (appendrect.width + 100) * -1;
       const length = rect.width - go;
       append.style.transition = 'left ' + length / speed + 's linear';
-      setTimeout(() => {
+      Lapis.setTimeout(() => {
         append.style.left = go + 'px';
       }, 1);
     }
