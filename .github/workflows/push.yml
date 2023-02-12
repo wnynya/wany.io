@@ -9,9 +9,23 @@ jobs:
         with:
           ref: 'main'
 
+  install_dependancy:
+    name: 'Install dependancy'
+    needs: [checkout]
+    runs-on: self-hosted
+    steps:
+      - uses: actions/cache@v3
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-modules-
+      - run: npm cache verify
+      - run: npm ci
+
   checkout_config:
     name: 'Checkout config'
-    needs: [checkout]
+    needs: [checkout, install_dependancy]
     runs-on: self-hosted
     steps:
       - uses: actions/checkout@master
@@ -22,17 +36,9 @@ jobs:
           path: './config'
           clean: false
 
-  install_dependancy:
-    name: 'Install dependancy'
-    needs: [checkout]
-    runs-on: self-hosted
-    steps:
-      - run: npm cache verify
-      - run: npm install
-
   deploy:
     name: 'Deploy'
-    needs: [checkout, checkout_config, install_dependancy]
+    needs: [checkout, install_dependancy, checkout_config]
     runs-on: self-hosted
     steps:
       - run: ./start.sh
