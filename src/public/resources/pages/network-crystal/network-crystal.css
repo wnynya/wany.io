@@ -14,17 +14,23 @@
 }
 #network-crystal-query {
   position: relative;
-  padding: 0 0 4rem 0;
-  text-align: center;
+  width: 100%;
+  height: 54rem;
 }
 #network-crystal-query .crystal {
+  z-index: 10000;
   display: flex;
   justify-content: center;
-  align-items: center;
-  border-radius: 100% 100%;
+  align-items: flex-start;
+  overflow: hidden;
+  white-space: nowrap;
+}
+#network-crystal-query .crystal > .ball {
+  position: absolute;
+  border-radius: 100%;
+  width: 38rem;
+  height: 38rem;
   padding: 4rem;
-  width: 36rem;
-  height: 36rem;
   background: rgba(62, 0, 156, 1);
   background: radial-gradient(
     circle,
@@ -32,29 +38,61 @@
     rgba(62, 0, 156, 1) 70%,
     rgba(0, 98, 92, 1) 100%
   );
-  color: rgb(0, 255, 0);
-  margin: 0 auto;
-  position: relative;
-  z-index: 10000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-#network-crystal-query .crystal input {
+#network-crystal-query .crystal > .ball > input {
   background: transparent;
   font-family: var(--sans-serif);
   font-size: 12pt;
   font-weight: 400;
   text-align: center;
   width: 100%;
+  max-width: calc(100vw - 2rem);
   color: rgb(0, 255, 0);
 }
 #network-crystal-query .shadow {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  overflow: hidden;
+  white-space: nowrap;
+}
+#network-crystal-query .shadow > .ball {
+  position: absolute;
+  bottom: 16rem;
   width: 12rem;
   height: 4rem;
   border-radius: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   margin: 0 auto;
   position: relative;
-  top: -12rem;
   box-shadow: 0 0 6rem 12rem rgba(0, 0, 0, 0.5);
+}
+@media (max-width: 900px) {
+  #network-crystal-title h1 {
+    font-size: 4rem;
+  }
+}
+@media (max-width: 600px) {
+  #network-crystal-title h1 {
+    font-size: 3rem;
+  }
+  #network-crystal-query {
+    height: 32rem;
+  }
+  #network-crystal-query .crystal > .ball {
+    width: 24rem;
+    height: 24rem;
+    padding: 4rem;
+  }
+  #network-crystal-query .shadow > .ball {
+    bottom: 4rem;
+    width: 6rem;
+    height: 2rem;
+    box-shadow: 0 0 3rem 6rem rgba(0, 0, 0, 0.5);
+  }
 }
 
 #network-crystal-modules {
@@ -82,7 +120,6 @@
 #network-crystal-modules-display > section *[onClick] {
   cursor: pointer;
 }
-
 #network-crystal-modules-display > section .title {
   display: flex;
   justify-content: flex-start;
@@ -100,10 +137,35 @@
   stroke: var(--t0);
   stroke-width: 0.075rem;
 }
-#network-crystal-modules-display > section .title .text {
+#network-crystal-modules-display > section .title h1 {
   width: calc(100% - 4rem - 2rem);
-  font-weight: 900;
   font-size: 3rem;
+}
+@media (max-width: 900px) {
+  #network-crystal-modules-display > section {
+    margin-bottom: 5rem;
+    border-radius: 3rem;
+    padding: 2rem;
+  }
+}
+@media (max-width: 600px) {
+  #network-crystal-modules-display > section {
+    margin-bottom: 5rem;
+    border-radius: 2rem;
+    padding: 1rem;
+  }
+  #network-crystal-modules-display > section .title {
+    margin-bottom: 1rem;
+  }
+  #network-crystal-modules-display > section .title .icon {
+    width: 2rem;
+    height: 2rem;
+    padding-right: 1rem;
+  }
+  #network-crystal-modules-display > section .title h1 {
+    width: calc(100% - 4rem - 2rem);
+    font-size: 2rem;
+  }
 }
 
 #network-crystal-modules-default p {
@@ -286,6 +348,7 @@
   width: calc(100% - 8rem);
   font-family: var(--monospace);
   text-align: right;
+  word-break: break-all;
 }
 
 #network-crystal-modules-dns > .content .innerset {
@@ -300,6 +363,7 @@
 #network-crystal-modules-dns > .content .innerset .value {
   width: calc(100% - 8rem);
   text-align: right;
+  word-break: break-all;
 }
 
 #network-crystal-modules-subdomains > .content .ratiobox {

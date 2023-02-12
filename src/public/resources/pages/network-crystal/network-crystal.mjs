@@ -72,13 +72,20 @@ new (class extends LapisScript {
       fitInput();
     });
 
+    window.addEventListener('resize', onResize);
+
     fitInput();
   }
 
   unload() {
+    window.removeEventListener('resize', onResize);
     sidebar.unload();
   }
 })();
+
+function onResize() {
+  fitInput();
+}
 
 function fitInput() {
   const input = document.querySelector('#network-crystal-query-input');
