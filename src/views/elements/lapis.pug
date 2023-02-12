@@ -89,11 +89,6 @@ script(type="module").
         link.type = 'text/css';
         link.rel = 'stylesheet';
         link.href = this.src;
-        if (!Lapis.firstLoaded) {
-          link.addEventListener('load', (event) => {
-            Lapis.firstPageStyleLoaded(btoa(this.srco));
-          });
-        }
         document.body.appendChild(link);
       }
     }

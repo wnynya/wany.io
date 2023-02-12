@@ -3,7 +3,6 @@ import { GetRequest } from '/resources/modules/request.mjs';
 const Lapis = new (class {
   constructor() {
     this.host = window.location.host;
-    this.color = 'rgb(170, 143, 179)';
     this.scripts = {
       elements: [],
       cache: {},
@@ -15,6 +14,7 @@ const Lapis = new (class {
     };
     this.styles = [];
     this.prefetched = [];
+
     const _this = this;
     window.onpopstate = (event) => {
       _this.goto(window.location.href, false);
@@ -36,61 +36,6 @@ const Lapis = new (class {
       }
     };
     this.updateAHref();
-    this.Loadingbar = class Loadingbar {
-      constructor(color = _this.color) {
-        this.bar = document.createElement('div');
-        this.bar.style.position = 'fixed';
-        this.bar.style.top = 0;
-        this.bar.style.left = 0;
-        this.bar.style.height = '2px';
-        this.bar.style.boxShadow = '0 0 3px 0 rgba(170, 143, 179, 0.5)';
-        this.bar.style.background = color;
-        this.bar.style.zIndex = 200000000;
-        this.bar.style.transition = 'width ease-out 0.2s';
-        this.state = 'ready';
-        this.percent = 0.0;
-        this.progress(this.percent);
-
-        document.body.appendChild(this.bar);
-
-        this.update = () => {
-          if (this.state == 'ready') {
-            this.percent += 0.01;
-            this.percent = Math.min(90.0, this.percent);
-            window.requestAnimationFrame(this.update);
-          }
-          this.progress(this.percent);
-        };
-        window.requestAnimationFrame(this.update);
-
-        setTimeout(() => {
-          this.percent = 20.0;
-        }, 10);
-      }
-
-      progress(percent) {
-        this.bar.style.width = percent + '%';
-      }
-
-      end() {
-        this.state = 'end';
-        this.percent = 100;
-        this.progress(this.percent);
-
-        setTimeout(() => {
-          this.destroy();
-        }, 250);
-      }
-
-      destroy() {
-        this.bar.style.left = null;
-        this.bar.style.right = 0;
-        this.bar.style.width = '0%';
-        setTimeout(() => {
-          document.body.removeChild(this.bar);
-        }, 250);
-      }
-    };
 
     this.observer = new IntersectionObserver((entries, observer) => {
       for (const entry of entries) {
@@ -107,31 +52,22 @@ const Lapis = new (class {
       }
     }, {});
 
-    this.firstLoaded = false;
-    this.firstPageStyles = [];
-    this.firstPageStylesPop = [];
-    for (const e of document.querySelectorAll('main lapis-style')) {
-      this.firstPageStyles.push(btoa(e.getAttribute('src')));
-    }
-    this.firstPageStylesPop = [...this.firstPageStyles];
-    this.firstPageStyleLoaded();
-
     window.addEventListener('load', (evnet) => {
       this.updateAHref();
 
       for (const e of document.querySelectorAll('a[href][lapis]')) {
         this.observer.observe(e);
       }
-
-      let lcv = cookies('owarimonogatari');
-      setInterval(() => {
-        let cv = cookies('owarimonogatari');
-        if (cv != lcv) {
-          window.location.reload();
-          lcv = cv;
-        }
-      }, 1000);
     });
+
+    let lcv = cookies('owarimonogatari');
+    setInterval(() => {
+      let cv = cookies('owarimonogatari');
+      if (cv != lcv) {
+        window.location.reload();
+        lcv = cv;
+      }
+    }, 1000);
   }
 
   goto(href, push = true, target = '_blank') {
@@ -178,7 +114,7 @@ const Lapis = new (class {
 
     push ? window.history.pushState(tempHistory, this.host, href) : null;
 
-    const bar = new this.Loadingbar();
+    const bar = new Loadingbar();
 
     GetRequest(href)
       .then((res) => {
@@ -186,8 +122,8 @@ const Lapis = new (class {
           tempHistory.push(res.uri);
           window.history.replaceState(tempHistory, this.host, res.uri);
         }
-        window.scrollTo({ top: 0, behavior: 'smooth' });
         this.display(res.body);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
         bar.end();
         if (window.Cursor) {
           window.Cursor.lapisGoto();
@@ -201,8 +137,8 @@ const Lapis = new (class {
           tempHistory.push(res.uri);
           window.history.replaceState(tempHistory, this.host, res.uri);
         }
-        window.scrollTo({ top: 0, behavior: 'smooth' });
         this.display(res.body);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
         bar.end();
         if (window.Cursor) {
           window.Cursor.lapisGoto();
@@ -217,6 +153,10 @@ const Lapis = new (class {
     const temp = document.createElement('template');
     temp.innerHTML = html;
     const doc = temp.content;
+
+    for (const preload of doc.querySelectorAll('link[rel="preload"]')) {
+      preload.parentElement.removeChild(preload);
+    }
 
     copyHTML(doc, document, 'title');
     copyHTML(doc, document, 'main');
@@ -301,19 +241,62 @@ const Lapis = new (class {
   update() {
     this.updateAHref();
   }
-
-  firstPageStyleLoaded(id) {
-    this.firstLoaded = false;
-
-    id
-      ? this.firstPageStylesPop.splice(this.firstPageStylesPop.indexOf(id), 1)
-      : null;
-    if (
-      (this.firstPageStyles.includes(id) || !id) &&
-      this.firstPageStylesPop.length == 0
-    ) {
-    }
-  }
 })();
+
+class Loadingbar {
+  constructor(color = 'rgb(170, 143, 179)') {
+    this.bar = document.createElement('div');
+    this.bar.style.position = 'fixed';
+    this.bar.style.top = 0;
+    this.bar.style.left = 0;
+    this.bar.style.height = '2px';
+    this.bar.style.boxShadow = '0 0 3px 0 rgba(170, 143, 179, 0.5)';
+    this.bar.style.background = color;
+    this.bar.style.zIndex = 200000000;
+    this.bar.style.transition = 'width ease-out 0.2s';
+    this.state = 'ready';
+    this.percent = 0.0;
+    this.progress(this.percent);
+
+    document.body.appendChild(this.bar);
+
+    this.update = () => {
+      if (this.state == 'ready') {
+        this.percent += 0.01;
+        this.percent = Math.min(90.0, this.percent);
+        window.requestAnimationFrame(this.update);
+      }
+      this.progress(this.percent);
+    };
+    window.requestAnimationFrame(this.update);
+
+    setTimeout(() => {
+      this.percent = 20.0;
+    }, 10);
+  }
+
+  progress(percent) {
+    this.bar.style.width = percent + '%';
+  }
+
+  end() {
+    this.state = 'end';
+    this.percent = 100;
+    this.progress(this.percent);
+
+    setTimeout(() => {
+      this.destroy();
+    }, 250);
+  }
+
+  destroy() {
+    this.bar.style.left = null;
+    this.bar.style.right = 0;
+    this.bar.style.width = '0%';
+    setTimeout(() => {
+      document.body.removeChild(this.bar);
+    }, 250);
+  }
+}
 
 window.Lapis = Lapis;

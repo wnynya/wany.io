@@ -1,3 +1,8 @@
+if kid
+  lapis-script(eval="window.global.kid = '" + kid + "';")
+else
+  lapis-script(eval="delete window.global.kid")
+
 h1 API 키
 
 #you-key
@@ -43,8 +48,4 @@ h1 API 키
       a(href="/u/keys" lapis)
         button#button-you-keys(medium) API 키 목록
 
-if kid
-  lapis-script(eval="window.global.kid = '" + kid + "';")
-else
-  lapis-script(eval="delete window.global.kid")
 lapis-script(src="/resources/pages/you/key.mjs")
