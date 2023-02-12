@@ -107,10 +107,6 @@ const Lapis = new (class {
       }
     }, {});
 
-    for (const e of document.querySelectorAll('a[href][lapis]')) {
-      this.observer.observe(e);
-    }
-
     this.firstLoaded = false;
     this.firstPageStyles = [];
     this.firstPageStylesPop = [];
@@ -120,14 +116,22 @@ const Lapis = new (class {
     this.firstPageStylesPop = [...this.firstPageStyles];
     this.firstPageStyleLoaded();
 
-    let lcv = cookies('owarimonogatari');
-    setInterval(() => {
-      let cv = cookies('owarimonogatari');
-      if (cv != lcv) {
-        window.location.reload();
-        lcv = cv;
+    window.addEventListener('load', (evnet) => {
+      this.updateAHref();
+
+      for (const e of document.querySelectorAll('a[href][lapis]')) {
+        this.observer.observe(e);
       }
-    }, 1000);
+
+      let lcv = cookies('owarimonogatari');
+      setInterval(() => {
+        let cv = cookies('owarimonogatari');
+        if (cv != lcv) {
+          window.location.reload();
+          lcv = cv;
+        }
+      }, 1000);
+    });
   }
 
   goto(href, push = true, target = '_blank') {
@@ -253,6 +257,9 @@ const Lapis = new (class {
   }
 
   prefetch(href) {
+    if (href == window.location.href) {
+      return;
+    }
     GetRequest(href)
       .then((res) => {
         const temp = document.createElement('template');
@@ -305,7 +312,6 @@ const Lapis = new (class {
       (this.firstPageStyles.includes(id) || !id) &&
       this.firstPageStylesPop.length == 0
     ) {
-      //document.querySelector('#rootcover').classList.add('clear');
     }
   }
 })();

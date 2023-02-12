@@ -20,10 +20,11 @@
   "nodemonConfig": {
     "watch": [
       "./config",
-      "./src/**/*.mjs"
+      "./src/**/*"
     ],
     "ignore": [
       "./src/public"
-    ]
+    ],
+    "ext": "js,mjs,json,pug"
   }
 }

@@ -1,7 +1,7 @@
+link(rel="preload" as="style" href="/resources/pages/blog/article.css")
+link(rel="preload" as="style" href="/resources/pages/blog/github.css")
 lapis-style(src="/resources/pages/blog/article.css")
 lapis-style(src="/resources/pages/blog/github.css")
-lapis-script(eval="window.global.article = { uid: '" + article.uid + "', eid: '" + article.eid + "' };")
-lapis-script(src="/resources/pages/blog/article.mjs")
 
 section#blog-article-title
   .outwrapper
@@ -89,3 +89,6 @@ section#blog-article-index
         input#blog-article-index-query(type="text" placeholder="블로그에서 찾아보기" spellcheck="false" autocomplete="on" value=query) 
         label 블로그에서 찾아보기
         .border
+
+lapis-script(eval="window.global.article = { uid: '" + article.uid + "', eid: '" + article.eid + "' };")
+lapis-script(src="/resources/pages/blog/article.mjs")

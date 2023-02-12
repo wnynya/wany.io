@@ -1,7 +1,5 @@
+link(rel="preload" as="style" href="/resources/pages/network-crystal/network-crystal.css")
 lapis-style(src="/resources/pages/network-crystal/network-crystal.css")
-lapis-script(eval="window.global.query = '" + crystal.query + "';")
-lapis-script(eval="window.global.modules = JSON.parse('" + JSON.stringify(crystal.modules) + "');")
-lapis-script(src="/resources/pages/network-crystal/network-crystal.mjs")
 
 aside.sidebar.withstars#network-crystal-sidebar
   .stars.top
@@ -87,3 +85,7 @@ section#network-crystal-modules
           when "ping": include /views/pages/network-crystal/modules/ping
 
           when "subdomains": include /views/pages/network-crystal/modules/subdomains
+
+lapis-script(eval="window.global.query = '" + crystal.query + "';")
+lapis-script(eval="window.global.modules = JSON.parse('" + JSON.stringify(crystal.modules) + "');")
+lapis-script(src="/resources/pages/network-crystal/network-crystal.mjs")

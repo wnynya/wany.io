@@ -1,3 +1,5 @@
+import Sidebar from '/resources/modules/sidebar.mjs';
+
 let sidebar;
 
 new (class extends LapisScript {

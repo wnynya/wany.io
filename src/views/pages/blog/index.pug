@@ -1,5 +1,5 @@
+link(rel="preload" as="style" href="/resources/pages/blog/index.css")
 lapis-style(src="/resources/pages/blog/index.css")
-lapis-script(src="/resources/pages/blog/index.mjs")
 
 section#blog-index-header
   .outwrapper
@@ -89,3 +89,5 @@ section#blog-index-pages
             a(href="/b/index/" + query + "?page=" + (page + 3) lapis) >>
         else
           a(disabled) >>
+
+lapis-script(src="/resources/pages/blog/index.mjs")

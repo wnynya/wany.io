@@ -1,9 +1,3 @@
-lapis-script(type="module" src="/resources/elements/header.mjs" defer="defer")
-if redir
-  lapis-script(eval="window.global.redir = '" + redir + "';")
-if loginpage
-  lapis-script(eval="window.global.loginpage = true;")
-
 header#header(noselect)
 
   section#header-dummy
@@ -103,3 +97,9 @@ header#header(noselect)
               button#button-header-login-submit 로그인
           .wrapper.back
             h2 계정 확인 중⏳...
+
+lapis-script(type="module" src="/resources/elements/header.mjs" defer="defer")
+if redir
+  lapis-script(eval="window.global.redir = '" + redir + "';")
+if loginpage
+  lapis-script(eval="window.global.loginpage = true;")

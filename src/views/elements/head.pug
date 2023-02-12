@@ -1,7 +1,10 @@
 head
 
+  link(href="/resources/elements/wanyne.css" type="text/css" rel="stylesheet")
+  include /views/elements/lapis
+
   meta(charset="UTF-8")
-  meta(name="viewport" content="width=device-width, user-scalable=no, initial-scale=1")
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
   meta(name="format-detection" content="telephone=no")
   meta(name="theme-color" content="#D2B0DD")
 
@@ -28,13 +31,7 @@ head
   if (meta.jsonld)
     script(type="application/ld+json")!= meta.jsonld
 
-  link(href="/resources/elements/master.css" type="text/css" rel="stylesheet")
-  link(href="/resources/elements/layout.css" type="text/css" rel="stylesheet")
-  link(href="/resources/elements/inputs.css" type="text/css" rel="stylesheet")
-
-  title!= title
-
-  script(async src="https://www.googletagmanager.com/gtag/js?id=G-4229X5VRKY")
-  script window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag("js", new Date()); gtag("config", "G-4229X5VRKY");
-
+  //- Naver
   meta(name="naver-site-verification" content="b31648286b75513b018d978aecc99eb6dacb5709")
+  
+  title!= title

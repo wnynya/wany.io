@@ -1,6 +1,12 @@
 import config from './config.mjs';
 const dev = process.argv.includes('-dev');
 
+/* __dirname and __filename */
+import path from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 import express from 'express';
 
 const app = express();
@@ -15,6 +21,10 @@ import auth from '@wnynya/auth';
 import { Logger, console } from '@wnynya/logger';
 
 app.use(middlewares.headers(config.headers)); // Custom response headers
+
+/* Set static files (src/public) */
+app.use(express.static(path.resolve(__dirname, './public')));
+
 app.use(middlewares.cookies()); // Cookie parser
 app.use(middlewares.client()); // Client infomations
 app.use(middlewares.JSONResponses()); // JSON response functions
@@ -22,11 +32,17 @@ app.use(auth.session(config.session)); // Auth session (req.session)
 app.use(auth.account()); // Auth account (req.account)
 app.use(middlewares.logger(new Logger(config.logger.req))); // Log request
 
+/* Ser view engine */
+app.set('views', path.resolve(__dirname, './views'));
+app.set('view cache', true);
+app.set('view engine', 'pug');
+
 app.use((req, res, next) => {
   req.api = dev ? config.api.dev : config.api.pub;
   req.amuject = dev ? config.amuject.dev : config.amuject.pub;
   req.amethy = dev ? config.amethy.dev : config.amethy.pub;
   res.ren = (...args) => {
+    const t = Date.now();
     let status = 200;
     let path;
     let data = {};
@@ -104,24 +120,12 @@ app.use((req, res, next) => {
   next();
 });
 
-/* __dirname and __filename */
-import path from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-/* Ser view engine */
-app.set('view engine', 'pug');
-app.set('views', path.resolve(__dirname, './views'));
 /* Set basedir */
 app.locals.basedir = path.resolve(__dirname);
 
 /* Set root router */
 import router from './routes/root.mjs';
 app.use('/', router);
-
-/* Set static files (src/public) */
-app.use(express.static(path.resolve(__dirname, './public')));
 
 /* Set 404 */
 app.all('*', (req, res) => {

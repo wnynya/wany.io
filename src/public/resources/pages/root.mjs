@@ -1,6 +1,4 @@
 import { JSONGetRequest } from '/resources/modules/request.mjs';
-import Vector from '/resources/modules/vector.mjs';
-import marquee from '../modules/marquee.mjs';
 
 new (class extends LapisScript {
   load() {
@@ -42,6 +40,58 @@ new (class extends LapisScript {
 
   unload() {}
 })();
+
+class Vector {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+  }
+
+  add(vector) {
+    this.x = this.x + vector.x;
+    this.y = this.y + vector.y;
+  }
+
+  subtract(vector) {
+    this.x = this.x - vector.x;
+    this.y = this.y - vector.y;
+  }
+
+  multiply(vector) {
+    this.x = this.x * vector.x;
+    this.y = this.y * vector.y;
+  }
+
+  divide(vector) {
+    this.x = this.x / vector.x;
+    this.y = this.y / vector.y;
+  }
+
+  normalize() {
+    var s = this.speed();
+    if (s > 0) {
+      this.divide(new Vector(s, s));
+    }
+  }
+
+  speed() {
+    return Math.sqrt(Math.pow(this.x, 2) + Math.pow(this.y, 2));
+  }
+
+  angle() {
+    return Math.atan2(this.y, this.x);
+  }
+
+  distence(vector) {
+    return Math.sqrt(
+      Math.pow(vector.x - this.x, 2) + Math.pow(vector.y - this.y, 2)
+    );
+  }
+
+  clone() {
+    return new Vector(this.x, this.y);
+  }
+}
 
 class Ball {
   constructor(element, position, velocity, radius, mass = 1) {
@@ -414,8 +464,73 @@ class BallField {
   }
 }
 
-function test() {
-  JSONGetRequest(`${global.api}/test`).then(console.log);
-}
+function marquee(msgs, element, speed = 200.0, margin = 100) {
+  let pendings = [];
+  let msgi = -1;
 
-window.test = test;
+  function frame() {
+    var rect = element.getBoundingClientRect();
+    var currents = element.querySelectorAll('*');
+
+    if (pendings.length > 0) {
+      if (currents.length > 0) {
+        var last = currents[currents.length - 1];
+        var lastrect = last.getBoundingClientRect();
+        if (rect.right > lastrect.right) {
+          appendElement();
+        }
+      } else {
+        appendElement();
+      }
+    }
+
+    function appendElement() {
+      const append = pendings[0];
+      pendings.shift();
+      element.appendChild(append);
+      const appendrect = append.getBoundingClientRect();
+      append.style.left = rect.width + margin + 'px';
+      const go = (appendrect.width + 100) * -1;
+      const length = rect.width - go;
+      append.style.transition = 'left ' + length / speed + 's linear';
+      Lapis.setTimeout(() => {
+        append.style.left = go + 'px';
+      }, 1);
+    }
+
+    for (var current of currents) {
+      var currentrect = current.getBoundingClientRect();
+      if (currentrect.right < rect.left) {
+        element.removeChild(current);
+        pend(msg());
+      }
+    }
+  }
+
+  Lapis.setInterval(() => {
+    frame();
+  }, 100);
+
+  function msg() {
+    msgi++;
+    msgi >= msgs.length ? (msgi = 0) : null;
+    return msgs[msgi];
+  }
+
+  function pend(text) {
+    var p = document.createElement('p');
+    p.innerHTML = text;
+    pendings.push(p);
+  }
+
+  pend(msg());
+  pend(msg());
+  pend(msg());
+  pend(msg());
+  pend(msg());
+  pend(msg());
+  pend(msg());
+  pend(msg());
+  pend(msg());
+  pend(msg());
+}

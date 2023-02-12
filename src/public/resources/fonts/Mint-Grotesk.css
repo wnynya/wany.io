@@ -6,7 +6,6 @@
   font-weight: 100;
   font-display: swap;
 }
-
 @font-face {
   font-family: 'Mint Grotesk';
   src: url('/resources/fonts/Mint-Grotesk/woff2/MintGroteskV1.1-Light.woff2')
@@ -15,7 +14,6 @@
   font-weight: 300;
   font-display: swap;
 }
-
 @font-face {
   font-family: 'Mint Grotesk';
   src: url('/resources/fonts/Mint-Grotesk/woff2/MintGroteskV1.1-Regular.woff2')
@@ -24,7 +22,6 @@
   font-weight: 400;
   font-display: swap;
 }
-
 @font-face {
   font-family: 'Mint Grotesk';
   src: url('/resources/fonts/Mint-Grotesk/woff2/MintGroteskV1.1-Medium.woff2')
@@ -33,7 +30,6 @@
   font-weight: 500;
   font-display: swap;
 }
-
 @font-face {
   font-family: 'Mint Grotesk';
   src: url('/resources/fonts/Mint-Grotesk/woff2/MintGroteskV1.1-Bold.woff2')
@@ -42,7 +38,6 @@
   font-weight: 700;
   font-display: swap;
 }
-
 @font-face {
   font-family: 'Mint Grotesk';
   src: url('/resources/fonts/Mint-Grotesk/woff2/MintGroteskV1.1-ExtraBold.woff2')
@@ -51,7 +46,6 @@
   font-weight: 800;
   font-display: swap;
 }
-
 @font-face {
   font-family: 'Mint Grotesk';
   src: url('/resources/fonts/Mint-Grotesk/woff2/MintGroteskV1.1-Heavy.woff2')
@@ -60,7 +54,6 @@
   font-weight: 900;
   font-display: swap;
 }
-
 @font-face {
   font-family: 'Mint Grotesk';
   src: url('/resources/fonts/Mint-Grotesk/woff2/MintGroteskV1.1-Black.woff2')

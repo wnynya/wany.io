@@ -1,12 +1,3 @@
-/**
- * request.js
- *
- * (c) 2020-2021 Wany
- *
- * @summary HTTP / HTTPS API request modules
- * @author Wany <sung@wany.io>
- */
-
 import EventEmitter from '/resources/modules/eventemitter.mjs';
 
 class Request extends EventEmitter {
@@ -22,7 +13,10 @@ class Request extends EventEmitter {
 
     this.uri = encodeURI(uri);
 
-    const m = /(?:(https?):\/?\/?)?([^/: ]+):?([0-9]{1,5})?(\/[^?]+)?(\?.+)?/i.exec(this.uri);
+    const m =
+      /(?:(https?):\/?\/?)?([^/: ]+):?([0-9]{1,5})?(\/[^?]+)?(\?.+)?/i.exec(
+        this.uri
+      );
 
     this.protocol = window.fetch.bind(window);
     this.host = m[2];
@@ -64,7 +58,9 @@ class Request extends EventEmitter {
       method: this.method,
       headers: this.headers,
       credentials: this.credentials,
-      body: ['POST', 'PUT', 'PATCH', 'DELETE'].includes(this.method) ? this.body : undefined,
+      body: ['POST', 'PUT', 'PATCH', 'DELETE'].includes(this.method)
+        ? this.body
+        : undefined,
     })
       .then((res) => this.response(res))
       .catch((error) => {
@@ -76,7 +72,11 @@ class Request extends EventEmitter {
 
   response(response) {
     this.res.uri = response.url;
-    if (300 <= response.status && response.status < 400 && response?.headers?.location) {
+    if (
+      300 <= response.status &&
+      response.status < 400 &&
+      response?.headers?.location
+    ) {
       const redir = response?.headers?.location;
       const req = new Request(redir, this.options, this.body);
       req.on('response', (...args) => {
@@ -227,7 +227,15 @@ async function DeleteRequest(uri, body, auth) {
   return URIRequest(uri, body, 'DELETE', { Authorization: auth });
 }
 
-export { URIRequest, HeadRequest, GetRequest, PostRequest, PutRequest, PatchRequest, DeleteRequest };
+export {
+  URIRequest,
+  HeadRequest,
+  GetRequest,
+  PostRequest,
+  PutRequest,
+  PatchRequest,
+  DeleteRequest,
+};
 
 async function JSONRequest(uri, body, method, headers = {}) {
   const formHeaders = {
@@ -259,7 +267,14 @@ async function JSONDeleteRequest(uri, body, auth) {
   return JSONRequest(uri, body, 'DELETE', { Authorization: auth });
 }
 
-export { JSONRequest, JSONGetRequest, JSONPostRequest, JSONPutRequest, JSONPatchRequest, JSONDeleteRequest };
+export {
+  JSONRequest,
+  JSONGetRequest,
+  JSONPostRequest,
+  JSONPutRequest,
+  JSONPatchRequest,
+  JSONDeleteRequest,
+};
 
 async function FilePostRequest(uri, body) {
   return new Promise((resolve, reject) => {
