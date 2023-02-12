@@ -60,7 +60,9 @@ app.use((req, res, next) => {
     }
     data.req = req;
     data.path = path.split('/');
-    data.elements = data.elements ? data.elements : ['header', 'footer'];
+    data.elements = data.elements
+      ? data.elements
+      : ['scripts', 'header', 'footer'];
     data.meta = data.meta ? data.meta : {};
 
     data.meta.desc = data.meta.desc ? data.meta.desc : undefined;

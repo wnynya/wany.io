@@ -244,14 +244,14 @@ const Lapis = new (class {
 })();
 
 class Loadingbar {
-  constructor(color = 'rgb(170, 143, 179)') {
+  constructor() {
     this.bar = document.createElement('div');
     this.bar.style.position = 'fixed';
     this.bar.style.top = 0;
     this.bar.style.left = 0;
     this.bar.style.height = '2px';
-    this.bar.style.boxShadow = '0 0 3px 0 rgba(170, 143, 179, 0.5)';
-    this.bar.style.background = color;
+    this.bar.style.boxShadow = '0 0 3px 0 var(--th-tl)';
+    this.bar.style.background = 'var(--th)';
     this.bar.style.zIndex = 200000000;
     this.bar.style.transition = 'width ease-out 0.2s';
     this.state = 'ready';

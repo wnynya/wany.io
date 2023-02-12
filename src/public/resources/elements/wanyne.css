@@ -3,11 +3,13 @@
   wanyne.css
 
   (c) 2023 Wany <sung@wany.io> (https://wany.io)
+
+  rgb(210, 176, 221)
   
 */
 
 /*
-  theme: #D2B0DD; rgb(210,176,221); (D)
+  theme: #D2B0DD; rgb(210, 176, 221); (D)
   theme: #AA8FB3; rgb(170,143,179); (L)
 */
 
@@ -88,6 +90,8 @@
 
   --bg: var(--t245);
   --fg: var(--t0);
+  --th: rgb(210, 176, 221);
+  --th-tl: rgba(210, 176, 221, 0.5);
 
   --input-bg: var(--t230);
   --input-fg: var(--fg);

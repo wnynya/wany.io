@@ -1,7 +1,8 @@
 head
 
   link(href="/resources/elements/wanyne.css" type="text/css" rel="stylesheet")
-  include /views/elements/lapis
+  if (elements.includes('scripts')) 
+    include /views/elements/lapis
 
   meta(charset="UTF-8")
   meta(name='viewport' content='width=device-width, initial-scale=1.0')
