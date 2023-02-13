@@ -196,7 +196,7 @@ class BallField {
     });
     document.addEventListener('keydown', function (event) {
       if (event.altKey && event.key.toLocaleLowerCase() == 'b') {
-        var ballsElement = document.querySelector('#ballfield .field');
+        var ballsElement = document.querySelector('#root-ballfield .field');
         var nb = document.createElement('div');
         nb.classList.add('ball');
         nb.classList.add('no4');
@@ -211,7 +211,7 @@ class BallField {
         ballsElement.appendChild(nb);
         _this.newBall(nb, 100);
       } else if (event.altKey && event.key.toLocaleLowerCase() == 'v') {
-        var ballsElement = document.querySelector('#ballfield .field');
+        var ballsElement = document.querySelector('#root-ballfield .field');
         if (ballsElement.childElementCount <= 3) {
           return;
         }
@@ -219,7 +219,7 @@ class BallField {
         _this.balls.pop();
       } else if (event.altKey && event.key.toLocaleLowerCase() == 'h') {
         for (var i = 0; i < 10; i++) {
-          var ballsElement = document.querySelector('#ballfield .field');
+          var ballsElement = document.querySelector('#root-ballfield .field');
           var nb = document.createElement('div');
           nb.classList.add('ball');
           nb.classList.add('no4');
@@ -236,17 +236,17 @@ class BallField {
         }
       } else if (event.altKey && event.key.toLocaleLowerCase() == 'g') {
         for (var i = 0; i < 10; i++) {
-          var ballsElement = document.querySelector('#ballfield .field');
+          var ballsElement = document.querySelector('#root-ballfield .field');
           if (ballsElement.childElementCount <= 3) {
             return;
           }
           ballsElement.removeChild(ballsElement.lastChild);
           _this.balls.pop();
         }
-      } else if (event.altKey && event.key.toLocaleLowerCase() == 'r') {
-        var ballsElement = document.querySelector('#ballfield');
+      } /*else if (event.altKey && event.key.toLocaleLowerCase() == 'r') {
+        var ballsElement = document.querySelector('#root-ballfield');
         ballsElement.classList.toggle('real');
-      }
+      }*/
     });
     /*document.addEventListener('mousemove', function (event) {
        _this.cursor = new Vector(event.clientX, event.clientY);
@@ -261,7 +261,7 @@ class BallField {
     this.onResize();
 
     if (Math.random() * 100 < 1.0) {
-      document.querySelector('#ballfield').classList.toggle('real');
+      document.querySelector('#root-ballfield').classList.toggle('real');
     }
 
     Lapis.setTimeout(() => {
