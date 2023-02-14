@@ -74,7 +74,7 @@ function select() {
       } else {
         document.querySelector(
           '#manage-auth-account-permissions .perms'
-        ).innerHTML = '<div class="label">API 키에 권한 노드가 없습니다.</div>';
+        ).innerHTML = '<div class="label">계정에 권한 노드가 없습니다.</div>';
       }
     })
     .catch((error) => {

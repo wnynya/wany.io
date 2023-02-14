@@ -57,6 +57,17 @@ router.get('/change-password', (req, res) => {
   });
 });
 
+router.get('/permissions', (req, res) => {
+  if (!req.login) {
+    res.redirect(`/u/login?r=${req.originalUrl}`);
+    return;
+  }
+
+  res.ren('you/permissions', {
+    title: '권한 노드 — 와니네 계정',
+  });
+});
+
 router.get('/keys', (req, res) => {
   if (!req.login) {
     res.redirect(`/u/login?r=${req.originalUrl}`);

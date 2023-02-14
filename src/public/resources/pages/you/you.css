@@ -386,3 +386,32 @@
 #you-key > .perms > .perm:last-child {
   border-bottom: none;
 }
+
+#you-permissions #input-you-permissions-code,
+#you-permissions #input-you-permissions-perm {
+  font-family: var(--monospace);
+}
+#you-permissions > .perms {
+  border-radius: 0.75rem;
+  background: var(--t230);
+  overflow: hidden;
+}
+#you-permissions > .perms > .desc {
+  margin-top: 0;
+}
+#you-permissions > .perms > .label {
+  padding: 1rem 1rem;
+  margin: 0;
+}
+#you-permissions > .perms > .perm {
+  font-family: var(--monospace);
+  font-size: 1.25rem;
+  display: flex;
+  min-height: 1.25rem;
+  padding: 0.875rem 1rem;
+  border-bottom: solid 1px var(--bg);
+  cursor: default;
+}
+#you-permissions > .perms > .perm:last-child {
+  border-bottom: none;
+}

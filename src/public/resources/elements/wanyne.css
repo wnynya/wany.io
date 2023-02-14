@@ -1832,6 +1832,17 @@ main {
 #header-always > .right > *:last-child {
   margin-right: 0;
 }
+#button-header-always-account {
+  padding: 0;
+  width: 2rem;
+  height: 2rem;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 0 0 0.1rem var(--button-ol) !important;
+  border-radius: 100%;
+  cursor: pointer;
+}
 #header-dropdown {
   width: 100%;
   overflow: hidden;
