@@ -1,0 +1,57 @@
+h1 프로필
+
+#manage-auth-account-profile
+
+  form#form-manage-auth-account-profile-profile(onSubmit="return false;")
+
+    .imagelabel 
+      .left 
+        .label 이름
+        .input.text(medium)
+          input#input-manage-auth-account-profile-label.btn(type="text" name="name" placeholder="이름" spellcheck="false" required) 
+          label 이름
+          .border
+        .desc 사용자 이름은 사이트 전체에 걸쳐 표시됩니다.
+      .right
+        .label 프로필 사진
+        a(href="https://www.gravatar.com" rel="nofollow" target="_blank")
+          .layer.image 
+            img(src=req.p.account.gravatar + "?d=identicon&s=360")
+          .layer.hover 
+            p
+              span Gravatar에서
+              br
+              span 프로필 사진 변경하기
+
+    .label 계정 ID
+    .input.text(medium)
+      input#input-manage-auth-account-profile-eid.btn(
+        type="text" 
+        name="id" 
+        placeholder="계정 ID" 
+        spellcheck="false" 
+        pattern="[a-z0-9]{6,24}"
+        required
+      ) 
+      label 계정 ID
+      .border
+    .desc 계정 ID 에는 최소 6자리에서 최대 24자리의 소문자 알파벳 및 숫자만 사용 가능합니다.
+
+    .label 이메일
+    .input.text(medium)
+      input#input-manage-auth-account-profile-email.btn(type="email" name="email" placeholder="이메일" spellcheck="false" required) 
+      label 이메일
+      .border
+    .desc 계정에 접근할 수 없는 경우 계정 복구를 위해 수신 가능한 이메일을 사용하십시오.
+
+    .label 전화번호
+    .input.text(medium)
+      input#input-manage-auth-account-profile-phone.btn(type="text" name="phone" placeholder="전화번호" spellcheck="false" required) 
+      label 전화번호
+      .border
+    
+    .control 
+      button#button-manage-auth-account-profile-update(medium color="green") 변경사항 저장
+
+lapis-script(src="/resources/pages/manage/auth/accounts/profile.mjs")
+      

@@ -64,6 +64,9 @@ header#header(noselect)
             h2!= "안녕👋, " + req.account.label
             a(href="/u/profile" button lapis)
               button#button-header-account-manage 계정 관리
+            if (req.hasPermission('manage.root'))
+              a(href="/m/auth/accounts" button lapis)
+                button#button-header-manage 와니네 관리
             button#button-header-account-logout 로그아웃
           .wrapper.back
             h2 로그아웃 중⏳...

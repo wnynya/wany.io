@@ -1,0 +1,638 @@
+#manage-auth-account-header {
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: solid 1px var(--t210);
+}
+#manage-auth-account-header .title {
+  display: flex;
+  align-items: center;
+}
+#manage-auth-account-header .title > * {
+  display: block;
+  margin-right: 0.5rem;
+}
+#manage-auth-account-header .title > .root,
+#manage-auth-account-header .title > span {
+  font-size: 1.75rem;
+  font-weight: 500;
+  height: 2rem;
+}
+#manage-auth-account-header .title > span {
+  color: var(--t80);
+}
+
+#manage-auth-account-info {
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: solid 1px var(--t210);
+}
+#manage-auth-account-info .profile {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+#manage-auth-account-info .profile .image {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 100% 100%;
+  overflow: hidden;
+  box-shadow: 0 0 0 0.1rem var(--t210);
+}
+#manage-auth-account-info .profile .image img {
+  width: 100%;
+  height: 100%;
+}
+#manage-auth-account-info .profile .text {
+  width: calc(100% - 5rem);
+}
+#manage-auth-account-info .profile .text > .label {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+#manage-auth-account-info .profile .text > .desc {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--t80);
+}
+
+#manage-auth-account-main {
+  margin-bottom: 12rem;
+}
+#manage-auth-account-main hr {
+  margin: 2rem 0;
+}
+#manage-auth-account-main h1 {
+  font-size: 2.5rem;
+  padding-bottom: 1rem;
+  border-bottom: solid 1px var(--t210);
+}
+#manage-auth-account-main .label {
+  display: block;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--t80);
+  margin: 2rem 0 0.5rem 0;
+}
+#manage-auth-account-main .desc {
+  display: block;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--t128);
+  margin: 0.5rem 0 0rem 0;
+}
+#manage-auth-account-main form > .control,
+#manage-auth-account-main .control[right] {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-top: 2rem;
+}
+#manage-auth-account-main .control .buttons {
+  display: flex;
+}
+#manage-auth-account-main .control .buttons > * {
+  margin-right: 0.5rem;
+}
+#manage-auth-account-main .control .buttons > *:last-child {
+  margin-right: 0;
+}
+
+#manage-auth-account-index > .accounts {
+  border-radius: 1rem;
+  background: var(--t230);
+  overflow: hidden;
+}
+#manage-auth-account-index > .accounts > .label {
+  padding: 2rem 1rem;
+  margin: 0;
+}
+#manage-auth-account-index > .accounts > .account {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  border-bottom: solid 1px var(--bg);
+}
+#manage-auth-account-index > .accounts > .account:hover {
+  background: var(--t210);
+}
+#manage-auth-account-index > .accounts > .account:last-child {
+  border-bottom: none;
+}
+#manage-auth-account-index > .accounts > .account * {
+  font-weight: 700;
+  line-height: 120%;
+}
+#manage-auth-account-index > .accounts > .account .profile {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 100% 100%;
+  overflow: hidden;
+  box-shadow: 0 0 0 0.1rem var(--t210);
+}
+#manage-auth-account-index > .accounts > .account .profile img {
+  width: 100%;
+  height: 100%;
+}
+#manage-auth-account-index > .accounts > .account > .info {
+  width: calc(100% - 5rem);
+  min-height: 3rem;
+  padding: 0 0 0 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+#manage-auth-account-index > .accounts > .account > .info > .top,
+#manage-auth-account-index > .accounts > .account > .info > .top *,
+#manage-auth-account-index > .accounts > .account > .info > .bottom,
+#manage-auth-account-index > .accounts > .account > .info > .bottom * {
+  font-weight: 700;
+  line-height: 120%;
+}
+#manage-auth-account-index > .accounts > .account > .info > .top,
+#manage-auth-account-index > .accounts > .account > .info > .bottom {
+  width: 100%;
+  display: flex;
+}
+#manage-auth-account-index > .accounts > .account > .info > .top {
+  font-size: 1.25rem;
+  justify-content: space-between;
+}
+#manage-auth-account-index > .accounts > .account > .info > .top .code {
+  font-family: var(--monospace);
+  font-weight: 500;
+  color: var(--t128);
+}
+#manage-auth-account-index > .accounts > .account > .info > .bottom * {
+  color: var(--t128);
+}
+
+#manage-auth-account-profile > form > .imagelabel {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+#manage-auth-account-profile > form > .imagelabel > .left {
+  width: calc(100% - 12rem - 1rem);
+  transition: width 0.2s ease-out;
+}
+#manage-auth-account-profile > form > .imagelabel > .right {
+  width: 12rem;
+  transition: width 0.2s ease-out;
+}
+#manage-auth-account-profile > form > .imagelabel > .right > a {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 100%;
+  width: 12rem;
+  height: 12rem;
+  transition: width 0.2s ease-out, height 0.2s ease-out;
+  background: var(--t230);
+  overflow: hidden;
+  box-shadow: 0 0 0 0.1rem var(--t210);
+}
+#manage-auth-account-profile > form > .imagelabel > .right > a > .hover {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  transition: opacity 0.1s ease-out;
+}
+#manage-auth-account-profile > form > .imagelabel > .right > a > .hover * {
+  text-align: center;
+  font-weight: 700;
+  color: var(--bg);
+}
+#manage-auth-account-profile > form > .imagelabel > .right > a:hover > .hover {
+  opacity: 1;
+  transition: opacity 0.2s ease-out;
+}
+#manage-auth-account-profile > form > .imagelabel > .right .image img {
+  width: 100%;
+  height: 100%;
+}
+#manage-auth-account-profile > form > .input:last-child {
+  padding-bottom: 2rem;
+}
+@media (max-width: 600px) {
+  #manage-auth-account-profile > form > .imagelabel > .left {
+    width: calc(100% - 9rem - 1rem);
+  }
+  #manage-auth-account-profile > form > .imagelabel > .right {
+    width: 9rem;
+  }
+  #manage-auth-account-profile > form > .imagelabel > .right > a {
+    width: 9rem;
+    height: 9rem;
+  }
+}
+
+#manage-auth-account-sessions > .sessions {
+  border-radius: 1rem;
+  background: var(--t230);
+  overflow: hidden;
+}
+#manage-auth-account-sessions > .sessions > .session {
+  display: flex;
+  padding: 1rem;
+  border-bottom: solid 1px var(--bg);
+}
+#manage-auth-account-sessions > .sessions > .session:hover {
+  background: var(--t210);
+}
+#manage-auth-account-sessions > .sessions > .session:last-child {
+  border-bottom: none;
+}
+#manage-auth-account-sessions > .sessions > .label {
+  padding: 2rem 1rem;
+  margin: 0;
+}
+#manage-auth-account-sessions > .sessions > .session > .icon {
+  position: relative;
+  width: 3rem;
+  height: 3rem;
+}
+#manage-auth-account-sessions > .sessions > .session > .icon > .system {
+  position: absolute;
+  width: 2.5rem;
+  height: 2.5rem;
+  top: 0;
+  left: 0;
+  background-size: contain;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+#manage-auth-account-sessions > .sessions > .session > .icon > .browser {
+  position: absolute;
+  width: 1.5rem;
+  height: 1.5rem;
+  bottom: 0;
+  right: 0;
+  background-size: contain;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+#manage-auth-account-sessions
+  > .sessions
+  > .session
+  > .icon
+  > .system[name='windows-11'] {
+  background-image: url('/resources/pages/you/sessions/logo-microsoft-windows-11-icon.svg');
+}
+#manage-auth-account-sessions
+  > .sessions
+  > .session
+  > .icon
+  > .system[name='windows-10'] {
+  background-image: url('/resources/pages/you/sessions/logo-microsoft-windows-10-icon.svg');
+}
+#manage-auth-account-sessions
+  > .sessions
+  > .session
+  > .icon
+  > .system[name='windows-8.1'] {
+  background-image: url('/resources/pages/you/sessions/logo-microsoft-windows-8.1-icon.svg');
+}
+#manage-auth-account-sessions
+  > .sessions
+  > .session
+  > .icon
+  > .system[name='windows-8'] {
+  background-image: url('/resources/pages/you/sessions/logo-microsoft-windows-8-icon.svg');
+}
+#manage-auth-account-sessions
+  > .sessions
+  > .session
+  > .icon
+  > .system[name='windows-7'],
+#manage-auth-account-sessions
+  > .sessions
+  > .session
+  > .icon
+  > .system[name='windows-vista'],
+#manage-auth-account-sessions
+  > .sessions
+  > .session
+  > .icon
+  > .system[name='windows-xp'] {
+  background-image: url('/resources/pages/you/sessions/logo-microsoft-windows-xp-7-icon.svg');
+}
+#manage-auth-account-sessions
+  > .sessions
+  > .session
+  > .icon
+  > .system[name='windows-98'],
+#manage-auth-account-sessions
+  > .sessions
+  > .session
+  > .icon
+  > .system[name='windows-95'] {
+  background-image: url('/resources/pages/you/sessions/logo-microsoft-windows-98-95-icon.svg');
+}
+#manage-auth-account-sessions
+  > .sessions
+  > .session
+  > .icon
+  > .system[name='mac'],
+#manage-auth-account-sessions
+  > .sessions
+  > .session
+  > .icon
+  > .system[name='iphone'],
+#manage-auth-account-sessions
+  > .sessions
+  > .session
+  > .icon
+  > .system[name='ipad'],
+#manage-auth-account-sessions
+  > .sessions
+  > .session
+  > .icon
+  > .system[name='ipod'] {
+  background-image: url('/resources/pages/you/sessions/logo-apple.svg');
+}
+#manage-auth-account-sessions
+  > .sessions
+  > .session
+  > .icon
+  > .system[name='linux'] {
+  background-image: url('/resources/pages/you/sessions/logo-linux.svg');
+}
+#manage-auth-account-sessions
+  > .sessions
+  > .session
+  > .icon
+  > .system[name='unix'] {
+  background-image: url('/resources/pages/you/sessions/logo-linux.svg');
+}
+#manage-auth-account-sessions
+  > .sessions
+  > .session
+  > .icon
+  > .system[name='android'] {
+  background-image: url('/resources/pages/you/sessions/logo-google-android.svg');
+}
+#manage-auth-account-sessions
+  > .sessions
+  > .session
+  > .icon
+  > .system[name='unknown'] {
+  background-image: url('/resources/pages/you/sessions/back-1.jpg');
+}
+
+#manage-auth-account-sessions
+  > .sessions
+  > .session
+  > .icon
+  > .browser[name='chrome'] {
+  background-image: url('/resources/pages/you/sessions/logo-google-chrome.svg');
+}
+#manage-auth-account-sessions
+  > .sessions
+  > .session
+  > .icon
+  > .browser[name='safari'] {
+  background-image: url('/resources/pages/you/sessions/logo-apple-safari.svg');
+}
+#manage-auth-account-sessions
+  > .sessions
+  > .session
+  > .icon
+  > .browser[name='firefox'] {
+  background-image: url('/resources/pages/you/sessions/logo-mozilla-firefox.svg');
+}
+#manage-auth-account-sessions
+  > .sessions
+  > .session
+  > .icon
+  > .browser[name='ie'] {
+  background-image: url('/resources/pages/you/sessions/logo-microsoft-internet-explorer.svg');
+}
+#manage-auth-account-sessions
+  > .sessions
+  > .session
+  > .icon
+  > .browser[name='edge'] {
+  background-image: url('/resources/pages/you/sessions/logo-microsoft-edge.svg');
+}
+#manage-auth-account-sessions
+  > .sessions
+  > .session
+  > .icon
+  > .browser[name='opera'] {
+  background-image: url('/resources/pages/you/sessions/logo-opera.svg');
+}
+#manage-auth-account-sessions
+  > .sessions
+  > .session
+  > .icon
+  > .browser[name='whale'] {
+  background-image: url('/resources/pages/you/sessions/logo-naver-whale.png');
+}
+#manage-auth-account-sessions
+  > .sessions
+  > .session
+  > .icon
+  > .browser[name='samsung-internet'] {
+  background-image: url('/resources/pages/you/sessions/logo-samsung-internet.svg');
+}
+#manage-auth-account-sessions
+  > .sessions
+  > .session
+  > .icon
+  > .browser[name='tor'] {
+  background-image: url('/resources/pages/you/sessions/logo-tor.svg');
+}
+#manage-auth-account-sessions
+  > .sessions
+  > .session
+  > .icon
+  > .browser[name='naver-app'] {
+  background-image: url('/resources/pages/you/sessions/logo-naver-app.png');
+}
+#manage-auth-account-sessions
+  > .sessions
+  > .session
+  > .icon
+  > .browser[name='instagram'] {
+  background-image: url('/resources/pages/you/sessions/logo-instagram.svg');
+}
+#manage-auth-account-sessions
+  > .sessions
+  > .session
+  > .icon
+  > .browser[name='kakaotalk'] {
+  background-image: url('/resources/pages/you/sessions/logo-kakaotalk.svg');
+}
+#manage-auth-account-sessions
+  > .sessions
+  > .session
+  > .icon
+  > .browser[name='steam'] {
+  background-image: url('/resources/pages/you/sessions/logo-steam.svg');
+}
+#manage-auth-account-sessions
+  > .sessions
+  > .session
+  > .icon
+  > .browser[name='unknown'] {
+  background-image: url('/resources/pages/you/sessions/logo-async-foundation.jpg');
+}
+#manage-auth-account-sessions > .sessions > .session > .info {
+  width: calc(100% - 14rem);
+  min-height: 3rem;
+  padding: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+#manage-auth-account-sessions > .sessions > .session > .info > .geoip,
+#manage-auth-account-sessions > .sessions > .session > .info > .last {
+  font-weight: 700;
+  line-height: 120%;
+}
+#manage-auth-account-sessions > .sessions > .session > .info > .geoip > *,
+#manage-auth-account-sessions > .sessions > .session > .info > .last > * {
+  margin-right: 0.5rem;
+  display: inline;
+  word-break: break-all;
+}
+#manage-auth-account-sessions > .sessions > .session > .info > .last,
+#manage-auth-account-sessions > .sessions > .session > .info > .last > * {
+  color: var(--t128);
+}
+#manage-auth-account-sessions > .sessions > .session > .control {
+  width: 9rem;
+  height: 3rem;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+#manage-auth-account-keys > .keys {
+  border-radius: 1rem;
+  background: var(--t230);
+  overflow: hidden;
+}
+#manage-auth-account-keys > .keys > .label {
+  padding: 2rem 1rem;
+  margin: 0;
+}
+#manage-auth-account-keys > .keys > .key {
+  display: flex;
+  padding: 1rem;
+  border-bottom: solid 1px var(--bg);
+}
+#manage-auth-account-keys > .keys > .key:hover {
+  background: var(--t210);
+}
+#manage-auth-account-keys > .keys > .key:last-child {
+  border-bottom: none;
+}
+#manage-auth-account-keys > .keys > .key * {
+  font-weight: 700;
+  line-height: 120%;
+}
+#manage-auth-account-keys > .keys > .key > .info {
+  width: calc(100% - 0rem);
+  min-height: 3rem;
+  padding: 0 0 0 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+#manage-auth-account-keys > .keys > .key > .info > .top,
+#manage-auth-account-keys > .keys > .key > .info > .top *,
+#manage-auth-account-keys > .keys > .key > .info > .bottom,
+#manage-auth-account-keys > .keys > .key > .info > .bottom * {
+  font-weight: 700;
+  line-height: 120%;
+}
+#manage-auth-account-keys > .keys > .key > .info > .top,
+#manage-auth-account-keys > .keys > .key > .info > .bottom {
+  width: 100%;
+  display: flex;
+}
+#manage-auth-account-keys > .keys > .key > .info > .top {
+  justify-content: space-between;
+}
+#manage-auth-account-keys > .keys > .key > .info > .top .code {
+  font-family: var(--monospace);
+  font-weight: 500;
+  color: var(--t128);
+}
+#manage-auth-account-keys > .keys > .key > .info > .bottom * {
+  color: var(--t128);
+}
+
+#manage-auth-account-key #input-manage-auth-account-key-code,
+#manage-auth-account-key #input-manage-auth-account-key-perm {
+  font-family: var(--monospace);
+}
+#manage-auth-account-key > .perms {
+  margin-top: 2rem;
+  border-radius: 0.75rem;
+  background: var(--t230);
+  overflow: hidden;
+}
+#manage-auth-account-key > .perms > .desc {
+  margin-top: 0;
+}
+#manage-auth-account-key > .perms > .label {
+  padding: 1rem 1rem;
+  margin: 0;
+}
+#manage-auth-account-key > .perms > .perm {
+  font-family: var(--monospace);
+  font-size: 1.25rem;
+  display: flex;
+  min-height: 1.25rem;
+  padding: 0.875rem 1rem;
+  border-bottom: solid 1px var(--bg);
+  cursor: pointer;
+}
+#manage-auth-account-key > .perms > .perm:hover {
+  background: var(--t210);
+}
+#manage-auth-account-key > .perms > .perm:last-child {
+  border-bottom: none;
+}
+
+#manage-auth-account-permissions #input-manage-auth-account-permissions-code,
+#manage-auth-account-permissions #input-manage-auth-account-permissions-perm {
+  font-family: var(--monospace);
+}
+#manage-auth-account-permissions > .perms {
+  margin-top: 2rem;
+  border-radius: 0.75rem;
+  background: var(--t230);
+  overflow: hidden;
+}
+#manage-auth-account-permissions > .perms > .desc {
+  margin-top: 0;
+}
+#manage-auth-account-permissions > .perms > .label {
+  padding: 1rem 1rem;
+  margin: 0;
+}
+#manage-auth-account-permissions > .perms > .perm {
+  font-family: var(--monospace);
+  font-size: 1.25rem;
+  display: flex;
+  min-height: 1.25rem;
+  padding: 0.875rem 1rem;
+  border-bottom: solid 1px var(--bg);
+  cursor: pointer;
+}
+#manage-auth-account-permissions > .perms > .perm:hover {
+  background: var(--t210);
+}
+#manage-auth-account-permissions > .perms > .perm:last-child {
+  border-bottom: none;
+}

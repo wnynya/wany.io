@@ -1,0 +1,68 @@
+link(rel="preload" as="style" href="/resources/pages/manage/auth/accounts/accounts.css")
+lapis-style(src="/resources/pages/manage/auth/accounts/accounts.css")
+
+if (['root'].includes(path[3]))
+
+  lapis-script(eval=`delete window.global.auid`)
+  lapis-script(eval=`delete window.global.aeid`)
+
+  section#manage-auth-account-header
+    .outwrapper(rightnarrow)
+      .inwrapper
+        .title 
+          a.root(href="/m" lapis) 와니네 관리
+
+  include /views/pages/manage/sidebar
+
+  section#manage-main
+
+  case path[3] 
+
+    when "root": include /views/pages/manage/auth/accounts/root
+
+else
+
+  lapis-script(eval=`window.global.auid = '${req.p.account.uid}';`)
+  lapis-script(eval=`window.global.aeid = '${req.p.account.eid}';`)
+
+  section#manage-auth-account-header
+    .outwrapper(rightnarrow)
+      .inwrapper
+        .title 
+          a.root(href="/m" lapis) 와니네 관리
+          span /
+          a(href="/m/auth/accounts" lapis) 
+            button(small) 와니네 계정
+
+  section#manage-auth-account-info
+    .outwrapper(rightnarrow)
+      .inwrapper
+        .profile 
+          .image 
+            img(src=req.p.account.gravatar + "?d=identicon&s=120")
+          .text
+            if (req.p.account.eid == req.p.account.label)
+              .label!= req.p.account.label
+            else
+              .label!= req.p.account.label + " (" + req.p.account.eid + ")"
+            .desc 와니네 계정 관리 페이지
+          
+  include /views/pages/manage/auth/accounts/sidebar
+
+  section#manage-auth-account-main
+    .outwrapper(rightnarrow)
+      .inwrapper
+
+        case path[3] 
+
+          when "profile": include /views/pages/manage/auth/accounts/profile
+
+          when "change-password": include /views/pages/manage/auth/accounts/change-password
+            
+          when "sessions": include /views/pages/manage/auth/accounts/sessions
+
+          when "permissions": include /views/pages/manage/auth/accounts/permissions
+
+          when "keys": include /views/pages/manage/auth/accounts/keys
+
+          when "key": include /views/pages/manage/auth/accounts/key

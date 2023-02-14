@@ -1,0 +1,21 @@
+h1 권한 노드
+
+#manage-auth-account-permissions
+
+  .label 계정 권한 노드
+
+  form(onSubmit="return false;")
+
+    .input.text(medium)
+      input#input-manage-auth-account-permissions-perm.btn(type="text" name="name" placeholder="권한 노드" spellcheck="false" required) 
+      .buttons 
+        button#button-manage-auth-account-permissions-perm-update-put(small color="green") 추가
+        button#button-manage-auth-account-permissions-perm-update-delete(small color="red") 제거
+      .border
+
+  .perms
+    .perm 
+    .perm
+    .perm
+
+lapis-script(src="/resources/pages/manage/auth/accounts/permissions.mjs")

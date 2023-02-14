@@ -1,0 +1,17 @@
+aside.sidebar.withstars#manage-sidebar
+  .stars.top
+    include /views/elements/svg/diamond-hollow-small
+    include /views/elements/svg/diamond-hollow-small
+  .content
+    a(href=`/m/auth/accounts` lapis)
+      label 
+        .icon
+          include /views/elements/svg/icon-portrait
+        .text 와니네 계정
+  .stars.bottom
+    include /views/elements/svg/diamond-hollow-small
+    include /views/elements/svg/diamond-hollow-small
+  button
+    include /views/elements/svg/sidebar-button
+
+lapis-script(src="/resources/pages/manage/sidebar.mjs")
