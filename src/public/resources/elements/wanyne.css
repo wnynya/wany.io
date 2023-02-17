@@ -107,10 +107,10 @@
   --button-fg-disabled: var(--t80);
   --button-ol-disabled: var(--t80);
 
-  --scrollbar-bg: transparent;
-  --scrollbar-fg: var(--fg);
-  --scrollbar-size: 1rem;
-  --scrollbar-radius: 100%;
+  --scrollbar-bg: var(--t180);
+  --scrollbar-fg: var(--t128);
+  --scrollbar-size: 0.5rem;
+  --scrollbar-radius: 1rem;
 
   --selection-bg: var(--fg);
   --selection-fg: var(--bg);
@@ -136,7 +136,7 @@ body {
   padding: 0;
   -webkit-text-size-adjust: none;
   text-size-adjust: none;
-  scrollbar-width: 1rem;
+  scrollbar-width: 0.5rem;
   scrollbar-color: var(--scrollbar-fg) var(--scrollbar-bg);
   min-height: 100vh;
   min-height: calc((var(--vh, 1vh) * 100));
@@ -1500,9 +1500,10 @@ aside.sidebar > .content {
   padding: 2rem 0;
   overflow-y: auto;
   overflow-x: hidden;
-  --scrollbar-fg: var(--fg);
-  --scrollbar-size: 0.5rem;
-  --scrollbar-radius: 100px;
+  --scrollbar-bg: var(--t45);
+  --scrollbar-fg: var(--t80);
+  scrollbar-width: 0.5rem;
+  scrollbar-color: var(--scrollbar-fg) var(--scrollbar-bg);
 }
 aside.sidebar.withstars > .content {
   max-height: calc(100vh - 16rem);

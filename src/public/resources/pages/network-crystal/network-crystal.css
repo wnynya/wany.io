@@ -242,7 +242,10 @@
 #network-crystal-modules-whois > .content .text {
   --bg: rgb(0, 0, 0);
   --fg: rgb(0, 255, 0);
+  --scrollbar-bg: var(--t45);
   --scrollbar-fg: var(--fg);
+  scrollbar-width: 0.5rem;
+  scrollbar-color: var(--scrollbar-fg) var(--scrollbar-bg);
   background: var(--bg);
   padding: 1rem;
   width: calc(100% - 2rem);
@@ -376,7 +379,10 @@
 #network-crystal-modules-subdomains > .content .text {
   --bg: rgb(0, 0, 0);
   --fg: rgb(0, 255, 0);
+  --scrollbar-bg: var(--t45);
   --scrollbar-fg: var(--fg);
+  scrollbar-width: 0.5rem;
+  scrollbar-color: var(--scrollbar-fg) var(--scrollbar-bg);
   background: var(--bg);
   padding: 1rem;
   width: calc(100% - 2rem);

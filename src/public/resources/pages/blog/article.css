@@ -227,8 +227,10 @@
   overflow-y: auto;
   overflow-x: auto;
   white-space: nowrap;
-  --scrollbar-bg: var(--t20);
+  --scrollbar-bg: var(--t45);
   --scrollbar-fg: var(--t80);
+  scrollbar-width: 0.5rem;
+  scrollbar-color: var(--scrollbar-fg) var(--scrollbar-bg);
   font-family: var(--monospace) !important;
   font-size: 1rem !important;
   font-weight: 400 !important;
