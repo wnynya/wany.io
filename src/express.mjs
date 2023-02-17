@@ -39,6 +39,7 @@ app.set('view engine', 'pug');
 
 app.use((req, res, next) => {
   req.api = dev ? config.api.dev : config.api.pub;
+  req.wanyne = dev ? config.wanyne.dev : config.wanyne.pub;
   req.amuject = dev ? config.amuject.dev : config.amuject.pub;
   req.amethy = dev ? config.amethy.dev : config.amethy.pub;
   res.ren = (...args) => {

@@ -4,6 +4,7 @@ const router = express.Router();
 import { BlogArticle } from '@wnynya/blog';
 import sitemap from '../modules/seo/sitemap.mjs';
 import jsonld from '../modules/seo/json-ld.mjs';
+import { Request, PostRequest } from '@wnynya/request';
 
 router.get('/', (req, res) => {
   Promise.all([
@@ -76,6 +77,18 @@ router.get('/teapot', (req, res) => {
 
 router.get('/give-me-an-internal-server-error', (req, res) => {
   res.error500();
+});
+
+/* x */
+router.get('/x/*', (req, res) => {
+  let path = req.path.replace(/^\/x/, '');
+  PostRequest('http://10.0.0.104:29900' + path)
+    .then(() => {
+      new Request('http://10.0.0.104:29900' + path).pipe(res);
+    })
+    .catch(() => {
+      res.status(400 + Math.floor(Math.random() * 200)).end();
+    });
 });
 
 import amujectRouter from './amuject.mjs';
