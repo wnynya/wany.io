@@ -74,6 +74,7 @@
   --t180: rgb(180, 180, 180);
   --t128: rgb(128, 128, 128);
   --t80: rgb(80, 80, 80);
+  --t60: rgb(60, 60, 60);
   --t45: rgb(45, 45, 45);
   --t30: rgb(30, 30, 30);
   --t20: rgb(20, 20, 20);
@@ -107,7 +108,7 @@
   --button-fg-disabled: var(--t80);
   --button-ol-disabled: var(--t80);
 
-  --scrollbar-bg: var(--t180);
+  --scrollbar-bg: var(--t210);
   --scrollbar-fg: var(--t128);
   --scrollbar-size: 0.5rem;
   --scrollbar-radius: 1rem;

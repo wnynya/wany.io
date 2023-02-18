@@ -25,7 +25,7 @@ jobs:
 
   checkout_config:
     name: 'Checkout config'
-    needs: [checkout, install_dependancy]
+    needs: [checkout]
     runs-on: self-hosted
     steps:
       - uses: actions/checkout@master
