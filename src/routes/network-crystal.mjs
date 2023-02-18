@@ -10,6 +10,7 @@ router.get('/map', (req, res, next) => {
   res.ren('network-crystal/map', {
     elements: [],
     title: 'Network Crystal Map — 와니네',
+    framed: true,
     coordinate: {
       lat: lat,
       lng: lng,
