@@ -8,8 +8,8 @@ script(type="module").
           throw new Error();
         } catch (e) {
           for (const s of e.stack.split('\n'))
-            if (s.match(/(https?:\/\/.+\.mjs)/))
-              return btoa(s.match(/(https?:\/\/.+\.mjs)/)[0]);
+            if (s.match(/(https?:\/\/.+\.m?js)/))
+              return btoa(s.match(/(https?:\/\/.+\.m?js)/)[0]);
         }
       })();
       Lapis.scripts.cache[this.id] = this;
