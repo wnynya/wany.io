@@ -1,5 +1,6 @@
 import { JSONGetRequest } from '/resources/modules/request.mjs';
 
+var interval;
 new (class extends LapisScript {
   load() {
     var ballfield = new BallField();
@@ -20,7 +21,10 @@ new (class extends LapisScript {
     );
 
     JSONGetRequest(`${global.api}/amuject/banners`).then((res) => {
-      marquee(res.body.data, document.querySelector('#root-banners'));
+      interval = marquee(
+        res.body.data,
+        document.querySelector('#root-banners')
+      );
       Lapis.update();
     });
 
@@ -38,7 +42,9 @@ new (class extends LapisScript {
     });
   }
 
-  unload() {}
+  unload() {
+    clearInterval(interval);
+  }
 })();
 
 class Vector {
@@ -507,7 +513,7 @@ function marquee(msgs, element, speed = 200.0, margin = 100) {
     }
   }
 
-  Lapis.setInterval(() => {
+  var intv = Lapis.setInterval(() => {
     frame();
   }, 100);
 
@@ -533,4 +539,6 @@ function marquee(msgs, element, speed = 200.0, margin = 100) {
   pend(msg());
   pend(msg());
   pend(msg());
+
+  return intv;
 }

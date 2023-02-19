@@ -96,10 +96,10 @@ const Lapis = new (class {
     }
 
     for (const s of this.asyncs.timeouts) {
-      clearTimeout(s);
+      this.clearTimeout(s);
     }
     for (const s of this.asyncs.intervals) {
-      clearInterval(s);
+      this.clearInterval(s);
     }
     this.asyncs = {
       timeouts: [],
