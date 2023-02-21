@@ -240,6 +240,10 @@ const Lapis = new (class {
 
   update() {
     this.updateAHref();
+    this.observer.disconnect();
+    for (const e of document.querySelectorAll('a[href][lapis]')) {
+      this.observer.observe(e);
+    }
   }
 })();
 
