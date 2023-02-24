@@ -35,12 +35,12 @@ function url(loc, mod, pri = 0.5, freq = 0) {
   xml += `  <loc>` + loc + `</loc>`;
   // lastmod
   if (mod == `now`) {
-    mod = new Date().toJSON().substring(0, 19);
+    mod = new Date().toJSON().substring(0, 10);
     xml += `  <lastmod>${mod}</lastmod>`;
   } else if (mod == null) {
     xml += ``;
   } else {
-    mod = new Date(mod).toJSON().substring(0, 19);
+    mod = new Date(mod).toJSON().substring(0, 10);
     xml += `  <lastmod>${mod}</lastmod>`;
   }
   // changefreq
