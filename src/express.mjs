@@ -36,6 +36,8 @@ app.use(middlewares.logger(new Logger(config.logger.req))); // Log request
 app.set('views', path.resolve(__dirname, './views'));
 app.set('view cache', true);
 app.set('view engine', 'pug');
+/* Set basedir */
+app.locals.basedir = path.resolve(__dirname);
 
 app.use((req, res, next) => {
   req.api = dev ? config.api.dev : config.api.pub;
@@ -122,9 +124,6 @@ app.use((req, res, next) => {
   };
   next();
 });
-
-/* Set basedir */
-app.locals.basedir = path.resolve(__dirname);
 
 /* Set root router */
 import router from './routes/root.mjs';
