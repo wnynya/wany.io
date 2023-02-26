@@ -1,7 +1,7 @@
 #amuject-co-title {
   width: 100%;
   position: relative;
-  height: 80vh;
+  height: 70vh;
 }
 #amuject-co-titme > .titlewrapper {
   width: 100%;
@@ -9,9 +9,15 @@
 }
 
 #amuject-co-title-bg {
-  background: red;
-  border-bottom-left-radius: 24rem;
-  border-bottom-right-radius: 24rem;
+  background: rgba(0, 79, 168, 1);
+  background: linear-gradient(
+    0deg,
+    rgba(206, 222, 255, 1) 0%,
+    rgba(77, 167, 255, 1) 20%,
+    rgba(0, 79, 168, 1) 65%,
+    rgba(0, 38, 83, 1) 100%
+  );
+  border-radius: 20rem;
 }
 
 #amuject-co-title-fg .outwrapper {
@@ -49,46 +55,20 @@
 #amuject-co-title-cv svg * {
   fill: var(--bg);
 }
-#amuject-co-title-cv-d1,
-#amuject-co-title-cv-d2 {
-  width: 16rem;
-  height: 16rem;
-}
-#amuject-co-title-cv-d1 {
-  top: 6rem;
-  left: 2rem;
-}
-#amuject-co-title-cv-d2 {
-  top: 9rem;
-  right: 2rem;
-}
-#amuject-co-title-cv-d3,
-#amuject-co-title-cv-d4,
-#amuject-co-title-cv-d5,
-#amuject-co-title-cv-d6 {
-  width: 6rem;
-  height: 6rem;
-}
-#amuject-co-title-cv-d3 {
-  top: 14rem;
-  left: 24rem;
-}
-#amuject-co-title-cv-d4 {
-  top: 28rem;
-  right: 2rem;
-}
-#amuject-co-title-cv-d5 {
-  bottom: 12rem;
-  left: 20rem;
-}
-#amuject-co-title-cv-d6 {
-  top: 28rem;
-  right: 2rem;
-}
+#amuject-co-title-cv-tl,
+#amuject-co-title-cv-tr,
 #amuject-co-title-cv-bl,
 #amuject-co-title-cv-br {
-  width: 24rem;
-  height: 24rem;
+  width: 20rem;
+  height: 20rem;
+}
+#amuject-co-title-cv-tl {
+  top: 0;
+  left: 0;
+}
+#amuject-co-title-cv-tr {
+  top: 0;
+  right: 0;
 }
 #amuject-co-title-cv-bl {
   bottom: 0;

@@ -1,3 +1,5 @@
+'use strict';
+
 import { JSONGetRequest } from '/resources/modules/request.mjs';
 import Date from '/resources/modules/date.mjs';
 

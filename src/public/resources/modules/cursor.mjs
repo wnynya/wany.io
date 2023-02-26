@@ -1,3 +1,5 @@
+'use strict';
+
 window.Cursor = new (class {
   constructor() {
     if (/Android|webOS|iPhone|iPad|iPod/i.test(navigator.userAgent)) {

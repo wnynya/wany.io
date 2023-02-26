@@ -1,3 +1,5 @@
+'use strict';
+
 class Datwo extends Date {
   format(format = 'YYYY-MM-DDThh:mm:ss.CCCZ') {
     const T = this.getTime();

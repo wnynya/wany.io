@@ -1,11 +1,4 @@
-/**
- * @wany/eventemitter
- *
- * (c) 2022 Wany
- *
- * @summary EventEmitter
- * @author Wany <sung@wany.io>
- */
+'use strict';
 
 class EventEmitter {
   constructor() {

@@ -1,3 +1,5 @@
+'use strict';
+
 import { JSONGetRequest } from '/resources/modules/request.mjs';
 
 var interval;

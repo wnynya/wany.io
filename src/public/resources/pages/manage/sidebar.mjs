@@ -1,3 +1,5 @@
+'use strict';
+
 import Sidebar from '/resources/modules/sidebar.mjs';
 
 let sidebar;

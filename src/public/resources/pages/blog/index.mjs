@@ -1,3 +1,5 @@
+'use strict';
+
 new (class extends LapisScript {
   load() {
     document

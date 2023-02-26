@@ -1,3 +1,5 @@
+'use strict';
+
 window.Inputs = new (class {
   constructor() {
     this.addEventListener();

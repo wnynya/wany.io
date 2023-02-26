@@ -1,3 +1,5 @@
+'use strict';
+
 import EventEmitter from '/resources/modules/eventemitter.mjs';
 
 class Sidebar extends EventEmitter {

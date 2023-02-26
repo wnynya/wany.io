@@ -1,3 +1,5 @@
+'use strict';
+
 import config from './config.mjs';
 
 /* Logger (override console) */
@@ -21,6 +23,7 @@ import express from './express.mjs';
 
 import http from 'http';
 import { exec } from 'child_process';
+import { GetRequest } from '@wnynya/request';
 
 let port = 80;
 for (let i = 0; i < process.argv.length; i++) {
@@ -34,7 +37,9 @@ for (let i = 0; i < process.argv.length; i++) {
   }
 }
 
-exec('kill -9 $(lsof -t -i:' + port + ')', () => {
+exec(`kill -9 $(lsof -t -i:${port})`, () => {
   console.log(`Server start on port ${port}`);
-  http.createServer(express).listen(port);
+  http.createServer(express).listen(port, () => {
+    GetRequest(`http://localhost:${port}`).catch(console.warn);
+  });
 });

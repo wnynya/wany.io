@@ -1,3 +1,5 @@
+'use strict';
+
 import { JSONPatchRequest } from '/resources/modules/request.mjs';
 
 const input = {

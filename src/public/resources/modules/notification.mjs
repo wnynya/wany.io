@@ -1,3 +1,5 @@
+'use strict';
+
 const Notifications = new Array();
 class Notification {
   constructor(message, type, options = {}) {

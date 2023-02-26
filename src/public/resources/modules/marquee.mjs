@@ -1,3 +1,5 @@
+'use strict';
+
 export default function marquee(msgs, element, speed = 200.0, margin = 100) {
   let pendings = [];
   let msgi = -1;

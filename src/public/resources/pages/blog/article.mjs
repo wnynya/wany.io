@@ -1,3 +1,5 @@
+'use strict';
+
 import { JSONDeleteRequest } from '/resources/modules/request.mjs';
 
 new (class extends LapisScript {

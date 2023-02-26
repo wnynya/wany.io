@@ -1,3 +1,5 @@
+'use strict';
+
 import { GetRequest } from '/resources/modules/request.mjs';
 
 const Lapis = new (class {

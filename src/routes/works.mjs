@@ -1,10 +1,12 @@
+'use strict';
+
 import express from 'express';
 const router = express.Router();
 
 import jsonld from '../modules/seo/json-ld.mjs';
 
 router.get('/', (req, res) => {
-  res.ren('amuject/root', {
+  res.ren('works/root', {
     title: '작업물 — 와니네',
     meta: {
       jsonld: jsonld.gen(
@@ -18,8 +20,8 @@ router.get('/', (req, res) => {
 });
 
 router.get('/greenbee', (req, res) => {
-  res.ren('amuject/greenbee', {
-    title: '그린비 — 작업물 — 와니네',
+  res.ren('works/greenbee', {
+    title: '💚 그린비 💚 — 작업물 — 와니네',
     meta: {
       jsonld: jsonld.gen(
         jsonld.breadcrumb(
