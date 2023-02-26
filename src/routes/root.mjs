@@ -17,9 +17,9 @@ router.get('/', (req, res) => {
   ])
     .then(([amuject, audio, dev, photo]) => {
       res.ren('root', {
-        title: '와니네',
+        title: '와니네: 아무젝트 · 블로그 · 작업물 — 와니네',
         meta: {
-          desc: '와니네 — 아무젝트, 블로그 — 와니네',
+          desc: '와니네는 나님의 홈페이지당! 블로그, 아무젝트, 작업물 등이 있음 :)',
           jsonld: jsonld.gen(jsonld.breadcrumb({ name: '와니네' }), {
             '@context': 'https://schema.org',
             '@type': 'WebSite',
@@ -33,6 +33,7 @@ router.get('/', (req, res) => {
               'query-input': 'required name=query',
             },
           }),
+          image: '/resources/pages/root-og-image.jpg',
         },
         articles: {
           amuject: randomArticle(amuject),

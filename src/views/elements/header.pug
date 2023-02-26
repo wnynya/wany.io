@@ -24,7 +24,7 @@ header#header(noselect)
 
       .right
         if (req.login)
-          img#button-header-always-account(src=`${req.account.gravatar}?d=identicon&s=60` tooltip=`와니네 계정: ${req.account.label}`)
+          img#button-header-always-account(src=`${req.account.gravatar}?d=identicon&s=60` alt=`와니니 계정 프로필 사진 (${req.account.eid})` tooltip=`와니네 계정: ${req.account.label}`)
         else
           button#button-header-always-login(small ellipse outline) Login
 

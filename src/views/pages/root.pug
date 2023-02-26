@@ -28,7 +28,7 @@ section#root-content
           a.layer.background(href="/b/" + articles.amuject.eid lapis)
             .layer.content
               if (articles.amuject.title.image)
-                img(src=articles.amuject.title.image)
+                img(src=articles.amuject.title.image alt="게시글 대표 이미지")
             .layer.cover
           .layer.foreground
             h2.title!= articles.amuject.title.html
@@ -66,7 +66,7 @@ section#root-content
           a.layer.background(href="/b/" + articles.audio.eid lapis)
             .layer.content
               if (articles.audio.title.image)
-                img(src=articles.audio.title.image)
+                img(src=articles.audio.title.image alt="게시글 대표 이미지")
             .layer.cover
           .layer.foreground
             h2.title!= articles.audio.title.html
@@ -80,7 +80,7 @@ section#root-content
           a.layer.background(href="/b/" + articles.dev.eid lapis)
             .layer.content
               if (articles.dev.title.image)
-                img(src=articles.dev.title.image)
+                img(src=articles.dev.title.image alt="게시글 대표 이미지")
             .layer.cover
           .layer.foreground
             h2.title!= articles.dev.title.html
@@ -100,7 +100,7 @@ section#root-content
           a.layer.background(href="/b/" + articles.photo.eid lapis)
             .layer.content
               if (articles.photo.title.image)
-                img(src=articles.photo.title.image)
+                img(src=articles.photo.title.image alt="게시글 대표 이미지")
             .layer.cover
           .layer.foreground
             h2.title!= articles.photo.title.html
@@ -110,7 +110,7 @@ section#root-content
               span.datetime!= articles.photo.datetime.display
 
       a.section#joinsphoto(href="https://wanyne.net" target="_blank" circle="black;rgb(255, 245, 0);📷;눌러서 조인스포토 둘러보기")
-        img(src="https://wanyne.net/image/static/L5103795-1.jpg")
+        img(src="https://wanyne.net/image/static/L5103795-1.jpg" alt="조인스포토 대표 이미지")
         .layer.foreground 
           h2.title 조인스포토📷
           button(circle="black;rgb(255, 245, 0);📷;눌러서 조인스포토 둘러보기" ellipse magnify) 둘러보기
