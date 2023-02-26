@@ -106,6 +106,9 @@ router.use('/m', manageRouter);
 import photosRouter from './photos.mjs';
 router.use('/p', photosRouter);
 
+import worksRouter from './works.mjs';
+router.use('/w', worksRouter);
+
 import youRouter from './you.mjs';
 router.use('/u', youRouter);
 

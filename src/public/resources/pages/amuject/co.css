@@ -1,0 +1,144 @@
+#amuject-co-title {
+  width: 100%;
+  position: relative;
+  height: 80vh;
+}
+#amuject-co-titme > .titlewrapper {
+  width: 100%;
+  height: 100%;
+}
+
+#amuject-co-title-bg {
+  background: red;
+  border-bottom-left-radius: 24rem;
+  border-bottom-right-radius: 24rem;
+}
+
+#amuject-co-title-fg .outwrapper {
+  height: 100%;
+}
+#amuject-co-title-fg .inwrapper {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+#amuject-co-title-fg h1 {
+  color: var(--bg);
+  font-size: 12vw;
+  font-weight: 900;
+}
+#amuject-co-title-fg h3 {
+  color: var(--bg);
+  font-size: 3vw;
+  font-weight: 900;
+}
+@media (min-width: 1500px) {
+  #amuject-co-title-fg h1 {
+    color: var(--bg);
+    font-size: 12rem;
+    font-weight: 900;
+  }
+}
+
+#amuject-co-title-cv > * {
+  position: absolute;
+}
+#amuject-co-title-cv svg,
+#amuject-co-title-cv svg * {
+  fill: var(--bg);
+}
+#amuject-co-title-cv-d1,
+#amuject-co-title-cv-d2 {
+  width: 16rem;
+  height: 16rem;
+}
+#amuject-co-title-cv-d1 {
+  top: 6rem;
+  left: 2rem;
+}
+#amuject-co-title-cv-d2 {
+  top: 9rem;
+  right: 2rem;
+}
+#amuject-co-title-cv-d3,
+#amuject-co-title-cv-d4,
+#amuject-co-title-cv-d5,
+#amuject-co-title-cv-d6 {
+  width: 6rem;
+  height: 6rem;
+}
+#amuject-co-title-cv-d3 {
+  top: 14rem;
+  left: 24rem;
+}
+#amuject-co-title-cv-d4 {
+  top: 28rem;
+  right: 2rem;
+}
+#amuject-co-title-cv-d5 {
+  bottom: 12rem;
+  left: 20rem;
+}
+#amuject-co-title-cv-d6 {
+  top: 28rem;
+  right: 2rem;
+}
+#amuject-co-title-cv-bl,
+#amuject-co-title-cv-br {
+  width: 24rem;
+  height: 24rem;
+}
+#amuject-co-title-cv-bl {
+  bottom: 0;
+  left: 0;
+}
+#amuject-co-title-cv-br {
+  bottom: 0;
+  right: 0;
+}
+
+#amuject-co-content {
+  padding-top: 4rem;
+  width: 100%;
+  z-index: 500;
+  position: relative;
+  pointer-events: all;
+  padding-bottom: 8rem;
+}
+#amuject-co-content .section {
+  display: block;
+  border-radius: 6rem;
+  margin: 0 auto;
+  pointer-events: all;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 8rem;
+}
+#amuject-co-content .section:last-child {
+  margin-bottom: 0;
+}
+#amuject-co-content .section > .ratio {
+  width: 100%;
+  position: relative;
+}
+#amuject-co-content .section > .ratio .layer.foreground {
+  padding: 6rem 5rem;
+  width: calc(100% - 10rem);
+  height: calc(100% - 12rem);
+}
+#amuject-co-content .section h2,
+#amuject-co-content .section h2 * {
+  font-size: min(5rem, 5vw);
+  font-weight: 900;
+}
+
+#amuject-co-cucumbery {
+  max-width: 66rem;
+  background: rgb(50, 0, 200);
+  margin-bottom: 4rem;
+}
+#amuject-co-cucumbery > .ratio {
+  padding-top: 75%;
+}

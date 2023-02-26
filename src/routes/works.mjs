@@ -5,27 +5,27 @@ import jsonld from '../modules/seo/json-ld.mjs';
 
 router.get('/', (req, res) => {
   res.ren('amuject/root', {
-    title: '아무젝트 — 와니네',
+    title: '작업물 — 와니네',
     meta: {
       jsonld: jsonld.gen(
         jsonld.breadcrumb(
           { name: '와니네', item: 'https://wany.io' },
-          { name: '아무젝트' }
+          { name: '작업물' }
         )
       ),
     },
   });
 });
 
-router.get('/co', (req, res) => {
-  res.ren('amuject/co', {
-    title: 'Co-아무젝트 — 와니네',
+router.get('/greenbee', (req, res) => {
+  res.ren('amuject/greenbee', {
+    title: '그린비 — 작업물 — 와니네',
     meta: {
       jsonld: jsonld.gen(
         jsonld.breadcrumb(
           { name: '와니네', item: 'https://wany.io' },
-          { name: '아무젝트', item: 'https://wany.io/a' },
-          { name: 'Co-아무젝트' }
+          { name: '작업물', item: 'https://wany.io/w' },
+          { name: '그린비' }
         )
       ),
     },
