@@ -87,7 +87,7 @@ const Lapis = new (class {
       push = false;
     }
 
-    const matches = href.match(/https?:\/\/([^/]+)(\/[^?]*)?(\?.+)?/);
+    const matches = href.match(/https?:\/?\/?([^/]+)(\/[^?]*)?(\?.+)?/);
     let host = matches[1] + '';
     let path = matches[2] + '';
     let query = matches[3] + '';

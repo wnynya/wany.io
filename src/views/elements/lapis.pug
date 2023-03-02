@@ -3,7 +3,7 @@ script(src="/resources/elements/lapis.mjs" type="module")
 script(type="module").
   window.Lapis.Script = class {
     constructor() {
-      this.id = (() => {
+      this.uid = (() => {
         try {
           throw new Error();
         } catch (e) {
@@ -12,7 +12,7 @@ script(type="module").
               return btoa(s.match(/(https?:\/\/.+\.m?js)/)[0]);
         }
       })();
-      Lapis.scripts.cache[this.id] = this;
+      Lapis.scripts.cache[this.uid] = this;
     }
     load() {}
     unload() {}
@@ -35,12 +35,12 @@ script(type="module").
       if (this.src.startsWith('/')) {
         this.src = 'https://' + window.Lapis.host + this.src;
       }
-      this.id = btoa(this.src);
-      if (Lapis.scripts.cache.hasOwnProperty(this.id)) {
+      this.uid = btoa(this.src);
+      if (Lapis.scripts.cache.hasOwnProperty(this.uid)) {
         this.load();
       } else {
-        if (!Lapis.scripts.elements.includes(this.id)) {
-          Lapis.scripts.elements.push(this.id);
+        if (!Lapis.scripts.elements.includes(this.uid)) {
+          Lapis.scripts.elements.push(this.uid);
           const script = document.createElement('script');
           script.src = this.src;
           if (this.src.match(/\.mjs$/)) {
@@ -61,7 +61,7 @@ script(type="module").
       ) {
         return;
       }
-      const runtime = Lapis.scripts.cache[this.id];
+      const runtime = Lapis.scripts.cache[this.uid];
       if (Lapis.scripts.loads.includes(runtime)) {
         return;
       }
@@ -82,9 +82,9 @@ script(type="module").
       if (this.src.startsWith('/')) {
         this.src = 'https://' + window.Lapis.host + this.src;
       }
-      this.id = btoa(this.src);
-      if (!Lapis.styles.includes(this.id)) {
-        Lapis.styles.push(this.id);
+      this.uid = btoa(this.src);
+      if (!Lapis.styles.includes(this.uid)) {
+        Lapis.styles.push(this.uid);
         const link = document.createElement('link');
         link.type = 'text/css';
         link.rel = 'stylesheet';
