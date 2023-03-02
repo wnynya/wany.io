@@ -4,24 +4,36 @@ import { GetRequest } from '/resources/modules/request.mjs';
 
 const Lapis = new (class {
   constructor() {
-    this.host = window.location.host;
     this.scripts = {
       elements: [],
       cache: {},
       loads: [],
+      unload: () => {
+        for (const s of this.scripts.loads) {
+          s.unload();
+        }
+        this.scripts.loads = [];
+      },
     };
     this.asyncs = {
       timeouts: [],
       intervals: [],
+      clear: () => {
+        for (const a of this.asyncs.timeouts) {
+          this.clearTimeout(a);
+        }
+        for (const a of this.asyncs.intervals) {
+          this.clearInterval(a);
+        }
+        this.asyncs.timeouts = [];
+        this.asyncs.intervals = [];
+      },
     };
     this.styles = [];
     this.prefetched = [];
 
     const _this = this;
-    window.onpopstate = (event) => {
-      _this.goto(window.location.href, false);
-    };
-    this.eventAHref = (event) => {
+    this.aEvent = (event) => {
       event.preventDefault();
       let a = event.target;
       while (a.nodeName != 'A') {
@@ -31,35 +43,32 @@ const Lapis = new (class {
       const target = a.target;
       _this.goto(href, true, target);
     };
-    this.updateAHref = () => {
+    this.aUpdate = () => {
       for (const e of document.querySelectorAll('a[href][lapis]')) {
-        e.removeEventListener('click', _this.eventAHref);
-        e.addEventListener('click', _this.eventAHref);
+        e.removeEventListener('click', _this.aEvent);
+        e.addEventListener('click', _this.aEvent);
       }
     };
-    this.updateAHref();
-
     this.observer = new IntersectionObserver((entries, observer) => {
       for (const entry of entries) {
         if (entry.isIntersecting) {
-          const target = entry.target;
-          const href = target.href;
-          const id = btoa(href);
-          if (this.prefetched.includes(id)) {
+          const href = entry.target.href;
+          const uid = btoa(href);
+          if (this.prefetched.includes(uid)) {
             continue;
           }
-          this.prefetched.push(id);
+          this.prefetched.push(uid);
           this.prefetch(href);
         }
       }
     }, {});
+    this.update();
 
-    window.addEventListener('load', (evnet) => {
-      this.updateAHref();
-
-      for (const e of document.querySelectorAll('a[href][lapis]')) {
-        this.observer.observe(e);
-      }
+    window.addEventListener('load', () => {
+      _this.update();
+    });
+    window.addEventListener('popstate', () => {
+      _this.goto(window.location.href, false);
     });
 
     let lcv = cookies('owarimonogatari');
@@ -73,82 +82,37 @@ const Lapis = new (class {
   }
 
   goto(href, push = true, target = '_blank') {
-    if (window.Nav) {
-      window.Nav.lapisGoto();
-    }
-
-    const current = window.location.href;
-
-    if (href.startsWith('/')) {
-      href = 'https://' + this.host + href;
-    }
-
-    if (href == current) {
-      push = false;
-    }
-
+    window.Nav ? window.Nav.lapisGoto() : null;
+    href = href.startsWith('/')
+      ? `https://${window.location.host}${href}`
+      : href;
+    push = href == window.location.href ? false : push;
     const matches = href.match(/https?:\/?\/?([^/]+)(\/[^?]*)?(\?.+)?/);
-    let host = matches[1] + '';
-    let path = matches[2] + '';
-    let query = matches[3] + '';
-
-    if (host != this.host) {
+    let host = matches[1];
+    if (host != window.location.host) {
       window.open(href, target);
       return;
     }
-
-    for (const s of this.asyncs.timeouts) {
-      this.clearTimeout(s);
-    }
-    for (const s of this.asyncs.intervals) {
-      this.clearInterval(s);
-    }
-    this.asyncs = {
-      timeouts: [],
-      intervals: [],
-    };
-    for (const load of this.scripts.loads) {
-      load.unload();
-    }
-    this.scripts.loads = [];
-
+    this.asyncs.clear();
+    this.scripts.unload();
     let tempHistory = [];
-
-    push ? window.history.pushState(tempHistory, this.host, href) : null;
-
+    push
+      ? window.history.pushState(tempHistory, window.location.host, href)
+      : null;
     const bar = new Loadingbar();
-
-    GetRequest(href)
-      .then((res) => {
-        if (res.uri != href) {
-          tempHistory.push(res.uri);
-          window.history.replaceState(tempHistory, this.host, res.uri);
-        }
-        this.display(res.body);
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-        bar.end();
-        if (window.Cursor) {
-          window.Cursor.lapisGoto();
-        }
-        if (window.Inputs) {
-          window.Inputs.lapisGoto();
-        }
-      })
-      .catch((res) => {
-        if (res.uri != href) {
-          tempHistory.push(res.uri);
-          window.history.replaceState(tempHistory, this.host, res.uri);
-        }
-        this.display(res.body);
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-        bar.end();
-        if (window.Cursor) {
-          window.Cursor.lapisGoto();
-        }
-        if (window.Inputs) {
-          window.Inputs.lapisGoto();
-        }
-      });
+    const _this = this;
+    function andThen(res) {
+      if (res.uri != href) {
+        tempHistory.push(res.uri);
+        window.history.replaceState(tempHistory, window.location.host, res.uri);
+      }
+      _this.display(res.body);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      bar.end();
+      window.Cursor ? window.Cursor.lapisGoto() : null;
+      window.Inputs ? window.Inputs.lapisGoto() : null;
+    }
+    GetRequest(href).then(andThen).catch(andThen);
   }
 
   display(html) {
@@ -172,12 +136,7 @@ const Lapis = new (class {
     copyContent(doc, document, 'meta[name="twitter:description"]');
     copyContent(doc, document, 'meta[name="twitter:image"]');
 
-    this.updateAHref();
-
-    this.observer.disconnect();
-    for (const e of document.querySelectorAll('a[href][lapis]')) {
-      this.observer.observe(e);
-    }
+    this.update();
 
     function copyHTML(from, to, selector) {
       if (to.querySelector(selector) && from.querySelector(selector)) {
@@ -206,16 +165,22 @@ const Lapis = new (class {
       .then((res) => {
         const temp = document.createElement('template');
         temp.innerHTML = res.body;
-        const doc = temp.content;
-        const main = doc.querySelector('main');
-        for (const element of main.querySelectorAll(
-          'lapis-script[src], lapis-style[src]'
-        )) {
+        for (const element of temp.content
+          .querySelector('main')
+          .querySelectorAll('lapis-script[src], lapis-style[src]')) {
           document.body.appendChild(element);
           document.body.removeChild(element);
         }
       })
       .catch((error) => {});
+  }
+
+  update() {
+    this.aUpdate();
+    this.observer.disconnect();
+    for (const e of document.querySelectorAll('a[href][lapis]')) {
+      this.observer.observe(e);
+    }
   }
 
   setTimeout(f, t) {
@@ -240,13 +205,95 @@ const Lapis = new (class {
     this.asyncs.timeouts.splice(this.asyncs.intervals.indexOf(s), 1);
   }
 
-  update() {
-    this.updateAHref();
-    this.observer.disconnect();
-    for (const e of document.querySelectorAll('a[href][lapis]')) {
-      this.observer.observe(e);
+  Script = class {
+    constructor() {
+      this.uid = (() => {
+        try {
+          throw new Error();
+        } catch (e) {
+          for (const s of e.stack.split('\n').reverse()) {
+            const m = s.match(/(https?:\/\/.+\.m?js)/);
+            if (m) {
+              return btoa(m[0]);
+            }
+          }
+        }
+      })();
+      Lapis.scripts.cache[this.uid] = this;
     }
-  }
+    load() {}
+    unload() {}
+  };
+
+  ScriptElement = class extends HTMLElement {
+    constructor() {
+      super();
+      if (this.getAttribute('eval')) {
+        eval(this.getAttribute('eval'));
+        return;
+      }
+      this.src = this.getAttribute('src');
+      this.srco = this.src;
+      if (!this.src) {
+        return;
+      }
+      this.src.startsWith('/')
+        ? (this.src = `https://${window.location.host}${this.src}`)
+        : null;
+      this.uid = btoa(this.src);
+      if (Lapis.scripts.cache.hasOwnProperty(this.uid)) {
+        this.load();
+      } else {
+        if (!Lapis.scripts.elements.includes(this.uid)) {
+          Lapis.scripts.elements.push(this.uid);
+          const script = document.createElement('script');
+          script.src = this.src;
+          this.src.match(/\.mjs$/) ? (script.type = 'module') : null;
+          script.addEventListener('load', (event) => {
+            this.load();
+          });
+          document.body.appendChild(script);
+        }
+      }
+    }
+    load() {
+      if (
+        !document
+          .querySelector('main')
+          .querySelector(`lapis-script[src="${this.srco}"]`)
+      ) {
+        return;
+      }
+      const runtime = Lapis.scripts.cache[this.uid];
+      if (Lapis.scripts.loads.includes(runtime)) {
+        return;
+      }
+      runtime.load();
+      Lapis.scripts.loads.push(runtime);
+    }
+  };
+
+  StyleElement = class extends HTMLElement {
+    constructor() {
+      super();
+      this.src = this.getAttribute('src');
+      if (!this.src) {
+        return;
+      }
+      this.src.startsWith('/')
+        ? (this.src = `https://${window.location.host}${this.src}`)
+        : null;
+      this.uid = btoa(this.src);
+      if (!Lapis.styles.includes(this.uid)) {
+        Lapis.styles.push(this.uid);
+        const link = document.createElement('link');
+        link.type = 'text/css';
+        link.rel = 'stylesheet';
+        link.href = this.src;
+        document.body.appendChild(link);
+      }
+    }
+  };
 })();
 
 class Loadingbar {
@@ -306,3 +353,6 @@ class Loadingbar {
 }
 
 window.Lapis = Lapis;
+window.LapisScript = Lapis.Script;
+customElements.define('lapis-script', Lapis.ScriptElement);
+customElements.define('lapis-style', Lapis.StyleElement);
