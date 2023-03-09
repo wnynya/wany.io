@@ -696,10 +696,11 @@ class Editor {
         }
         let highlight;
         try {
-          highlight = hljs.highlight(code, {
+          highlight = bundle.highlightjs.highlight(code, {
             language: lang,
           });
         } catch (error) {
+          console.log(error);
           noty(
             '코드 언어를 인식할 수 없거나 코드 내용에 오류가 있습니다',
             'warn'

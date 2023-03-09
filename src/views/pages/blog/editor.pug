@@ -1,12 +1,15 @@
 link(rel="preload" as="style" href="/resources/pages/blog/editor.css")
+link(rel="preload" as="style" href="/resources/pages/blog/article.css")
 link(rel="preload" as="style" href="/resources/pages/blog/github.css")
 lapis-style(src="/resources/pages/blog/editor.css")
+lapis-style(src="/resources/pages/blog/article.css")
 lapis-style(src="/resources/pages/blog/github.css")
 if article && article.uid
   lapis-script(eval="window.global.article = { uid: '" + article.uid + "', eid: '" + article.eid + "' };")
 else
   lapis-script(eval="delete window.global.article")
 lapis-script(eval="window.global.categories = JSON.parse('" + JSON.stringify(categories) + "');")
+lapis-script(src="/resources/pages/blog/bundle-highlightjs.js" async)
 
 section#blog-editor-title
   .outwrapper
@@ -202,4 +205,3 @@ section#blog-editor-control
           button#blog-editor-control-submit(color="green" medium) 게시글 발행
 
 lapis-script(src="/resources/pages/blog/editor.mjs")
-script(src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js")
