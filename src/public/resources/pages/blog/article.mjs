@@ -18,6 +18,15 @@ new (class extends LapisScript {
       });
     }
 
+    for (const a of document.querySelectorAll(
+      '#blog-article-content a[href]'
+    )) {
+      if (a.href.match(/^(\/|https:\/\/wany.io)/)) {
+        a.setAttribute('lapis', '');
+      }
+    }
+    Lapis.update();
+
     document
       .querySelector('#blog-article-index-query')
       .addEventListener('keydown', (event) => {
