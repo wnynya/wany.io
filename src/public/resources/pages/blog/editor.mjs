@@ -58,7 +58,7 @@ class Editor {
     this.addEventListener();
   }
 
-  loadArticle(uid) {
+  loadArticle() {
     JSONGetRequest(`${global.api}/blog/articles/${this.uid}`, {})
       .then((res) => {
         const article = res.body.data;
@@ -74,11 +74,11 @@ class Editor {
 
         // article info
         document.querySelector('#blog-editor-info-datetime-input').value =
-          new Date(article.creation)
+          new Date(article.creation2)
             .format('YYYY-MM-DD_hh:mm')
             .replace('_', 'T');
         document.querySelector('#blog-editor-info-datetime').innerHTML =
-          new Date(article.creation).format('YY년 M월의 GK');
+          new Date(article.creation2).format('YY년 M월의 GK');
         document.querySelector('#blog-editor-info-category-select').value =
           article.category;
         const categorySelect = document.querySelector(
