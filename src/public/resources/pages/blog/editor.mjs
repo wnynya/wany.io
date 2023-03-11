@@ -74,11 +74,11 @@ class Editor {
 
         // article info
         document.querySelector('#blog-editor-info-datetime-input').value =
-          new Date(article.creation2)
-            .format('YYYY-MM-DD_hh:mm')
-            .replace('_', 'T');
+          article.creation2.substring(0, 16);
         document.querySelector('#blog-editor-info-datetime').innerHTML =
-          new Date(article.creation2).format('YY년 M월의 GK');
+          new Date(
+            document.querySelector('#blog-editor-info-datetime-input').value
+          ).format('YY년 M월의 GK');
         document.querySelector('#blog-editor-info-category-select').value =
           article.category;
         const categorySelect = document.querySelector(
@@ -159,7 +159,7 @@ class Editor {
         ).value;
         if (datetime) {
           document.querySelector('#blog-editor-info-datetime').innerHTML =
-            new Date(datetime).format('YY년 M월 KH');
+            new Date(datetime).format('YY년 M월 GK');
         }
         document
           .querySelector('#blog-editor-info-datetime-input')
