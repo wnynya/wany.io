@@ -100,6 +100,9 @@ router.use('/a', amujectRouter);
 import blogRouter from './blog.mjs';
 router.use('/b', blogRouter);
 
+import docsRouter from './docs.mjs';
+router.use('/d', docsRouter);
+
 import networkCrystalRouter from './network-crystal.mjs';
 router.use('/network-crystal', networkCrystalRouter);
 

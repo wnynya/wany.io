@@ -1,0 +1,30 @@
+link(rel="preload" as="style" href="/resources/pages/docs/docs.css")
+lapis-style(src="/resources/pages/docs/docs.css")
+
+section#docs-header
+  .outwrapper(rightnarrow)
+    .inwrapper
+
+aside.sidebar.withstars#docs-sidebar
+  .stars.top
+    include /views/elements/svg/diamond-hollow-small
+    include /views/elements/svg/diamond-hollow-small
+  .content
+
+  .stars.bottom
+    include /views/elements/svg/diamond-hollow-small
+    include /views/elements/svg/diamond-hollow-small
+  button
+    include /views/elements/svg/sidebar-button
+    
+section#docs-main
+  .outwrapper(rightnarrow)
+    .inwrapper
+
+      case path[1] 
+
+        when "root": include /views/pages/docs/root
+
+        when "api": include /views/pages/docs/api/routes
+
+lapis-script(src="/resources/pages/docs/docs.mjs")
