@@ -569,6 +569,7 @@ button svg * {
 input,
 textarea {
   -webkit-appearance: none;
+  appearance: none;
 }
 input:focus,
 textarea:focus {
