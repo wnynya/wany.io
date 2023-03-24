@@ -82,23 +82,15 @@ router.get('/give-me-an-internal-server-error', (req, res) => {
   res.error500();
 });
 
-/* x */
-router.get('/x/*', (req, res) => {
-  let path = req.path.replace(/^\/x/, '');
-  PostRequest('http://10.0.0.104:29900' + path)
-    .then(() => {
-      new Request('http://10.0.0.104:29900' + path).pipe(res);
-    })
-    .catch(() => {
-      res.status(400 + Math.floor(Math.random() * 200)).end();
-    });
-});
-
 import amujectRouter from './amuject.mjs';
 router.use('/a', amujectRouter);
 
 import blogRouter from './blog.mjs';
 router.use('/b', blogRouter);
+
+router.get('/c', (req, res) => {
+  res.send('give me a cake.');
+});
 
 import docsRouter from './docs.mjs';
 router.use('/d', docsRouter);
@@ -117,5 +109,16 @@ router.use('/w', worksRouter);
 
 import youRouter from './you.mjs';
 router.use('/u', youRouter);
+
+router.get('/x/*', (req, res) => {
+  let path = req.path.replace(/^\/x/, '');
+  PostRequest('http://10.0.0.104:29900' + path)
+    .then(() => {
+      new Request('http://10.0.0.104:29900' + path).pipe(res);
+    })
+    .catch(() => {
+      res.status(400 + Math.floor(Math.random() * 200)).end();
+    });
+});
 
 export default router;
