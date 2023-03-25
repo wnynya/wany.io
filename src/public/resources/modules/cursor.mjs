@@ -88,8 +88,8 @@ window.Cursor = new (class {
     this.tooltip.text.style.lineHeight = '150%';
     this.tooltip.text.style.background = 'var(--bg)';
 
-    this.circle.element.style.transform = 'scale(0.0)';
-    this.circle.element.style.transition = 'transform ease-out 0.1s';
+    //this.circle.element.style.transform = 'scale(0.0)';
+    //this.circle.element.style.transition = 'transform ease-out 0.1s';
     this.circle.text.style.fontFamily = 'var(--sans-serif)';
     this.circle.text.style.fontSize = '1.125rem';
     this.circle.text.style.fontWeight = '900';
@@ -168,6 +168,11 @@ window.Cursor = new (class {
     };
 
     this.addEventListener();
+
+    this.hideTooltip();
+    this.hideCircle();
+
+    this.lastCircle = 0;
   }
 
   addEventListener() {
@@ -190,6 +195,7 @@ window.Cursor = new (class {
   }
 
   showCircle(content) {
+    this.lastCircle = Date.now();
     let split = content.split(';');
     if (split.length >= 4) {
       this.circle.back.style.background = split[0];
@@ -199,11 +205,23 @@ window.Cursor = new (class {
     } else {
       this.circle.text.innerHTML = content;
     }
-    this.circle.element.style.transform = 'scale(1.0)';
+    //this.circle.element.style.transform = 'scale(1.0)';
+    this.circle.element
+      .Animate()
+      .spring(0.35, 5)
+      .to({ transform: 'scale(1.0)' }, 750);
   }
 
   hideCircle() {
-    this.circle.element.style.transform = 'scale(0.0)';
+    const dn = Date.now();
+    setTimeout(() => {
+      if (!(dn - 1 <= this.lastCircle && this.lastCircle <= dn + 1)) {
+        this.circle.element
+          .Animate()
+          .easeout()
+          .to({ transform: 'scale(0.0)' }, 150);
+      }
+    }, 1);
   }
 
   setMessage(message) {

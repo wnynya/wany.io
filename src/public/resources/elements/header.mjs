@@ -32,6 +32,7 @@ window.Nav = new (class {
       .addEventListener('click', (event) => {
         this.closeDropdown();
       });
+    this.closeDropdown();
   }
 
   onScroll() {
@@ -94,6 +95,11 @@ window.Nav = new (class {
     document.querySelector('#button-header-always-index').innerHTML = 'Close';
     this.hideScroll();
     this.showCover();
+    document
+      .querySelector('#header-dropdown')
+      .Animate()
+      .spring(0.35, 5)
+      .to({ height: '18.5rem' }, 1000);
   }
 
   closeDropdown() {
@@ -102,6 +108,11 @@ window.Nav = new (class {
     document.querySelector('#button-header-always-index').innerHTML = 'Index';
     this.showScroll();
     this.hideCover();
+    document
+      .querySelector('#header-dropdown')
+      .Animate()
+      .easeout()
+      .to({ height: '0rem' }, 150);
   }
 
   hideCover() {
@@ -129,6 +140,11 @@ class WhenNarrow {
     window.Nav.closeDropdown();
     window.Nav.hideScroll();
     window.Nav.opened = true;
+    this.when
+      .querySelector('.fg')
+      .Animate()
+      .spring(0.35, 8)
+      .to({ top: '0%' }, 1250);
   }
 
   hide() {
@@ -139,6 +155,7 @@ class WhenNarrow {
     window.Nav.opened = false;
     this.when.setAttribute('status', 'hide');
     window.Nav.showScroll();
+    this.when.querySelector('.fg').Animate().easeout().to({ top: '100%' }, 150);
   }
 
   flipBack() {
@@ -209,6 +226,7 @@ const Login = new (class extends WhenNarrow {
     if (!this.when) {
       return;
     }
+    this.hide();
     this.showing = false;
     document
       .querySelector('#button-header-always-login')
@@ -317,6 +335,7 @@ const Account = new (class extends WhenNarrow {
     if (!this.when) {
       return;
     }
+    this.hide();
     this.showing = false;
     document
       .querySelector('#button-header-always-account')

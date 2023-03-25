@@ -210,13 +210,13 @@ main {
 }
 #header-nav[dropdown='close'] > #header-dropdown {
   height: 0px;
-  transition: height 0.15s ease-out;
+  /*transition: height 0.15s ease-out;*/
 }
 #header-nav[dropdown='open'] > #header-dropdown {
-  height: 18.5rem;
+  /*height: 18.5rem;*/
+  /*transition: height 0.35s cubic-bezier(0.15, 0.5, 0.35, 1);*/
   max-height: calc(100vh - 10rem);
   max-height: calc((var(--vh, 1vh) * 100) - 10rem);
-  transition: height 0.35s cubic-bezier(0.15, 0.5, 0.35, 1);
 }
 @media (max-width: 900px) {
   #header-always > .left > #button-header-always-blog,
@@ -314,12 +314,12 @@ main {
   height: 2rem;
 }
 #header-when .when[type='narrow'][status='show'] > .fg {
-  top: 0;
-  transition: top 0.3s cubic-bezier(0, 0, 0.3, 1.3);
+  /*top: 0;
+  transition: top 0.3s cubic-bezier(0, 0, 0.3, 1.3);*/
 }
 #header-when .when[type='narrow'][status='hide'] > .fg {
-  top: 100%;
-  transition: top 0.2s ease-out;
+  /*top: 100%;
+  transition: top 0.2s ease-out;*/
 }
 #header-when .when[type='narrow'] > .fg > .wrapper {
   position: absolute;
