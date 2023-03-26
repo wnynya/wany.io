@@ -112,7 +112,7 @@ window.Nav = new (class {
       .querySelector('#header-dropdown')
       .Animate()
       .easeout()
-      .to({ height: '0rem' }, 150);
+      .to({ height: '0rem' }, 100);
   }
 
   hideCover() {

@@ -43,7 +43,8 @@ class Notification {
     this.notifications = notifications;
     this.notification = notification;
     setTimeout(() => {
-      notification.classList.add('show');
+      //notification.classList.add('show');
+      notification.Animate().spring(0.35, 5).to({ right: '0px' }, 1000);
     }, 100);
     this.ct = setTimeout(() => {
       this.close();
@@ -53,6 +54,7 @@ class Notification {
   close() {
     clearTimeout(this.ct);
     this.notification.classList.add('hide');
+    this.notification.Animate().easeout().to({ right: '-900px' }, 200);
     setTimeout(() => {
       this.notifications.removeChild(this.notification);
       Notifications.splice(Notifications.indexOf(this), 1);
@@ -88,7 +90,7 @@ class Notification {
       margin-right: 0px;
       margin-left: auto;
       border-radius: 1rem;
-      transition: right 0.35s cubic-bezier(0, 0, 0.3, 1.3), opacity 0.2s ease-out, transform 0.2s ease-out,
+      transition: /*right 0.35s cubic-bezier(0, 0, 0.3, 1.3),*/ opacity 0.2s ease-out, transform 0.2s ease-out,
         max-width 0s ease-out;
       text-align: left;
       box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
