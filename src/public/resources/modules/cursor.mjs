@@ -88,7 +88,7 @@ window.Cursor = new (class {
     this.tooltip.text.style.lineHeight = '150%';
     this.tooltip.text.style.background = 'var(--bg)';
 
-    //this.circle.element.style.transform = 'scale(0.0)';
+    this.circle.element.style.transform = 'scale(0.0)';
     //this.circle.element.style.transition = 'transform ease-out 0.1s';
     this.circle.text.style.fontFamily = 'var(--sans-serif)';
     this.circle.text.style.fontSize = '1.125rem';
