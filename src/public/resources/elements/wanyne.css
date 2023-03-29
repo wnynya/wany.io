@@ -11,6 +11,8 @@
 /*
   theme: #D2B0DD; rgb(210, 176, 221); (D)
   theme: #AA8FB3; rgb(170,143,179); (L)
+
+  🡠 🡢 🡡 🡣 🡤 🡥 🡦 🡧
 */
 
 /* Mint Grotesk */
@@ -89,8 +91,11 @@
   --cyan: rgb(0, 195, 195);
   --green: rgb(0, 245, 65);*/
 
-  --bg: var(--t245);
-  --fg: var(--t0);
+  --bg: rgb(245, 245, 245);
+  --bgt: rgba(245, 245, 245, 0.25);
+  --fg: rgb(0, 0, 0);
+  --fgm: rgb(128, 128, 128);
+
   --th: rgb(210, 176, 221);
   --th-tl: rgba(210, 176, 221, 0.5);
 
@@ -745,18 +750,23 @@ select:-webkit-autofill:focus {
   width: 100%;
   height: 100%;
 }
-.input.text > button {
+.input.text > button,
+.input.text > a {
   position: absolute;
   right: 0.5rem;
 }
 .input.text > .buttons {
   position: absolute;
-  right: 0.5rem;
+  width: calc(100% - 0.5rem);
+  height: 100%;
+  padding-right: 0.5rem;
   pointer-events: none;
   display: flex;
   justify-content: flex-end;
+  align-items: center;
 }
-.input.text > .buttons > button {
+.input.text > .buttons > button,
+.input.text > .buttons > a {
   margin-left: 0.5rem;
   pointer-events: all;
 }
@@ -902,7 +912,6 @@ select:-webkit-autofill:focus {
   -ms-user-select: none;
   user-select: none;
   position: relative;
-  margin-right: 3rem;
 }
 .input.checkbox[color] {
   --input-fg: var(--button-bg);
@@ -979,7 +988,7 @@ select:-webkit-autofill:focus {
 }
 .input.checkbox:hover input ~ .checkbtn {
   transition: box-shadow 0.1s ease-out;
-  box-shadow: inset 0 0 0 0.125rem var(--input-ol);
+  box-shadow: inset 0 0 0 0.1rem var(--input-ol);
 }
 .input.checkbox input:checked ~ .checkbtn,
 .input.checkbox:hover input:checked ~ .checkbtn {

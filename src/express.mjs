@@ -102,6 +102,14 @@ app.use((req, res, next) => {
       ? data.meta.image
       : undefined;
 
+    if (data.theme) {
+      let style = '';
+      for (const key in data.theme) {
+        style += `--${key}: ${data.theme[key]}; `;
+      }
+      data.theme = style;
+    }
+
     res.status(status).render('index.pug', data);
   };
   res.error403 = () => {

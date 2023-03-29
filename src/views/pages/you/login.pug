@@ -1,0 +1,28 @@
+link(rel="preload" as="style" href="/resources/pages/you/login.css")
+lapis-style(src="/resources/pages/you/login.css")
+
+#you-login
+  .fg
+    .block.front(layer)
+      h2 로그인🔒
+      form(onsubmit="return false;")
+        .input.text(label="inner")
+          input#input-you-login-account.btn(type="text" name="id" placeholder="계정 ID 혹은 이메일" spellcheck="false" required) 
+          label 계정
+          .border
+        .input.text(label="inner")
+          input#input-you-login-password.btn(type="password" name="password" placeholder="비밀번호" spellcheck="false" required) 
+          .buttons
+            a#button-you-login-reset-password(href="/u/reset-password" button lapis status="hide") 
+              button(type="button" color="red" small magnify) 🤯비밀번호를 모르겠어!💥
+          label 비밀번호
+          .border
+        .input.checkbox.right
+          input#input-you-login-keep(type="checkbox" name="keeplogin")
+          label 로그인 세션 유지
+          .checkbtn
+        button#button-you-login-submit 로그인
+    .block.back(layer)
+      h2 계정 확인 중⏳...
+  
+lapis-script(src="/resources/pages/you/login.mjs")

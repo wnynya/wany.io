@@ -126,6 +126,7 @@ const Lapis = new (class {
 
     copyHTML(doc, document, 'title');
     copyHTML(doc, document, 'main');
+    copyHTML(doc, document, 'style#theme');
     copyContent(doc, document, 'meta[name="description"]');
     copyHTML(doc, document, 'script[type="application/ld+json"]');
     copyContent(doc, document, 'link[rel=canonical]');

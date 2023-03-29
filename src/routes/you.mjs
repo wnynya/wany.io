@@ -20,8 +20,7 @@ router.get('/login', (req, res) => {
     return;
   }
   res.ren('you/login', {
-    title: '로그인 — 와니네 계정',
-    loginpage: true,
+    title: '로그인🔒 — 와니네 계정',
     redir: r,
   });
 });

@@ -1,0 +1,78 @@
+#you-login {
+  position: relative;
+  width: 100%;
+  height: calc(100vh - 8rem);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+#you-login > .fg {
+  position: relative;
+  width: 24rem;
+  height: 24rem;
+  padding: 5rem;
+  perspective: 100vw;
+  perspective-origin: center;
+}
+
+#you-login > .fg > .block {
+  position: absolute;
+  width: 24rem;
+  height: 24rem;
+  padding: 5rem;
+  border-radius: 6rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  transform-style: preserve-3d;
+  background: var(--t255);
+}
+#you-login > .fg[status='shake'] > .block {
+  animation: shake 0.5s;
+  animation-iteration-count: infinite;
+}
+#you-login > .fg[status='goaway'] > .block {
+  transition: transform 0.5s ease-out !important;
+  transform: rotate(720deg) scale(0) !important;
+}
+
+#you-login > .fg > .front {
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+#you-login > .fg > .front > form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+#you-login > .fg > .front > form > .input {
+  margin-bottom: 1rem;
+}
+#you-login > .fg > .front > form > .input.checkbox {
+  margin-bottom: 2rem;
+  justify-content: flex-end;
+}
+#button-you-login-reset-password {
+  z-index: 30000;
+  position: absolute;
+  right: -1rem;
+  transform: rotate(-15deg);
+  transition: right 0.5s ease-out, transform 0.5s ease-out;
+}
+#button-you-login-reset-password[status='hide'] {
+  right: -100vw;
+  transform: rotate(2000deg);
+}
+
+#you-login > .fg > .back {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transform: rotateX(-180deg);
+  opacity: 0;
+  pointer-events: none;
+}

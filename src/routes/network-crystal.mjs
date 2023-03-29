@@ -28,6 +28,12 @@ router.get('/*', (req, res, next) => {
   parse(req, query).then((data) => {
     res.ren('network-crystal/root', {
       title: 'Network Crystal — 와니네',
+      theme: {
+        bg: '#000000',
+        bgt: '#ffdddd44',
+        fg: '#00ff00',
+        fgm: '#ffffff',
+      },
       meta: {
         jsonld: jsonld.gen(
           jsonld.breadcrumb(

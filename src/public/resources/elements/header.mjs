@@ -1,81 +1,136 @@
 'use strict';
 
-import {
-  JSONGetRequest,
-  JSONPostRequest,
-  JSONDeleteRequest,
-} from '/resources/modules/request.mjs';
+import { JSONDeleteRequest } from '/resources/modules/request.mjs';
 import Vector from '/resources/modules/vector.mjs';
 
 window.Nav = new (class {
   constructor() {
-    this.yl = Infinity;
+    this.nav = document.querySelector('#header-nav');
+    this.yl = window.scrollY;
     this.ys = 'top';
+    this.dir = null;
+    this.dirl = null;
+    this.upstack = 0;
     document.addEventListener('scroll', (event) => {
       this.onScroll();
     });
     this.onScroll();
 
-    this.dropdown = document.querySelector('#header-dropdown');
-    this.opened = false;
+    this.dropdown = document.querySelector('#header-nav-dropdown');
+    this.dropdownOpened = false;
     document
-      .querySelector('#button-header-always-index')
+      .querySelector('#button-header-nav-always-index')
       .addEventListener('click', () => {
-        if (this.opened) {
+        if (this.dropdownOpened) {
           this.closeDropdown();
         } else {
           this.openDropdown();
         }
       });
     document
-      .querySelector('#header-cover')
-      .addEventListener('click', (event) => {
+      .querySelector('#header-nav-cover')
+      .addEventListener('click', () => {
         this.closeDropdown();
       });
-    this.closeDropdown();
+    const loginButton = document.querySelector(
+      '#button-header-nav-always-login'
+    );
+    if (loginButton) {
+      loginButton.addEventListener('click', (event) => {
+        event.preventDefault();
+        Lapis.goto(`/u/login?r=${window.location.href}`);
+      });
+    }
   }
 
   onScroll() {
+    if (document.body.style.overflow == 'hidden') {
+      return;
+    }
     const y = window.scrollY;
-    const nav = document.querySelector('#header-nav');
 
-    if (y <= window.innerHeight / 4) {
-      if (this.ys != 'top') {
-        this.ys = 'top';
-        nav.setAttribute('status', this.ys);
+    if (y > this.yl) {
+      this.dir = 'down';
+    } else if (y < this.yl) {
+      this.dir = 'up';
+    }
+
+    if (y <= 500) {
+      this.absTop();
+    } else if (500 < y && y <= 1000) {
+      if (this.dir == 'down') {
+        this.preHide();
+      } else {
+        this.fixHide();
       }
-    } else if (this.opened) {
-      if (this.ys != 'up') {
-        this.ys = 'up';
-        nav.setAttribute('status', this.ys);
-      }
-    } else if (y <= window.innerHeight / 1.5) {
-      if (this.ys == 'top') {
-        if (this.ys != 'downtop') {
-          this.ys = 'downtop';
-          nav.setAttribute('status', this.ys);
-        }
-      } else if (this.ys == 'down' || this.ys == 'up') {
-        if (this.ys != 'uptop') {
-          this.ys = 'uptop';
-          nav.setAttribute('status', this.ys);
-        }
+    } else if (this.dir == 'up' && this.dirl == 'up') {
+      this.upstack++;
+      if (this.upstack > 1) {
+        this.fixShow();
       }
     } else {
-      if (y > this.yl) {
-        if (this.ys != 'down') {
-          this.ys = 'down';
-          nav.setAttribute('status', this.ys);
-        }
-      } else if (y < this.yl) {
-        if (this.ys != 'up') {
-          this.ys = 'up';
-          nav.setAttribute('status', this.ys);
-        }
-      }
+      this.upstack = 0;
+      this.fixHide();
     }
 
     this.yl = y;
+    this.dirl = this.dir;
+  }
+
+  absTop() {
+    if (this.status == 'top') {
+      return;
+    }
+    this.status = 'top';
+    this.nav.setAttribute('status', this.status);
+  }
+
+  preHide() {
+    if (this.status == 'pre') {
+      return;
+    }
+    this.status = 'pre';
+    this.nav.setAttribute('status', this.status);
+  }
+
+  fixHide() {
+    if (this.status == 'hide') {
+      return;
+    }
+    this.status = 'hide';
+    this.nav.setAttribute('status', this.status);
+    this.nav.querySelector('#header-nav-drawer').Animate().spring(0.35, 5).to(
+      {
+        top: '-16rem',
+      },
+      800
+    );
+    this.nav.querySelector('#header-nav-always').Animate().spring(0.35, 5).to(
+      {
+        top: '-12rem',
+      },
+      800
+    );
+  }
+
+  fixShow() {
+    if (this.status == 'show') {
+      return;
+    }
+    this.status = 'show';
+    this.nav.setAttribute('status', this.status);
+    this.nav.querySelector('#header-nav-drawer').Animate().spring(0.25, 5).to(
+      {
+        top: '-4rem',
+      },
+      800
+    );
+    this.nav.querySelector('#header-nav-always').Animate().spring(0.25, 5).to(
+      {
+        top: '0rem',
+      },
+      800
+    );
   }
 
   hideScroll() {
@@ -83,50 +138,215 @@ window.Nav = new (class {
   }
 
   showScroll() {
-    if (this.opened) {
+    if (this.dropdownOpened) {
       return;
     }
     document.body.style.overflow = null;
   }
 
   openDropdown() {
-    this.opened = true;
+    this.dropdownOpened = true;
     document.querySelector('#header-nav').setAttribute('dropdown', 'open');
-    document.querySelector('#button-header-always-index').innerHTML = 'Close';
+    document.querySelector('#button-header-nav-always-index').innerHTML =
+      'Close';
     this.hideScroll();
-    this.showCover();
+    this.nav.querySelector('#header-nav-drawer').Animate().spring(0.3, 3).to(
+      {
+        top: '-4rem',
+        height: '26rem',
+      },
+      500
+    );
     document
-      .querySelector('#header-dropdown')
+      .querySelector('#header-nav-dropdown')
       .Animate()
-      .spring(0.35, 5)
-      .to({ height: '18.5rem' }, 1000);
+      .spring(0.3, 3)
+      .to({ height: '22rem' }, 500);
   }
 
   closeDropdown() {
-    this.opened = false;
+    this.dropdownOpened = false;
     document.querySelector('#header-nav').setAttribute('dropdown', 'close');
-    document.querySelector('#button-header-always-index').innerHTML = 'Index';
+    document.querySelector('#button-header-nav-always-index').innerHTML =
+      'Index';
     this.showScroll();
-    this.hideCover();
+    this.nav
+      .querySelector('#header-nav-drawer')
+      .Animate()
+      .easeout()
+      .to(
+        {
+          top: this.status == 'show' ? '-4rem' : '-16rem',
+          height: '8rem',
+        },
+        100
+      );
     document
-      .querySelector('#header-dropdown')
+      .querySelector('#header-nav-dropdown')
       .Animate()
       .easeout()
       .to({ height: '0rem' }, 100);
   }
 
-  hideCover() {
-    document.querySelector('#header-cover').setAttribute('status', 'hide');
-  }
-
-  showCover() {
-    document.querySelector('#header-cover').setAttribute('status', 'show');
-  }
-
   lapisGoto() {
     this.closeDropdown();
-    Login.hide();
-    Account.hide();
+    Nav.Account.hideMenu();
+  }
+})();
+
+Nav.Account = new (class {
+  constructor() {
+    this.element = document.querySelector('#header-nav-always-account');
+    if (!this.element) {
+      return;
+    }
+    this.background = document.querySelector(
+      '#header-nav-always-account-background'
+    );
+    this.profile = this.element.querySelector('.profile');
+    this.menu = this.element.querySelector('.menu');
+
+    this.showing = false;
+
+    this.profile.addEventListener('click', () => {
+      this.showing ? this.hideMenu() : this.showMenu();
+    });
+    this.background.addEventListener('click', () => {
+      this.hideMenu();
+    });
+    this.menu.addEventListener('click', (event) => {
+      event.stopPropagation();
+    });
+    document
+      .querySelector('#button-header-nav-always-logout')
+      .addEventListener('click', (event) => {
+        this.logout();
+      });
+
+    this.initMenu();
+  }
+
+  profileWidth() {
+    const l = this.element.querySelector('.profile > .label').clientWidth;
+    const i = this.element.querySelector('.profile > .image').clientWidth;
+    return l + i + Math.rem(0.5);
+  }
+
+  initMenu() {
+    this.profile.Animate().spring(0.15, 3).to(
+      {
+        'padding-top': '0.3rem',
+        'padding-bottom': '0rem',
+        'padding-left': '0.7rem',
+        'padding-right': '0.3rem',
+      },
+      500
+    );
+    this.element
+      .querySelector('.profile > .label')
+      .Animate()
+      .spring(0.15, 3)
+      .to(
+        {
+          'max-width': '8rem',
+          'margin-right': '0.5rem',
+        },
+        500
+      );
+    this.menu
+      .Animate()
+      .spring(0.15, 3)
+      .to(
+        {
+          width: this.profileWidth() + 'px',
+          height: '0.3rem',
+        },
+        500
+      );
+  }
+
+  showMenu() {
+    Nav.closeDropdown();
+    Nav.hideScroll();
+    this.showing = true;
+    this.element.classList.add('show');
+    this.background.classList.add('show');
+    this.element.Animate().spring(0.3, 3).to(
+      {
+        'border-radius': '1.7rem',
+      },
+      500
+    );
+    this.profile.Animate().spring(0.3, 3).to(
+      {
+        'padding-top': '1rem',
+        'padding-bottom': '0.8rem',
+        'padding-left': '1rem',
+        'padding-right': '1rem',
+      },
+      500
+    );
+    this.menu
+      .Animate()
+      .spring(0.3, 3)
+      .to(
+        {
+          width: '14rem',
+          height:
+            Math.rem(
+              this.menu.querySelectorAll('.element').length * 2 + 1 + 0.2
+            ) +
+            1 +
+            'px',
+        },
+        500
+      );
+  }
+
+  hideMenu() {
+    if (!this.element) {
+      return;
+    }
+    Nav.showScroll();
+    this.showing = false;
+    this.element.classList.remove('show');
+    this.background.classList.remove('show');
+    this.element.Animate().spring(0.15, 3).to(
+      {
+        'border-radius': '1.1rem',
+      },
+      500
+    );
+    this.profile.Animate().spring(0.15, 3).to(
+      {
+        'padding-top': '0.3rem',
+        'padding-bottom': '0rem',
+        'padding-left': '0.7rem',
+        'padding-right': '0.3rem',
+      },
+      500
+    );
+    this.menu
+      .Animate()
+      .spring(0.15, 3)
+      .to(
+        {
+          width: this.profileWidth() + 'px',
+          height: '0.3rem',
+        },
+        500
+      );
+  }
+
+  logout() {
+    JSONDeleteRequest(`${global.api}/auth/accounts/@me/sessions/@current`, {})
+      .then((res) => {
+        window.location.href = '/';
+      })
+      .catch((res) => {
+        new noty(res.message, 'error');
+        return;
+      });
   }
 })();
 
@@ -219,6 +439,7 @@ class WhenNarrow {
 }
 export { WhenNarrow };
 
+/*
 const Login = new (class extends WhenNarrow {
   constructor() {
     super();
@@ -229,7 +450,7 @@ const Login = new (class extends WhenNarrow {
     this.hide();
     this.showing = false;
     document
-      .querySelector('#button-header-always-login')
+      .querySelector('#button-header-nav-always-login')
       .addEventListener('click', () => {
         this.show();
         document.querySelector('#input-header-login-account').focus();
@@ -338,7 +559,7 @@ const Account = new (class extends WhenNarrow {
     this.hide();
     this.showing = false;
     document
-      .querySelector('#button-header-always-account')
+      .querySelector('#button-header-nav-always-account')
       .addEventListener('click', () => {
         this.show();
       });
@@ -378,7 +599,7 @@ const Account = new (class extends WhenNarrow {
         return;
       });
   }
-})();
+})();*/
 
 const ShakeDetector = new (class {
   constructor() {
