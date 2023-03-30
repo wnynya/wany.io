@@ -41,6 +41,8 @@ window.Nav = new (class {
         Lapis.goto(`/u/login?r=${window.location.href}`);
       });
     }
+
+    Lspis.prefetch(`/u/login`);
   }
 
   onScroll() {
