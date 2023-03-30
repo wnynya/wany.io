@@ -100,15 +100,31 @@ const Lapis = new (class {
       ? window.history.pushState(tempHistory, window.location.host, href)
       : null;
     const bar = new Loadingbar();
+    const cur = new Curtain();
     const _this = this;
+    let result = null;
+    let shaded = false;
+    setTimeout(() => {
+      shaded = true;
+      if (result) {
+        go(result);
+      }
+    }, cur.timeblock * cur.div + 200);
     function andThen(res) {
+      result = res;
+      if (shaded) {
+        go(result);
+      }
+    }
+    function go(res) {
       if (res.uri != href) {
         tempHistory.push(res.uri);
         window.history.replaceState(tempHistory, window.location.host, res.uri);
       }
       _this.display(res.body);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.scrollTo({ top: 0 /*behavior: 'smooth'*/ });
       bar.end();
+      cur.end();
       window.Cursor ? window.Cursor.lapisGoto() : null;
       window.Inputs ? window.Inputs.lapisGoto() : null;
     }
@@ -352,6 +368,58 @@ class Loadingbar {
     }, 250);
   }
 }
+
+class Curtain {
+  constructor(direction) {
+    this.curtain = document.createElement('div');
+    this.curtain.style.zIndex = '210000000';
+    this.curtain.style.position = 'fixed';
+    this.curtain.style.top = '0';
+    this.curtain.style.left = '0';
+    this.curtain.style.width = '100vw';
+    this.curtain.style.height = '100vh';
+
+    document.body.appendChild(this.curtain);
+
+    this.div = 30;
+    this.timeblock = 10;
+    this.block = window.innerWidth / this.div;
+
+    for (let i = 0; i < this.div; i++) {
+      const bar = document.createElement('div');
+      bar.style.position = 'absolute';
+      bar.style.top = '0';
+      bar.style.right = i * this.block + 'px';
+      bar.style.height = '100%';
+      bar.style.width = '0px';
+      bar.style.background = 'var(--fg)';
+      bar.style.transition = 'width 0.2s ease-out, background 0.5s ease-out';
+      this.curtain.appendChild(bar);
+      setTimeout(() => {
+        bar.style.width = this.block + 'px';
+      }, i * this.timeblock);
+    }
+  }
+
+  end() {
+    setTimeout(() => {
+      const bars = this.curtain.querySelectorAll('div');
+      for (let i = 0; i < bars.length; i++) {
+        const bar = bars[i];
+        bar.style.right = 'unset';
+        bar.style.left = window.innerWidth - (i + 1) * this.block + 'px';
+        setTimeout(() => {
+          bar.style.width = '0px';
+        }, i * this.timeblock);
+      }
+      setTimeout(() => {
+        document.body.removeChild(this.curtain);
+      }, this.timeblock * this.div + 500);
+    }, 200);
+  }
+}
+
+window.Curtain = Curtain;
 
 window.Lapis = Lapis;
 window.LapisScript = Lapis.Script;

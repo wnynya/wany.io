@@ -8,12 +8,12 @@ import jsonld from '../modules/seo/json-ld.mjs';
 router.get('/', (req, res) => {
   res.ren('amuject/root', {
     title: '아무젝트 — 와니네',
-    /*theme: {
+    theme: {
       bg: '#ffdddd',
       bgt: '#ffdddd44',
       fg: '#0000ff',
       fgm: '#000000',
-    },*/
+    },
     meta: {
       jsonld: jsonld.gen(
         jsonld.breadcrumb(
