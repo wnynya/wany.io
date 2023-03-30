@@ -40,9 +40,8 @@ window.Nav = new (class {
         event.preventDefault();
         Lapis.goto(`/u/login?r=${window.location.href}`);
       });
+      Lapis.prefetch(`${global.wanyne}/u/login`);
     }
-
-    Lspis.prefetch(`${global.wanyne}/u/login`);
   }
 
   onScroll() {
