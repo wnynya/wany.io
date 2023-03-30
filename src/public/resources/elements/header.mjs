@@ -42,7 +42,7 @@ window.Nav = new (class {
       });
     }
 
-    Lspis.prefetch(`/u/login`);
+    Lspis.prefetch(`${global.wanyne}/u/login`);
   }
 
   onScroll() {
