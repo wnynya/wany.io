@@ -405,7 +405,7 @@ class Curtain {
 
     document.body.appendChild(this.curtain);
 
-    this.div = 30;
+    this.div = Math.floor(window.innerWidth / Math.rem(4));
     this.timeblock = 10;
     this.block = window.innerWidth / this.div;
 
@@ -413,7 +413,7 @@ class Curtain {
       const bar = document.createElement('div');
       bar.style.position = 'absolute';
       bar.style.top = '0';
-      bar.style.right = i * this.block + 'px';
+      bar.style.right = i * this.block - 2 + 'px';
       bar.style.height = '100%';
       bar.style.width = '0px';
       bar.style.background = 'var(--fg)';
@@ -424,7 +424,7 @@ class Curtain {
     let c = 0;
     const interval = setInterval(() => {
       const bar = bars[c];
-      bar.style.width = this.block + 2 + 'px';
+      bar.style.width = this.block + 4 + 'px';
       c++;
       if (c >= this.div) {
         clearInterval(interval);
@@ -438,7 +438,7 @@ class Curtain {
       for (let i = 0; i < bars.length; i++) {
         const bar = bars[i];
         bar.style.right = 'unset';
-        bar.style.left = window.innerWidth - (i + 1) * this.block + 'px';
+        bar.style.left = window.innerWidth - ((i + 1) * this.block + 2) + 'px';
       }
       let c = 0;
       const interval = setInterval(() => {

@@ -169,7 +169,7 @@ function updatePermPut() {
   }
 
   const data = {
-    permissions: [perm],
+    permission: perm,
   };
 
   button.updatePermPut.disabled = true;
@@ -205,7 +205,7 @@ function updatePermDelete() {
   }
 
   const data = {
-    permissions: [perm],
+    permission: perm,
   };
 
   button.updatePermDelete.disabled = true;
