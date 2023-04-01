@@ -45,7 +45,7 @@ h1 API 키
   .control(right)
     .buttons
       button#button-manage-auth-account-key-delete(medium color="red") API 키 제거
-      a(href=`/m/auth/accounts/${req.p.account.eid}/keys` lapis)
+      a(href=`/m/auth/accounts/${req.p.account.eid}/keys` lapis effect='bar')
         button#button-manage-auth-account-keys(medium) API 키 목록
 
 lapis-script(src="/resources/pages/manage/auth/accounts/key.mjs")

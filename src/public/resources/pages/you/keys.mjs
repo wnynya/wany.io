@@ -33,7 +33,7 @@ function insert() {
       select();
       noty('새 API 키가 만들어졌습니다.', 'success');
       Lapis.setTimeout(() => {
-        Lapis.goto(`/u/keys/${res.body.data}`);
+        Lapis.goto(`/u/keys/${res.body.data}`, 'bar');
       }, 750);
     })
     .catch((error) => {
@@ -76,6 +76,7 @@ function select() {
     e.setAttribute('uid', key.uid);
     e.href = '/u/keys/' + key.uid;
     e.setAttribute('lapis', '');
+    e.setAttribute('effect', 'bar');
     let code =
       key.code.substring(0, 4) +
       '···' +

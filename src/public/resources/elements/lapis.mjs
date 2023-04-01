@@ -41,7 +41,7 @@ const Lapis = new (class {
       }
       const href = a.href;
       const target = a.target;
-      _this.goto(href, true, target);
+      _this.goto(href, a.getAttribute('effect'), true, target);
     };
     this.aUpdate = () => {
       for (const e of document.querySelectorAll('a[href][lapis]')) {
@@ -81,7 +81,7 @@ const Lapis = new (class {
     }, 1000);
   }
 
-  goto(href, push = true, target = '_blank') {
+  goto(href, effect, push = true, target = '_blank') {
     window.Nav ? window.Nav.lapisGoto() : null;
     href = href.startsWith('/')
       ? `https://${window.location.host}${href}`
@@ -99,36 +99,60 @@ const Lapis = new (class {
     push
       ? window.history.pushState(tempHistory, window.location.host, href)
       : null;
-    const bar = new Loadingbar();
-    const cur = new Curtain();
+    effect = effect ? effect : 'curtain';
+
     const _this = this;
-    let result = null;
-    let shaded = false;
-    setTimeout(() => {
-      shaded = true;
-      if (result) {
-        go(result);
+    if (effect == 'bar') {
+      let effector = new Loadingbar();
+      function go(res) {
+        if (res.uri != href) {
+          tempHistory.push(res.uri);
+          window.history.replaceState(
+            tempHistory,
+            window.location.host,
+            res.uri
+          );
+        }
+        _this.display(res.body);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        effector.end();
+        window.Cursor ? window.Cursor.lapisGoto() : null;
+        window.Inputs ? window.Inputs.lapisGoto() : null;
       }
-    }, cur.timeblock * cur.div + 200);
-    function andThen(res) {
-      result = res;
-      if (shaded) {
-        go(result);
+      GetRequest(href).then(go).catch(go);
+    } else if (effect == 'curtain') {
+      let effector = new Curtain();
+      let result = null;
+      let shaded = false;
+      function go(res) {
+        if (res.uri != href) {
+          tempHistory.push(res.uri);
+          window.history.replaceState(
+            tempHistory,
+            window.location.host,
+            res.uri
+          );
+        }
+        _this.display(res.body);
+        window.scrollTo({ top: 0 /*behavior: 'smooth'*/ });
+        effector.end();
+        window.Cursor ? window.Cursor.lapisGoto() : null;
+        window.Inputs ? window.Inputs.lapisGoto() : null;
       }
+      setTimeout(() => {
+        shaded = true;
+        if (result) {
+          go(result);
+        }
+      }, effector.timeblock * effector.div + 200);
+      function after(res) {
+        result = res;
+        if (shaded) {
+          go(result);
+        }
+      }
+      GetRequest(href).then(after).catch(after);
     }
-    function go(res) {
-      if (res.uri != href) {
-        tempHistory.push(res.uri);
-        window.history.replaceState(tempHistory, window.location.host, res.uri);
-      }
-      _this.display(res.body);
-      window.scrollTo({ top: 0 /*behavior: 'smooth'*/ });
-      bar.end();
-      cur.end();
-      window.Cursor ? window.Cursor.lapisGoto() : null;
-      window.Inputs ? window.Inputs.lapisGoto() : null;
-    }
-    GetRequest(href).then(andThen).catch(andThen);
   }
 
   display(html) {
@@ -395,10 +419,17 @@ class Curtain {
       bar.style.background = 'var(--fg)';
       bar.style.transition = 'width 0.2s ease-out, background 0.5s ease-out';
       this.curtain.appendChild(bar);
-      setTimeout(() => {
-        bar.style.width = this.block + 'px';
-      }, i * this.timeblock);
     }
+    const bars = this.curtain.querySelectorAll('div');
+    let c = 0;
+    const interval = setInterval(() => {
+      const bar = bars[c];
+      bar.style.width = this.block + 2 + 'px';
+      c++;
+      if (c >= this.div) {
+        clearInterval(interval);
+      }
+    }, this.timeblock);
   }
 
   end() {
@@ -408,14 +439,20 @@ class Curtain {
         const bar = bars[i];
         bar.style.right = 'unset';
         bar.style.left = window.innerWidth - (i + 1) * this.block + 'px';
-        setTimeout(() => {
-          bar.style.width = '0px';
-        }, i * this.timeblock);
       }
-      setTimeout(() => {
-        document.body.removeChild(this.curtain);
-      }, this.timeblock * this.div + 500);
+      let c = 0;
+      const interval = setInterval(() => {
+        const bar = bars[c];
+        bar.style.width = '0px';
+        c++;
+        if (c >= this.div) {
+          clearInterval(interval);
+        }
+      }, this.timeblock);
     }, 200);
+    setTimeout(() => {
+      document.body.removeChild(this.curtain);
+    }, this.timeblock * this.div + 500 + 200);
   }
 }
 

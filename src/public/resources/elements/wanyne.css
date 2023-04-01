@@ -599,6 +599,15 @@ textarea:disabled[color] {
   --button-ph: var(--fg-l);
   --button-ol: var(--fg);
 }
+input:autofill,
+input:autofill:hover,
+input:autofill:focus,
+textarea:autofill,
+textarea:autofill:hover,
+textarea:autofill:focus,
+select:autofill,
+select:autofill:hover,
+select:autofill:focus,
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
@@ -655,11 +664,15 @@ select:-webkit-autofill:focus {
   min-height: 6rem;
   padding: 1rem 1rem 1rem 1rem;
 }
-.input.text[label='inner'] > input {
+.input.text[label='inner'] > input,
+.input.text[label='inner'] > input:hover,
+.input.text[label='inner'] > input:focus {
   height: calc(100% - 1rem);
   padding: 0.875rem 1rem 0 1rem;
 }
-.textarea[label='inner'] > textarea {
+.textarea[label='inner'] > textarea,
+.textarea[label='inner'] > textarea:hover,
+.textarea[label='inner'] > textarea:focus {
   min-height: 5rem;
   padding: 2rem 1rem 1rem 1rem;
 }

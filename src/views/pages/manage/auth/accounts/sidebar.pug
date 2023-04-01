@@ -3,29 +3,29 @@ aside.sidebar.withstars#manage-auth-account-sidebar
     include /views/elements/svg/diamond-hollow-small
     include /views/elements/svg/diamond-hollow-small
   .content
-    a(href=`/m/auth/accounts/${req.p.account.eid}/profile` lapis)
+    a(href=`/m/auth/accounts/${req.p.account.eid}/profile` lapis effect='bar')
       label 
         .icon
           include /views/elements/svg/icon-portrait
         .text 프로필
-    a(href=`/m/auth/accounts/${req.p.account.eid}/sessions` lapis)
+    a(href=`/m/auth/accounts/${req.p.account.eid}/sessions` lapis effect='bar')
       label 
         .icon
           include /views/elements/svg/icon-session
         .text 세션
-    a(href=`/m/auth/accounts/${req.p.account.eid}/change-password` lapis)
+    a(href=`/m/auth/accounts/${req.p.account.eid}/change-password` lapis effect='bar')
       label 
         .icon
           include /views/elements/svg/icon-password
         .text 비밀번호 변경
     hr
     h2 API
-    a(href=`/m/auth/accounts/${req.p.account.eid}/permissions` lapis)
+    a(href=`/m/auth/accounts/${req.p.account.eid}/permissions` lapis effect='bar')
       label
         .icon
           include /views/elements/svg/icon-permission
         .text 권한 노드
-    a(href=`/m/auth/accounts/${req.p.account.eid}/keys` lapis)
+    a(href=`/m/auth/accounts/${req.p.account.eid}/keys` lapis effect='bar')
       label
         .icon
           include /views/elements/svg/icon-key

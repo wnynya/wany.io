@@ -35,7 +35,10 @@ function insert() {
       select();
       noty('새 API 키가 만들어졌습니다.', 'success');
       Lapis.setTimeout(() => {
-        Lapis.goto(`/m/auth/accounts/${global.aeid}/keys/${res.body.data}`);
+        Lapis.goto(
+          `/m/auth/accounts/${global.aeid}/keys/${res.body.data}`,
+          'bar'
+        );
       }, 750);
     })
     .catch((error) => {
@@ -78,6 +81,7 @@ function select() {
     e.setAttribute('uid', key.uid);
     e.href = `/m/auth/accounts/${global.aeid}/keys/${key.uid}`;
     e.setAttribute('lapis', '');
+    e.setAttribute('effect', 'bar');
     let code =
       key.code.substring(0, 4) +
       '···' +

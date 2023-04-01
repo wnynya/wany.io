@@ -242,7 +242,7 @@ function deleteKey() {
     .then(() => {
       noty('API 키가 제거되었습니다.', 'success');
       Lapis.setTimeout(() => {
-        Lapis.goto('/u/keys');
+        Lapis.goto('/u/keys', 'bar');
       }, 750);
     })
     .catch((error) => {

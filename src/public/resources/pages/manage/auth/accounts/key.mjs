@@ -260,7 +260,7 @@ function deleteKey() {
     .then(() => {
       noty('API 키가 제거되었습니다.', 'success');
       Lapis.setTimeout(() => {
-        Lapis.goto(`/m/auth/accounts/${global.aeid}/keys`);
+        Lapis.goto(`/m/auth/accounts/${global.aeid}/keys`, 'bar');
       }, 750);
     })
     .catch((error) => {
