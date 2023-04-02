@@ -1,0 +1,73 @@
+link(rel="preload" as="style" href="/resources/pages/photos/single.css")
+lapis-style(src="/resources/pages/photos/single.css")
+lapis-script(eval=`window.global.photo = ${JSON.stringify(photo)};`)
+
+section#photos-single
+
+  #photos-single-image
+
+    img(src=`https://api.wany.io/photos/${photo.uid}/${photo.name}${photo.ext}`)
+
+  #photos-single-desc
+
+    .label!= `${photo.name}${photo.ext}`
+
+    hr
+
+    .set.date
+      .icon 
+        include /views/pages/photos/svg/icon-date
+      .value!= `${new Date(photo.creation).toJSON().substring(0, 10)}`
+
+    .set.time
+      .icon 
+        include /views/pages/photos/svg/icon-time
+      .value!= `${new Date(photo.creation).toJSON().substring(11, 19)}`
+
+    hr
+
+    .set.camera
+      .icon 
+        include /views/pages/photos/svg/icon-camera
+      .value!= `${photo.exifcamera.make} ${photo.exifcamera.model}`
+
+    .set.lens
+      .icon 
+        include /views/pages/photos/svg/icon-lens
+      .value!= `${photo.exiflens.make} ${photo.exiflens.model}`
+
+    .exifs
+      .set 
+        .icon 
+          include /views/pages/photos/svg/icon-exiff
+        .value!= `${photo.exiff}`
+
+      .set 
+        .icon 
+          include /views/pages/photos/svg/icon-exifmm
+        .value!= `${photo.exifmm}`
+
+    .exifs
+      .set 
+        .icon 
+          include /views/pages/photos/svg/icon-exifiso
+        .value!= `${photo.exifiso}`
+
+      .set 
+        .icon 
+          include /views/pages/photos/svg/icon-exife
+        .value!= `${photo.exife}`
+
+    .set.size
+      .icon 
+        include /views/pages/photos/svg/icon-size
+      .value!= `${photo.width} x ${photo.height}`
+
+    hr
+
+    .set.tags
+      .icon 
+        include /views/pages/photos/svg/icon-tags
+      .value!= `${photo.tags.join(", ")}`
+
+lapis-script(src="/resources/pages/photos/single.mjs")
