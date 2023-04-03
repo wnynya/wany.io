@@ -13,8 +13,8 @@ lapis-style(src="/resources/pages/you/login.css")
         .input.text(label="inner")
           input#input-you-login-password.btn(type="password" name="password" placeholder="비밀번호" spellcheck="false" required) 
           .buttons
-            a#button-you-login-reset-password(href="/u/reset-password" button lapis status="hide") 
-              button(type="button" color="red" small magnify) 🤯비밀번호를 모르겠어!💥
+            a#button-you-login-reset-password(href="/u/reset-password" button lapis status="hide" tabindex="-1") 
+              button(type="button" color="red" small magnify tabindex="-1") 🤯비밀번호를 모르겠어!💥
           label 비밀번호
           .border
         .input.checkbox.right

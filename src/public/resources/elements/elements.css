@@ -274,6 +274,8 @@ main {
 #header-nav-always-account > .profile > .image {
   width: 1.4rem;
   height: 1.4rem;
+  border-radius: 100%;
+  overflow: hidden;
 }
 #header-nav-always-account > .profile > .image > img {
   width: 100%;

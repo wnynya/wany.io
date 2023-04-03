@@ -61,6 +61,9 @@ header#header(noselect)
               a.element(href="/u/profile" lapis) 
                 .label 계정 관리
                   .underline
+              a.element.none#button-header-nav-always-amethy-terminal(href="https://amethy.wany.io/terminal")
+                .label 아메시 터미널
+                  .underline
               if (req.hasPermission('manage.wanyne'))
                 a.element(href="/m" lapis) 
                   .label 와니네 관리

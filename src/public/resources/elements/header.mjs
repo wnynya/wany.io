@@ -1,6 +1,9 @@
 'use strict';
 
-import { JSONDeleteRequest } from '/resources/modules/request.mjs';
+import {
+  JSONGetRequest,
+  JSONDeleteRequest,
+} from '/resources/modules/request.mjs';
 import Vector from '/resources/modules/vector.mjs';
 
 window.Nav = new (class {
@@ -225,6 +228,19 @@ Nav.Account = new (class {
       });
 
     this.initMenu();
+
+    Promise.all([
+      JSONGetRequest(`${global.api}/amethy/terminal/nodes/owns`),
+      JSONGetRequest(`${global.api}/amethy/terminal/nodes/members`),
+    ])
+      .then(([owns, members]) => {
+        if (owns?.body?.data?.length > 0 || members?.body?.data?.length) {
+          document
+            .querySelector('#button-header-nav-always-amethy-terminal')
+            .classList.remove('none');
+        }
+      })
+      .catch((error) => {});
   }
 
   profileWidth() {
@@ -295,7 +311,9 @@ Nav.Account = new (class {
           width: '14rem',
           height:
             Math.rem(
-              this.menu.querySelectorAll('.element').length * 2 + 1 + 0.2
+              this.menu.querySelectorAll('.element:not(.none)').length * 2 +
+                1 +
+                0.2
             ) +
             1 +
             'px',
