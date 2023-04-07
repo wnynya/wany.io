@@ -813,7 +813,6 @@ class Editor {
 
         const p = document.createElement('p');
         p.appendChild(pic);
-        p.appendChild(document.createElement('br'));
         if (!this.paragraph || !this.paragraph.nextSibling) {
           document.querySelector('#blog-editor-content-display').appendChild(p);
         } else {
@@ -823,6 +822,20 @@ class Editor {
             .insertBefore(p, next);
         }
         this.paragraph = p;
+
+        const p2 = document.createElement('p');
+        p2.innerHTML = '<br />';
+        if (!this.paragraph.nextSibling) {
+          document
+            .querySelector('#blog-editor-content-display')
+            .appendChild(p2);
+        } else {
+          let next = this.paragraph.nextSibling;
+          document
+            .querySelector('#blog-editor-content-display')
+            .insertBefore(p2, next);
+        }
+
         this.content2html();
 
         if (!document.querySelector('#blog-editor-control-thumbnail').value) {
