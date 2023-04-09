@@ -30,13 +30,8 @@ router.get('/reset-password', (req, res) => {
     res.redirect(`/u/change-password`);
     return;
   }
-  req.session.verification = {
-    type: 'reset-password',
-  };
-  req.session.save().then(() => {
-    res.ren('you/reset-password', {
-      title: '비밀번호 재설정 — 와니네 계정',
-    });
+  res.ren('you/reset-password', {
+    title: '비밀번호 재설정 — 와니네 계정',
   });
 });
 
