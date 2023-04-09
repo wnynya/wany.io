@@ -109,6 +109,9 @@ main {
 #header-nav[status='show'] #header-nav-dropdown {
   position: fixed;
 }
+#header-nav[status='hide'] #header-nav-dropdown {
+  pointer-events: none;
+}
 #header-nav-dropdown > .content {
   width: 100%;
 }
