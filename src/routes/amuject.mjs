@@ -10,7 +10,7 @@ router.get('/', (req, res) => {
     title: '아무젝트 — 와니네',
     theme: {
       bg: '#ffdddd',
-      bgt: '#ffdddd44',
+      bgt: '#ffdddd40',
       fg: '#0000ff',
       fgm: '#000000',
     },

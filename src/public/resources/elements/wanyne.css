@@ -121,6 +121,15 @@
   --selection-bg: var(--fg);
   --selection-fg: var(--bg);
 
+  --sidebar-bg: var(--t0);
+  --sidebar-bg-label-selected: var(--t45);
+  --sidebar-bg-label-hover: var(--t60);
+  --sidebar-fg: var(--t245);
+  --sidebar-fg-label: var(--t180);
+  --sidebar-fg-hr: var(--t80);
+  --sidebar-scrollbar-bg: var(--t45);
+  --sidebar-scrollbar-fg: var(--t80);
+
   --sans-serif: 'Mint Grotesk', 'Pretendard Variable', 'Pretendard JP Variable',
     'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', 'Android Emoji',
     'Malgun Gothic', 'Dotum', sans-serif;
@@ -1509,9 +1518,7 @@ aside.sidebar {
     width 0.2s cubic-bezier(0, 0, 0.3, 1.3);
   z-index: 3000000;
   border-radius: 2rem;
-  --bg: var(--t0);
-  --fg: var(--t245);
-  background: var(--bg);
+  background: var(--sidebar-bg);
 }
 aside.sidebar.hide {
   left: calc(max(16rem, calc(12.5vw - 2rem)) * -1);
@@ -1524,10 +1531,8 @@ aside.sidebar > .content {
   padding: 2rem 0;
   overflow-y: auto;
   overflow-x: hidden;
-  --scrollbar-bg: var(--t45);
-  --scrollbar-fg: var(--t80);
   scrollbar-width: 0.5rem;
-  scrollbar-color: var(--scrollbar-fg) var(--scrollbar-bg);
+  scrollbar-color: var(--sidebar-scrollbar-fg) var(--sidebar-scrollbar-bg);
 }
 aside.sidebar.withstars > .content {
   max-height: calc(100vh - 16rem);
@@ -1535,7 +1540,7 @@ aside.sidebar.withstars > .content {
   padding: 0;
 }
 aside.sidebar > .content * {
-  color: var(--fg);
+  color: var(--sidebar-fg);
 }
 aside.sidebar > .stars {
   height: 2rem;
@@ -1553,7 +1558,7 @@ aside.sidebar > .stars.bottom {
 aside.sidebar > .stars > svg,
 aside.sidebar > .stars > svg * {
   fill: none;
-  stroke: var(--fg);
+  stroke: var(--sidebar-fg);
 }
 aside.sidebar > button {
   position: absolute;
@@ -1565,7 +1570,7 @@ aside.sidebar > button {
   border-top-left-radius: 0;
   border-bottom-right-radius: 100%;
   border-top-right-radius: 100%;
-  background: var(--bg);
+  background: var(--sidebar-bg);
   top: 4rem;
   right: calc(max(16rem, calc(12.5vw - 2rem)) + 2rem);
   transition: right 0.2s cubic-bezier(0, 0, 0.3, 1.3);
@@ -1581,7 +1586,7 @@ aside.sidebar > button svg,
 aside.sidebar > button svg * {
   height: 1.25rem;
   fill: transparent;
-  stroke: var(--fg);
+  stroke: var(--sidebar-fg);
   stroke-width: 0.125rem;
 }
 aside.sidebar.open > button svg {
@@ -1600,22 +1605,22 @@ aside.sidebar > .content label {
 }
 aside.sidebar > .content label,
 aside.sidebar > .content label > * {
-  color: var(--t180);
+  color: var(--sidebar-fg-label);
 }
 aside.sidebar > .content label:last-child {
   margin-bottom: 0;
 }
 aside.sidebar > .content label[selected] {
-  background: var(--t30);
+  background: var(--sidebar-bg-label-selected);
 }
 aside.sidebar > .content label:hover {
-  background: var(--t45);
+  background: var(--sidebar-bg-label-hover);
 }
 aside.sidebar > .content label[selected],
 aside.sidebar > .content label[selected] > *,
 aside.sidebar > .content label:hover,
 aside.sidebar > .content label:hover > * {
-  color: var(--fg);
+  color: var(--sidebar-fg);
 }
 aside.sidebar > .content label > .icon {
   display: flex;
@@ -1630,7 +1635,7 @@ aside.sidebar > .content label > .icon svg {
 aside.sidebar > .content label > .icon svg,
 aside.sidebar > .content label > .icon svg * {
   fill: transparent;
-  stroke: var(--t180);
+  stroke: var(--sidebar-fg-label);
   stroke-width: 0.175rem;
 }
 aside.sidebar > .content label[selected] > .icon svg,
@@ -1638,19 +1643,19 @@ aside.sidebar > .content label[selected] > .icon svg *,
 aside.sidebar > .content label:hover > .icon svg,
 aside.sidebar > .content label:hover > .icon svg * {
   fill: transparent;
-  stroke: var(--fg);
+  stroke: var(--sidebar-fg);
 }
 aside.sidebar > .content label > .text {
   width: calc(100% - 1.25rem - 0.5rem);
 }
 aside.sidebar > .content hr {
-  background: var(--t80);
+  background: var(--sidebar-fg-hr);
   margin: 0.5rem 0;
 }
 aside.sidebar > .content h2 {
   font-size: 1rem;
   font-weight: 700;
-  color: var(--t128);
+  color: var(--sidebar-fg-label);
   padding: 0.5rem 0.5rem;
 }
 @media (max-width: 900px) {

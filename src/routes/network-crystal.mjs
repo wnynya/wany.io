@@ -30,9 +30,19 @@ router.get('/*', (req, res, next) => {
       title: 'Network Crystal — 와니네',
       theme: {
         bg: '#000000',
-        bgt: '#ffdddd44',
+        bgt: '#00000040',
         fg: '#00ff00',
         fgm: '#ffffff',
+        'scrollbar-bg': 'rgb(45,45,45)',
+        'scrollbar-fg': 'rgb(0,255,0)',
+        'sidebar-bg': '#00ff00',
+        'sidebar-bg-label-selected': 'rgb(0,230,0)',
+        'sidebar-bg-label-hover': 'rgb(0,210,0)',
+        'sidebar-fg': '#000000',
+        'sidebar-fg-label': 'rgb(60,60,60)',
+        'sidebar-fg-hr': 'rgb(128,128,128)',
+        'sidebar-scrollbar-bg': 'rgb(45,45,45)',
+        'sidebar-scrollbar-fg': 'tgb(80,80,80)',
       },
       meta: {
         jsonld: jsonld.gen(
