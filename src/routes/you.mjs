@@ -25,6 +25,21 @@ router.get('/login', (req, res) => {
   });
 });
 
+router.get('/reset-password', (req, res) => {
+  if (req.login) {
+    res.redirect(`/u/change-password`);
+    return;
+  }
+  req.session.verification = {
+    type: 'reset-password',
+  };
+  req.session.save().then(() => {
+    res.ren('you/reset-password', {
+      title: '비밀번호 재설정 — 와니네 계정',
+    });
+  });
+});
+
 router.get('/profile', (req, res) => {
   if (!req.login) {
     res.redirect(`/u/login?r=${req.originalUrl}`);

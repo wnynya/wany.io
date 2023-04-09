@@ -31,6 +31,7 @@ const Lapis = new (class {
     };
     this.styles = [];
     this.prefetched = [];
+    this.checkCookie = true;
 
     const _this = this;
     this.aEvent = (event) => {
@@ -73,10 +74,12 @@ const Lapis = new (class {
 
     let lcv = cookies('owarimonogatari');
     setInterval(() => {
-      let cv = cookies('owarimonogatari');
-      if (cv != lcv) {
-        window.location.reload();
-        lcv = cv;
+      if (this.checkCookie) {
+        let cv = cookies('owarimonogatari');
+        if (cv != lcv) {
+          window.location.reload();
+          lcv = cv;
+        }
       }
     }, 1000);
   }
@@ -95,6 +98,7 @@ const Lapis = new (class {
     }
     this.asyncs.clear();
     this.scripts.unload();
+    this.checkCookie = true;
     let tempHistory = [];
     push
       ? window.history.pushState(tempHistory, window.location.host, href)
@@ -396,7 +400,7 @@ class Loadingbar {
 class Curtain {
   constructor(direction) {
     this.curtain = document.createElement('div');
-    this.curtain.style.zIndex = '210000000';
+    this.curtain.style.zIndex = '2100000000';
     this.curtain.style.position = 'fixed';
     this.curtain.style.top = '0';
     this.curtain.style.left = '0';

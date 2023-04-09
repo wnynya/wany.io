@@ -57,7 +57,7 @@ function update() {
   }
   if (newpassword.length < 8) {
     noty(
-      '새 비밀번호가 너무 짧습니다. 새 비밀번호는 최소 8자리로 설정해야 합니다.'
+      '새 비밀번호가 너무 짧습니다. 새 비밀번호는 8글자 이상으로 설정해야 합니다.'
     );
     input.newpassword.focus();
     return;
@@ -80,7 +80,7 @@ function update() {
         alert(
           '비밀번호가 변경된 후에는 모든 세션에서 로그아웃됩니다. 다시 로그인하기 바랍니다.'
         );
-        window.location.href = '/';
+        window.location.href = '/u/login';
       }, 1500);
     })
     .catch((error) => {

@@ -929,23 +929,15 @@ select:-webkit-autofill:focus {
   display: inline-flex;
   min-height: 1.5rem;
   align-items: center;
+  justify-content: flex-start;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
   position: relative;
 }
-.input.checkbox[color] {
-  --input-fg: var(--button-bg);
-}
-.input.checkbox:only-child,
-.input.checkbox:last-child {
-  margin-right: 0;
-}
-.input.checkbox.block,
-.input.checkbox.wide {
-  display: flex;
-  margin-right: 0;
+.input.checkbox[button='right'] {
+  justify-content: flex-end;
 }
 .input.checkbox label {
   font-family: var(--sans-serif);
@@ -964,18 +956,8 @@ select:-webkit-autofill:focus {
 .input.checkbox input:checked ~ label {
   color: var(--input-fg);
 }
-.input.checkbox.wide label {
-  width: 100%;
+.input.checkbox[button='right'] label {
   text-align: right;
-  margin-left: 2rem;
-}
-.input.checkbox.right label {
-  text-align: right;
-  margin-left: unset;
-  margin-right: 2rem;
-}
-.input.checkbox.right.wide label {
-  text-align: left;
   margin-left: unset;
   margin-right: 2rem;
 }
@@ -1001,12 +983,9 @@ select:-webkit-autofill:focus {
   border-radius: 100%;
   background: var(--input-bg);
 }
-.input.checkbox.right .checkbtn {
+.input.checkbox[button='right'] .checkbtn {
   left: unset;
   right: 0;
-}
-.input.checkbox.left .checkbtn {
-  left: 0;
 }
 .input.checkbox:hover input ~ .checkbtn {
   transition: box-shadow 0.1s ease-out;
