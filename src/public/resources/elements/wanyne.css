@@ -779,6 +779,7 @@ select:-webkit-autofill:focus {
 }
 .input.text > .buttons {
   position: absolute;
+  top: 0;
   width: calc(100% - 0.5rem);
   height: 100%;
   padding-right: 0.5rem;
