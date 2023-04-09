@@ -113,7 +113,7 @@ class LoginBlock extends Block {
             if (!window.global.redir) {
               window.global.redir = '/';
             }
-            window.location.href;
+            window.location.href = window.global.redir;
           }, 500);
         })
         .catch((error) => {
@@ -123,6 +123,7 @@ class LoginBlock extends Block {
             '🚨로그인 실패!<br>계정 아이디 혹은 비밀번호를 확인해주세요.',
             'error'
           );
+          pw.focus();
           setTimeout(() => {
             this.shake();
             document
