@@ -9,10 +9,10 @@ router.get('/', (req, res) => {
   res.ren('amuject/root', {
     title: '아무젝트 — 와니네',
     theme: {
-      bg: '#ffdddd',
-      bgt: '#ffdddd40',
-      fg: '#0000ff',
-      fgm: '#000000',
+      bg: 'rgb(255,225,225)',
+      bgt: 'rgba(253,225,241,0.25)',
+      fg: 'rgb(0,0,255)',
+      fgm: 'rgb(0,0,0)',
     },
     meta: {
       jsonld: jsonld.gen(
