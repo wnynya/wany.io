@@ -22,7 +22,7 @@ section#blog-article-info
         span.category#blog-article-info-category
           if (categories[article.category])
             a(
-              href="/b/index/category:" + article.tags[0] 
+              href="/b/index/category:" + article.category
               tooltip="이 카테고리의 게시글 보기" 
               lapis
             )!= categories[article.category]
