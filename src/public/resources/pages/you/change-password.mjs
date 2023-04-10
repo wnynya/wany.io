@@ -41,17 +41,17 @@ function update() {
   let confirm = input.confirm.value;
 
   if (!password) {
-    noty('기존 비밀번호를 입력하십시오.');
+    noty('기존 비밀번호를 입력해주세요.');
     input.password.focus();
     return;
   }
   if (!newpassword) {
-    noty('새 비밀번호를 입력하십시오.');
+    noty('새 비밀번호를 입력해주세요.');
     input.newpassword.focus();
     return;
   }
   if (!confirm) {
-    noty('새 비밀번호를 한 번 더 입력하십시오.');
+    noty('새 비밀번호를 한 번 더 입력해주세요.');
     input.confirm.focus();
     return;
   }

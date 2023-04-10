@@ -143,7 +143,7 @@ function updateLabel() {
   let label = input.label.value;
 
   if (!label) {
-    noty('API 키 이름을 입력하십시오.');
+    noty('API 키 이름을 입력해주세요.');
     input.label.focus();
     return;
   }
@@ -178,7 +178,7 @@ function updatePermPut() {
   let perm = input.perm.value;
 
   if (!perm) {
-    noty('추가할 권한 노드를 입력하십시오.');
+    noty('추가할 권한 노드를 입력해주세요.');
     input.perm.focus();
     return;
   }
@@ -214,7 +214,7 @@ function updatePermDelete() {
   let perm = input.perm.value;
 
   if (!perm) {
-    noty('제거할 권한 노드를 입력하십시오.');
+    noty('제거할 권한 노드를 입력해주세요.');
     input.perm.focus();
     return;
   }

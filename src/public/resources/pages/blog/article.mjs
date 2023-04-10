@@ -48,7 +48,7 @@ new (class extends LapisScript {
           }
           if (
             prompt(
-              `정말로 이 게시글을 삭제하시겠습니까?\n게시글을 삭제하시려면 아래에 ${window.global.article.eid}를 입력하십시오.`
+              `정말로 이 게시글을 삭제하시겠습니까?\n게시글을 삭제하시려면 아래에 ${window.global.article.eid}를 입력해주세요.`
             ) != window.global.article.eid
           ) {
             return;

@@ -144,12 +144,12 @@ class ResetBlock1 extends Block {
 
       if (!email.value) {
         email.focus();
-        noty('계정 이메일을 입력하십시오.', 'info');
+        noty('계정 이메일을 입력해주세요.', 'info');
         return;
       }
       if (!email.value.match(/[^.@]+@[^.]+\.[^.]+/i)) {
         email.focus();
-        noty('유효한 이메일 주소를 입력하십시오.', 'info');
+        noty('유효한 이메일 주소를 입력해주세요.', 'info');
         return;
       }
 
@@ -200,7 +200,7 @@ class ResetBlock2 extends Block {
 
       if (!code.value) {
         code.focus();
-        noty('이메일 인증 코드를 입력하십시오.', 'info');
+        noty('이메일 인증 코드를 입력해주세요.', 'info');
         return;
       }
 
@@ -249,7 +249,7 @@ class ResetBlock3 extends Block {
 
       if (!newpass.value) {
         newpass.focus();
-        noty('새 비밀번호를 입력하십시오.');
+        noty('새 비밀번호를 입력해주세요.');
         return;
       }
       if (newpass.value.length < 8) {
@@ -261,7 +261,7 @@ class ResetBlock3 extends Block {
       }
       if (!renewpass.value) {
         renewpass.focus();
-        noty('새 비밀번호를 한 번 더 입력하십시오.');
+        noty('새 비밀번호를 한 번 더 입력해주세요.');
         return;
       }
       if (newpass.value != renewpass.value) {

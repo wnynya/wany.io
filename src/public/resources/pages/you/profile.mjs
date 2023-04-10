@@ -90,12 +90,12 @@ function update() {
   let phone = input.phone.value;
 
   if (!label) {
-    noty('이름을 입력하십시오.');
+    noty('이름을 입력해주세요.');
     input.label.focus();
     return;
   }
   if (!eid) {
-    noty('사용자 ID를 입력하십시오.');
+    noty('사용자 ID를 입력해주세요.');
     input.eid.focus();
     return;
   }
@@ -107,7 +107,7 @@ function update() {
     return;
   }
   if (!email) {
-    noty('이메일을 입력하십시오.');
+    noty('이메일을 입력해주세요.');
     input.email.focus();
     return;
   }

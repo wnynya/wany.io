@@ -685,12 +685,12 @@ class Editor {
         const lang = document.querySelector('#modal-insert-code-lang').value;
         const code = document.querySelector('#modal-insert-code-content').value;
         if (!lang) {
-          noty('코드 언어를 선택하십시오', 'warn');
+          noty('코드 언어를 선택해주세요.', 'warn');
           document.querySelector('#modal-insert-code-lang').focus();
           return;
         }
         if (!code) {
-          noty('코드 내용을 입력하십시오', 'warn');
+          noty('코드 내용을 입력해주세요.', 'warn');
           document.querySelector('#modal-insert-code-content').focus();
           return;
         }
