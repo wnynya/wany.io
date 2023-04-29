@@ -154,13 +154,11 @@ window.Nav = new (class {
     document.querySelector('#button-header-nav-always-index').innerHTML =
       'Close';
     this.hideScroll();
-    this.nav.querySelector('#header-nav-drawer').Animate().spring(0.3, 3).to(
-      {
-        top: '-4rem',
-        height: '26rem',
-      },
-      500
-    );
+    this.nav
+      .querySelector('#header-nav-drawer')
+      .Animate()
+      .spring(0.3, 3)
+      .to({ top: '-4rem', height: '26rem' }, 500);
     document
       .querySelector('#header-nav-dropdown')
       .Animate()
