@@ -9,6 +9,17 @@ new (class extends LapisScript {
         loginBlock.login();
       });
     loginBlock.login();
+
+    document
+      .querySelector('#button-you-login-google')
+      .addEventListener('click', () => {
+        const popup = window.open(
+          `${global.wanyne}/u/login/google`,
+          '',
+          `scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,
+        width=480,height=720`
+        );
+      });
   }
 
   unload() {}

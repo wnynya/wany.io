@@ -48,7 +48,7 @@
   pointer-events: none;
 }
 
-#you-login-wrapper > .block > .wrapper > .front > form {
+#you-login-form {
   width: 100%;
   height: 100%;
   display: flex;
@@ -56,19 +56,27 @@
   justify-content: space-between;
   align-items: center;
 }
-#you-login-wrapper > .block > .wrapper > .front > form > h2 {
+#you-login-form > h2 {
   height: 4rem;
 }
-#you-login-wrapper > .block > .wrapper > .front > form > .inputs {
+#you-login-form > .inputs {
   width: 100%;
 }
-#you-login-wrapper > .block > .wrapper > .front > form > .inputs > .input {
+#you-login-form > .inputs > .input {
   display: block;
   width: 100%;
   margin-bottom: 1rem;
 }
-#you-login-wrapper > .block > .wrapper > .front > form > button {
+#you-login-form > .buttons {
   width: 100%;
+}
+#you-login-form > .buttons > .direct > button {
+  width: 100%;
+}
+#you-login-form > .buttons > .connections {
+  margin-top: 1rem;
+  width: 100%;
+  display: flex;
 }
 
 #button-you-login-reset-password {

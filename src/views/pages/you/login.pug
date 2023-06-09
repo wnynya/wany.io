@@ -5,7 +5,7 @@ lapis-style(src="/resources/pages/you/login.css")
   .block(layer)#you-login
     .wrapper
       .side.front(layer)
-        form(onsubmit="return false;")
+        form#you-login-form(onsubmit="return false;")
           h2 로그인🔒
           .inputs
             .input.text(label="inner")
@@ -23,7 +23,11 @@ lapis-style(src="/resources/pages/you/login.css")
               input#input-you-login-keep(type="checkbox" name="keeplogin")
               label 로그인 세션 유지
               .checkbtn
-          button#button-you-login-submit 로그인
+          .buttons
+            .direct
+              button#button-you-login-submit 로그인
+            //-.connections
+              button(type="button" medium)#button-you-login-google 구글로 로그인
       .side.back(layer)
           h2 계정 확인 중⏳...
   

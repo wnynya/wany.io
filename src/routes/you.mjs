@@ -25,6 +25,15 @@ router.get('/login', (req, res) => {
   });
 });
 
+router.get('/login/google', (req, res) => {
+  let url = 'https://accounts.google.com/o/oauth2/v2/auth';
+  url += `?client_id=${'724935159172-obmq72ttk4d0l1en2itmp1b4ughk9ndu.apps.googleusercontent.com'}`;
+  url += `&redirect_uri=${'https://lab-api.wany.io/auth/accounts/@google/sessions'}`;
+  url += '&response_type=code';
+  url += '&scope=email profile';
+  res.redirect(url);
+});
+
 router.get('/reset-password', (req, res) => {
   if (req.login) {
     res.redirect(`/u/change-password`);
