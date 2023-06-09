@@ -14,7 +14,7 @@
   align-items: center;
 }
 #you-login-wrapper > .block > .wrapper {
-  position: relative;
+  position: absolute;
   width: 24rem;
   height: 24rem;
   padding: 5rem;
