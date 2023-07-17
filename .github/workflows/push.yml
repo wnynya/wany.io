@@ -3,7 +3,8 @@ on: push
 jobs:
   checkout:
     name: 'Checkout'
-    runs-on: self-hosted
+    runs-on:
+      labels: [self-hosted, wanyne]
     steps:
       - uses: actions/checkout@master
         with:
