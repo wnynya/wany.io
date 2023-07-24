@@ -1,3 +1,14 @@
+'use strict';
+
+/**
+ * modules/animate.mjs
+ *
+ * CSS 대신 JS 로 만든 transform 애니메이션
+ * (띠용 하기 위해 사용)
+ *
+ * @author Wany <sung@wany.io> (https://wany.io)
+ */
+
 const animatings = {};
 
 class Animate {
@@ -9,6 +20,15 @@ class Animate {
     this.killed = false;
   }
 
+  /**
+   * Animate to
+   *
+   * @param {object} styles Target styles state
+   * @param {number} duration Animating time
+   * @param {number} after Animating delay
+   *
+   * @returns Animate
+   */
   to(styles = {}, duration = 2000, after = 0) {
     const _this = this;
     const id = this.id;
@@ -148,6 +168,11 @@ class Animate {
     delete animatings[this.id];
   }
 
+  /**
+   * Use linear processor
+   *
+   * @returns Animate
+   */
   linear() {
     this.processor = (n) => {
       return n;
@@ -155,9 +180,27 @@ class Animate {
     return this;
   }
 
+  /**
+   * Use bezier processor
+   *
+   * @param {number} x1
+   * @param {number} y1
+   * @param {number} x2
+   * @param {number} y2
+   *
+   * @returns Animate
+   */
   bezier(x1 = 0.25, y1 = 0.75, x2 = 0.75, y2 = 0.25) {
     /**
-     * bezierFactory from https://github.com/gre/bezier-easing
+     * @original https://github.com/gre/bezier-easing
+     * @author Gaëtan Renaudeau
+     * @license MIT https://github.com/gre/bezier-easing/blob/master/LICENSE
+     *
+     * @param {number} mX1
+     * @param {number} mY1
+     * @param {number} mX2
+     * @param {number} mY2
+     * @returns {Function}
      */
     function bezierFactory(mX1, mY1, mX2, mY2) {
       var NEWTON_ITERATIONS = 4;
@@ -291,9 +334,18 @@ class Animate {
     return this;
   }
 
+  /**
+   * Use spring processor
+   *
+   * @param {number} elastic
+   * @param {number} frequency
+   *
+   * @returns Animate
+   */
   spring(elastic = 0.5, frequency = 15) {
     /**
-     * springFactory from https://medium.com/hackernoon/the-spring-factory-4c3d988e7129
+     * @original https://medium.com/hackernoon/the-spring-factory-4c3d988e7129
+     * @author William Silversmith
      */
     function springFactory(args) {
       args = args || {};
@@ -429,21 +481,41 @@ class Animate {
     return this;
   }
 
+  /**
+   * Use bezier processor like CSS ease
+   *
+   * @returns Animate
+   */
   ease() {
     this.bezier(0.25, 0.1, 0.25, 1);
     return this;
   }
 
+  /**
+   * Use bezier processor like CSS ease-in
+   *
+   * @returns Animate
+   */
   easein() {
     this.bezier(0.42, 0, 1, 1);
     return this;
   }
 
+  /**
+   * Use bezier processor like CSS ease-out
+   *
+   * @returns Animate
+   */
   easeout() {
     this.bezier(0, 0, 0.58, 1);
     return this;
   }
 
+  /**
+   * Use bezier processor like CSS ease-in-out
+   *
+   * @returns Animate
+   */
   easeinout() {
     this.bezier(0.42, 0, 0.58, 1);
     return this;

@@ -1,11 +1,24 @@
 'use strict';
 
-class EventEmitter {
-  constructor() {
-    this.listeners = {};
-    return this;
-  }
+/**
+ * modules/eventemitter.mjs
+ *
+ * nodejs 에 있는 EventEmitter 를 브라우저에서도 쓰고 싶어
+ *
+ * @author Wany <sung@wany.io> (https://wany.io)
+ */
 
+class EventEmitter {
+  #listeners = {};
+
+  /**
+   * Add listener on event(s)
+   *
+   * @param {string | string[]} events Event(s) name
+   * @param {function(...args)} listener Event listener
+   *
+   * @returns EventEmitter
+   */
   on(events, listener) {
     let names = [];
     if (typeof events == 'string') {
@@ -28,46 +41,84 @@ class EventEmitter {
     return this;
   }
 
+  /**
+   * Emit event
+   *
+   * @param {string} event Event name
+   * @param {...any} args Arguments to listener(s)
+   *
+   * @returns EventEmitter
+   */
   emit(event, ...args) {
     if (!(typeof event == 'string' || typeof event == 'number')) {
       throw new Error('Argument events must typeof string or number');
     }
-    for (const listener of this.listeners[event] || []) {
+    for (const listener of this.#listeners[event] || []) {
       listener(...args);
     }
     return this;
   }
 
-  addListener(name, listener) {
+  /**
+   * Add listener on event
+   *
+   * @param {string} event Event name
+   * @param {function(...args)} listener Event listener
+   *
+   * @returns EventEmitter
+   */
+  addListener(event, listener) {
     if (!(listener instanceof Function)) {
       throw new Error('Argument listener must instanceof Function');
     }
-    !this.listeners[name] ? (this.listeners[name] = []) : null;
-    this.listeners[name].push(listener);
+    !this.#listeners[event] ? (this.#listeners[event] = []) : null;
+    this.#listeners[event].push(listener);
   }
 
-  removeListener(name, listener) {
+  /**
+   * Remove listener on event
+   *
+   * @param {string} event Event name
+   * @param {function(...args)} listener Event listener
+   *
+   * @returns EventEmitter
+   */
+  removeListener(event, listener) {
     if (!(listener instanceof Function)) {
       throw new Error('Argument listener must instanceof Function');
     }
-    if (!(this.listeners[name] instanceof Array)) {
+    if (!(this.#listeners[event] instanceof Array)) {
       return;
     }
-    const index = this.listeners[name].indexOf(listener);
+    const index = this.#listeners[event].indexOf(listener);
     if (index > -1) {
-      this.listeners[name].splice(index, 1);
+      this.#listeners[event].splice(index, 1);
     }
   }
 
-  removeListeners(name) {
-    delete this.listeners[name];
+  /**
+   * Remove all listeners on event
+   *
+   * @param {string} event Event name
+   *
+   * @returns EventEmitter
+   */
+  removeListeners(event) {
+    delete this.#listeners[event];
   }
 
+  /**
+   * Get all listeners on event
+   *
+   * @param {string} event Event name
+   *
+   * @returns EventEmitter
+   */
   getListeners(event) {
     if (!(typeof event == 'string')) {
       throw new Error('Argument event must instanceof String');
     }
-    return this.listeners[event] || [];
+    return this.#listeners[event] || [];
   }
 }
 

@@ -1,5 +1,13 @@
 'use strict';
 
+/**
+ * modules/request.mjs
+ *
+ * window.fetch 내맘대로 보내기
+ *
+ * @author Wany <sung@wany.io> (https://wany.io)
+ */
+
 import EventEmitter from '/resources/modules/eventemitter.mjs';
 
 class Request extends EventEmitter {

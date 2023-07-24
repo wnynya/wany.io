@@ -1,83 +1,87 @@
 'use strict';
 
-/*
-css vars
---sans-se
+/**
+ * modules/notification.mjs
+ *
+ * 오른쪽에서 나오는 작고 귀여운 알림 메시지
+ *
+ * @author Wany <sung@wany.io> (https://wany.io)
+ */
 
+import Animate from '/resources/modules/animate.mjs';
 
-message: string,
-type: string | "warn" | "error" | "success" | "rainbow"
-options: {
-  timeout: number,
-  style: {} <- css value
-}
-*/
-
-const Notifications = new Array();
+/**
+ * Right-side notification message
+ */
 class Notification {
-  constructor(message, type, options = {}) {
+  static list = [];
+  #theme = {
+    background: 'black',
+    foreground: 'white',
+    font: 'var(--sans-serif)',
+  };
+
+  /**
+   * Create new notification
+   *
+   * @param {string} content
+   * @param {string | "success" | "warn" | "error"} type
+   * @param {object} options
+   * @param {number} options.timeout
+   * @param {object} options.style CSS style
+   */
+  constructor(content, type, options = {}) {
     options.timeout = options.timeout ? options.timeout : 5000;
-    var notifications = document.querySelector('#notifications');
-    if (!notifications) {
-      notifications = document.createElement('div');
-      notifications.id = 'notifications';
-      const style = document.createElement('style');
-      style.innerText = this.style();
-      notifications.appendChild(style);
-      document.body.appendChild(notifications);
-    }
-    var notification = document.createElement('div');
-    notification.classList.add('notification');
-    type ? notification.classList.add(type) : null;
-    if (type == 'rainbow') {
-      notification.setAttribute('color', type);
-    }
-    var msg = document.createElement('div');
-    msg.classList.add('message');
-    msg.innerHTML = message;
-    var close = document.createElement('div');
+
+    this.container = this.#getContainer();
+
+    this.element = document.createElement('div');
+    this.element.classList.add('notification');
+    type ? this.element.setAttribute('type', type) : null;
+
+    const message = document.createElement('div');
+    message.classList.add('message');
+    message.innerHTML = content;
+
+    const close = document.createElement('div');
     close.classList.add('close');
-    var closebtn = document.createElement('div');
+    const closebtn = document.createElement('div');
     closebtn.classList.add('btn');
     closebtn.innerHTML = '×';
-    closebtn.addEventListener('click', (event) => {
+    closebtn.addEventListener('click', () => {
       this.close();
     });
     close.appendChild(closebtn);
-    notification.appendChild(msg);
-    notification.appendChild(close);
+
+    this.element.appendChild(message);
+    this.element.appendChild(close);
+
     if (options.style) {
       for (const key in options.style) {
-        notification.style[key] = options.style[key];
+        element.style[key] = options.style[key];
       }
     }
-    notifications.appendChild(notification);
-    Notifications.push(this);
-    this.notifications = notifications;
-    this.notification = notification;
-    setTimeout(() => {
-      //notification.classList.add('show');
-      notification.Animate().spring(0.35, 5).to({ right: '0px' }, 1000);
-    }, 100);
-    this.ct = setTimeout(() => {
-      this.close();
-    }, options.timeout);
+    this.container.appendChild(this.element);
+
+    Notification.list.push(this);
+
+    this.open(options.timeout);
   }
 
-  close() {
-    clearTimeout(this.ct);
-    this.notification.classList.add('hide');
-    this.notification.Animate().easeout().to({ right: '-900px' }, 200);
-    setTimeout(() => {
-      this.notifications.removeChild(this.notification);
-      Notifications.splice(Notifications.indexOf(this), 1);
-      if (Notifications.length == 0) {
-        document.body.removeChild(this.notifications);
-      }
-    }, 200);
+  #getContainer() {
+    let container = document.querySelector('#notifications');
+    if (!container) {
+      container = document.createElement('div');
+      container.id = 'notifications';
+      const style = document.createElement('style');
+      style.innerText = this.#style();
+      container.appendChild(style);
+      document.body.appendChild(container);
+    }
+    return container;
   }
 
-  style() {
+  #style() {
     return `
     #notifications {
       position: fixed;
@@ -89,8 +93,11 @@ class Notification {
       height: calc(100vh - 12rem);
       transition: top 0.2s ease-out, right 0.2s ease-out, max-width 0.2s ease-out;
       pointer-events: none;
-      --bg: black;
-      --fg: white;
+      --notification-bg: ${this.#theme.background};
+      --notification-fg: ${this.#theme.foreground};
+      --notification-font: ${this.#theme.font};
+      --bg: var(--notification-bg);
+      --fg: var(--notification-fg);
     }
     #notifications .notification {
       position: relative;
@@ -117,21 +124,21 @@ class Notification {
       transform: scale(0);
     }
     #notifications .notification {
-      background: var(--bg);
-      color: var(--fg);
+      background: var(--notification-bg);
+      color: var(--notification-fg);
     }
-    #notifications .notification.warn,
-    #notifications .notification.yellow {
+    #notifications .notification[type="warn"],
+    #notifications .notification[type="yellow"] {
       background: var(--yellow);
       color: var(--t245);
     }
-    #notifications .notification.error,
-    #notifications .notification.red {
+    #notifications .notification[type="error"],
+    #notifications .notification[type="red"] {
       background: var(--red);
       color: var(--t245);
     }
-    #notifications .notification.success,
-    #notifications .notification.green {
+    #notifications .notification[type="success"],
+    #notifications .notification[type="green"] {
       background: var(--green);
       color: var(--t245);
     }
@@ -139,7 +146,7 @@ class Notification {
       position: relative;
       display: inline;
       word-break: break-all;
-      font-family: var(--sans-serif);
+      font-family: var(--notification-font);
       font-weight: 500;
       font-size: 1rem;
       line-height: 150%;
@@ -162,13 +169,13 @@ class Notification {
       width: 1.5rem;
       height: 1.5rem;
       border-radius: 100%;
-      font-family: var(--sans-serif);
+      font-family: var(--notification-font);
       font-weight: 500;
       font-size: 1.25rem;
       background-color: rgba(255,255,255, 0.15);
       cursor: pointer;
     }
-    #notifications .notification.rainbow {
+    #notifications .notification[type="rainbow"] {
       background: linear-gradient(
         to right,
         rgba(255, 0, 0, 1),
@@ -209,6 +216,29 @@ class Notification {
         height: calc(100vh - 8rem);
       }
     }`;
+  }
+
+  open(timeout) {
+    setTimeout(() => {
+      //notification.classList.add('show');
+      new Animate(this.element).spring(0.35, 5).to({ right: '0px' }, 1000);
+    }, 100);
+    this.closeTimeout = setTimeout(() => {
+      this.close();
+    }, timeout);
+  }
+
+  close() {
+    clearTimeout(this.closeTimeout);
+    this.element.classList.add('hide');
+    new Animate(this.element).easeout().to({ right: '-900px' }, 200);
+    setTimeout(() => {
+      this.container.removeChild(this.element);
+      Notification.list.splice(Notification.list.indexOf(this), 1);
+      if (Notification.list.length == 0) {
+        document.body.removeChild(this.container);
+      }
+    }, 350);
   }
 }
 
