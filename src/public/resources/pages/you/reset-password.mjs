@@ -166,7 +166,7 @@ class ResetBlock1 extends Block {
         )
           .then((res) => {
             noty(
-              '아메일 인증 코드가 전송되었습니다.<br>이메일을 확인해주세요.',
+              '메일 인증 코드가 전송되었습니다.<br>이메일을 확인해주세요.',
               'success'
             );
             resolve();

@@ -1,5 +1,18 @@
 'use strict';
 
+/*
+css vars
+--sans-se
+
+
+message: string,
+type: string | "warn" | "error" | "success" | "rainbow"
+options: {
+  timeout: number,
+  style: {} <- css value
+}
+*/
+
 const Notifications = new Array();
 class Notification {
   constructor(message, type, options = {}) {
@@ -76,8 +89,8 @@ class Notification {
       height: calc(100vh - 12rem);
       transition: top 0.2s ease-out, right 0.2s ease-out, max-width 0.2s ease-out;
       pointer-events: none;
-      --button-bg: black;
-      --button-fg: white;
+      --bg: black;
+      --fg: white;
     }
     #notifications .notification {
       position: relative;
@@ -106,8 +119,6 @@ class Notification {
     #notifications .notification {
       background: var(--bg);
       color: var(--fg);
-      --fg: var(--t245);
-      --bg: var(--t0);
     }
     #notifications .notification.warn,
     #notifications .notification.yellow {
