@@ -33,7 +33,7 @@ router.get('/', (req, res) => {
               'query-input': 'required name=query',
             },
           }),
-          image: '/resources/pages/root-og-image.jpg',
+          image: '/resources/pages/root-og-image.png',
         },
         articles: {
           amuject: randomArticle(amuject),
