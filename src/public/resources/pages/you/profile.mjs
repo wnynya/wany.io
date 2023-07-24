@@ -216,6 +216,7 @@ function send_email_code() {
   const data = {
     email: email,
   };
+  input.email_code.disabled = false;
 
   JSONPostRequest(
     `${global.api}/auth/accounts/@me/verification/email/change-email/send`,
@@ -226,8 +227,6 @@ function send_email_code() {
         '이메일 인증 코드가 전송되었습니다.<br>이메일을 확인해주세요.',
         'success'
       );
-      button.update_email_code.disabled = true;
-      input.email_code.disabled = false;
       input.email_code.focus();
     })
     .catch((error) => {
@@ -237,6 +236,7 @@ function send_email_code() {
             'error'
           )
         : null;
+      button.update_email_code.disabled = false;
     });
 }
 
