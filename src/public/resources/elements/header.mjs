@@ -633,7 +633,7 @@ const ShakeDetector = new (class {
   frame() {
     if (this.count > 20) {
       this.count = 0;
-      alert('🤮그만 흔들어!');
+      alert('💣🎇🤮🤮🤮🎇💣!');
     }
     var newpos = new Vector(window.screenX, window.screenY);
     if (this.position.distence(newpos) > 50) {
