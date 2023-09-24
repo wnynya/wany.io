@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>하병우 공부 계산기</title>
+
+    <style>
+      @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/variable/pretendardvariable.css');
+
+      html {
+        font-family: 'Pretendard Variable', 'Pretendard', sans-serif;
+      }
+
+      .table {
+        display: inline-flex;
+        flex-direction: column;
+      }
+      .table > .line {
+        display: flex;
+        flex-direction: row;
+        border-bottom: solid 1px gray;
+      }
+      .table > .line:first-child {
+        border-top: solid 1px gray;
+      }
+      .table > .line > .cell {
+        width: 50px;
+        height: 50px;
+        border-right: solid 1px gray;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12pt;
+      }
+      .table > .line > .cell:first-child {
+        border-left: solid 1px gray;
+      }
+      .table > .line > .cell > input {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        margin: 0;
+        border: none;
+        outline: none;
+        text-align: center;
+        font-size: 12pt;
+      }
+      .table > .line > .cell > input:disabled {
+        background-color: lightgrey;
+      }
+
+      #output .cell {
+        width: 100px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>하병우 공부 계산기</h1>
+
+    <section id="input">
+      <div class="table">
+        <div class="line">
+          <div class="cell" label>월</div>
+          <div class="cell" label>화</div>
+          <div class="cell" label>수</div>
+          <div class="cell" label>목</div>
+          <div class="cell" label>금</div>
+          <div class="cell" label>토</div>
+          <div class="cell" label>일</div>
+          <div class="cell" label>월</div>
+          <div class="cell" label>화</div>
+          <div class="cell" label>수</div>
+          <div class="cell" label>목</div>
+          <div class="cell" label>금</div>
+          <div class="cell" label>토</div>
+          <div class="cell" label>일</div>
+        </div>
+      </div>
+      <label>시험시간: </label>
+      <input type="text" value="12" id="examtime" />
+    </section>
+
+    <br />
+    <br />
+
+    <section id="output">
+      <div class="table">
+        <div class="line">
+          <div class="cell" label></div>
+          <div class="cell" label>1</div>
+          <div class="cell" label>2</div>
+          <div class="cell" label>3</div>
+          <div class="cell" label>4</div>
+          <div class="cell" label>5</div>
+          <div class="cell" label>6</div>
+          <div class="cell" label>7</div>
+          <div class="cell" label>8</div>
+          <div class="cell" label>9</div>
+        </div>
+        <div class="line">
+          <div class="cell" label>성적</div>
+          <div class="cell" id="result-a1"></div>
+          <div class="cell" id="result-a2"></div>
+          <div class="cell" id="result-a3"></div>
+          <div class="cell" id="result-a4"></div>
+          <div class="cell" id="result-a5"></div>
+          <div class="cell" id="result-a6"></div>
+          <div class="cell" id="result-a7"></div>
+          <div class="cell" id="result-a8"></div>
+          <div class="cell" id="result-a9"></div>
+        </div>
+        <div class="line">
+          <div class="cell" label>학습률</div>
+          <div class="cell" id="result-b1"></div>
+          <div class="cell" id="result-b2"></div>
+          <div class="cell" id="result-b3"></div>
+          <div class="cell" id="result-b4"></div>
+          <div class="cell" id="result-b5"></div>
+          <div class="cell" id="result-b6"></div>
+          <div class="cell" id="result-b7"></div>
+          <div class="cell" id="result-b8"></div>
+          <div class="cell" id="result-b9"></div>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      for (let i = 0; i < 4; i++) {
+        const line = document.createElement('div');
+        line.classList.add('line');
+        for (let j = 0; j < 14; j++) {
+          const cell = document.createElement('div');
+          cell.classList.add('cell');
+          const input = document.createElement('input');
+          input.type = 'text';
+          let time = -1;
+          if (j % 7 < 5) {
+            if (j == 11) {
+              time = 8 + i * 2 + j * 24;
+            } else {
+              time = 16 + i * 2 + j * 24;
+            }
+          } else {
+            time = 10 + j * 24;
+            time += i == 1 ? 4 : 0;
+            time += i == 2 ? 6 : 0;
+            time += i == 3 ? 10 : 0;
+          }
+          //input.placeholder = `${time}`;
+
+          input.setAttribute('time', time * 60);
+
+          if (i > 2 && j % 7 < 5) {
+            input.disabled = true;
+            input.placeholder = '';
+          }
+
+          input.addEventListener('keyup', (event) => {
+            display();
+          });
+          cell.appendChild(input);
+          line.appendChild(cell);
+        }
+        document.querySelector('#input .table').appendChild(line);
+      }
+
+      document.querySelector('#examtime').addEventListener('keyup', (event) => {
+        display();
+      });
+
+      function classOffset(n) {
+        return (n <= 5 ? 12 + 24 * (n - 1) : 12 + 168 + 24 * (n - 6)) * 60;
+      }
+
+      function retention(x, Reviews) {
+        let k = 1.84;
+        let c = 1.25;
+        let count = Reviews.length;
+
+        if (count == 0) {
+          return (100.0 * k) / (Math.log10(x) ** c + k);
+        }
+
+        let Before = Array(count - 1);
+        for (let i = 0; i < count - 1; i++) {
+          Before[i] = Reviews[i];
+        }
+
+        let lastreview = Reviews[count - 1];
+
+        return (
+          retention(x, Before) +
+          ((100.0 - retention(lastreview, Before)) / 100.0) *
+            retention(x - lastreview, [])
+        );
+      }
+
+      function display() {
+        const rv = {
+          1: [40],
+          2: [40],
+          3: [40],
+          4: [40],
+          5: [40],
+          6: [40],
+          7: [40],
+          8: [40],
+          9: [40],
+        };
+        for (let e of document.querySelectorAll('#input .cell > input')) {
+          if (!rv[e.value]) {
+            continue;
+          }
+          const c = e.value;
+          const t = e.getAttribute('time') * 1;
+          rv[c].push(t - classOffset(c));
+          rv[c].sort((a, b) => {
+            return a - b;
+          });
+        }
+        let Readyness = Array(9);
+        let examtime =
+          (document.querySelector('#examtime').value * 1 + 264) * 60;
+        for (i = 1; i < 10; i++) {
+          document.querySelector(`#output #result-a${i}`).innerHTML = retention(
+            examtime - classOffset(i),
+            rv[i]
+          ).toFixed(2);
+          document.querySelector(`#output #result-b${i}`).innerHTML = (
+            retention(7000000 - classOffset(i), rv[i]) * 2
+          ).toFixed(2);
+        }
+      }
+
+      display();
+    </script>
+  </body>
+</html>
