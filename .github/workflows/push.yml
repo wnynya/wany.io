@@ -37,7 +37,7 @@ jobs:
       - uses: actions/checkout@master
         with:
           ref: 'main'
-          repository: wnynya/Wanyne-config
+          repository: wnynya/wany.io-config
           token: ${{ secrets.CONFIG_TOKEN }}
           path: './config'
           clean: false
