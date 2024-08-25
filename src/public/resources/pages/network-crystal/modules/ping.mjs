@@ -40,10 +40,11 @@ new (class extends LapisScript {
           const data = res.body.data;
           data.ip =
             '<a href="/network-crystal/' +
-            data.ip +
+            data.ip.label +
             '" lapis>' +
-            data.ip +
+            data.ip.label +
             '</a>';
+
           if (data.error) {
             if (data.ip) {
               element.querySelector('.content .icmp .res .ip').innerHTML =
